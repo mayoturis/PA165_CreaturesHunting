@@ -118,7 +118,6 @@ public class User {
 		User user = (User) o;
 
 		return name.equals(user.getName());
-
 	}
 
 	@Override

@@ -1,7 +1,7 @@
 package cz.muni.fi.pa165.enums;
 
 /**
- * Created by Marek on 31.10.2016.
+ * @author Marek Turis
  */
 public enum Gender {
 	MALE, FEMALE

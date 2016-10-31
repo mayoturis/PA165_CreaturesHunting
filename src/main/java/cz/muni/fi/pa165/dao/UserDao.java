@@ -5,7 +5,9 @@ import cz.muni.fi.pa165.entities.User;
 import java.util.List;
 
 /**
- * Created by Marek on 26.10.2016.
+ * Interface providing access to operations related to entities.
+ *
+ * @author Marek Turis
  */
 public interface UserDao {
 	/**

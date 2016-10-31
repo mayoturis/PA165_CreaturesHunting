@@ -9,7 +9,9 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 /**
- * Created by Marek on 26.10.2016.
+ * Implementation of UserDao
+ * 
+ * @author Marek Turis
  */
 @Repository
 public class UserDaoImpl implements UserDao {
