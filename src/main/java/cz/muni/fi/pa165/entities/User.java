@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.entities;
 
+import cz.muni.fi.pa165.enums.Gender;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 
@@ -29,7 +30,7 @@ public class User {
 	private int age;
 
 	@NotNull
-	@Column(nullable = false, unique = true)
+	@Column(nullable = false)
 	@Length(min = 6)
 	private String password;
 
@@ -39,6 +40,9 @@ public class User {
 	private String email;
 
 	private Boolean isAdmin;
+
+	@NotNull
+	private Gender gender;
 
 	@ManyToMany
 	@JoinTable(name = "user_weapon")
@@ -90,6 +94,14 @@ public class User {
 
 	public int getId() {
 		return id;
+	}
+
+	public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
 	}
 
 	@Override
