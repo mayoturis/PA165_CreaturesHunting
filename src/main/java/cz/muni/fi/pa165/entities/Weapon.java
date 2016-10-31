@@ -1,57 +1,58 @@
 package cz.muni.fi.pa165.entities;
 
+import com.sun.istack.internal.NotNull;
 import cz.muni.fi.pa165.enums.Ammunition;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
- * Created by Marek on 25.10.2016.
+ * Class created to store information about weapon.
+ * @author Ondrej Zeman
  */
 @Entity
-@Table(name = "Weapons")
 public class Weapon {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NotNull
+    @Column(nullable = false, unique = true)
     private String name;
 
+    @Min(0)
     private int range;
 
-
+    @NotNull
     private Ammunition ammunition;
 
-//    @OneToMany
-//    @JoinColumn(name = "id")
-//    private User user;
-//
-//    @ManyToMany
-//    private List<Monster> monsters;
+    @ManyToMany
+    private Set<User> user = new HashSet<User>();
 
+    @ManyToMany
+    private Set<Monster> monsters = new HashSet<Monster>();
+
+    public Weapon() {
+    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Weapon)) return false;
 
         Weapon weapon = (Weapon) o;
 
-        if (getId() != weapon.getId()) return false;
-        if (getRange() != weapon.getRange()) return false;
         return getName().equals(weapon.getName());
 
     }
 
     @Override
     public int hashCode() {
-        int result = getId();
-        result = 31 * result + getName().hashCode();
-        result = 31 * result + getRange();
-        return result;
-    }
-
-    public Weapon() {
+        return getName().hashCode();
     }
 
     public String getName() {
@@ -70,13 +71,17 @@ public class Weapon {
         this.range = range;
     }
 
-//    public User getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
+    public Set<User> getUser() {
+        return user;
+    }
+
+    public void setUser(Set<User> user) {
+        this.user = user;
+    }
+
+    public void setMonsters(Set<Monster> monsters) {
+        this.monsters = monsters;
+    }
 
     public int getId() {
         return id;
@@ -86,7 +91,6 @@ public class Weapon {
         this.id = id;
     }
 
-
     public Ammunition getAmmunition() {
         return ammunition;
     }
@@ -94,4 +98,14 @@ public class Weapon {
     public void setAmmunition(Ammunition ammunition) {
         this.ammunition = ammunition;
     }
+
+    public void addMonsters(List<Monster> monsters) {
+        this.monsters.addAll(monsters);
+    }
+
+    public void addMonster(Monster monster) {
+        this.monsters.add(monster);
+    }
+
+
 }

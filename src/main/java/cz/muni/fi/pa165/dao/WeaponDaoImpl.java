@@ -2,20 +2,21 @@ package cz.muni.fi.pa165.dao;
 
 import cz.muni.fi.pa165.entities.Weapon;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
 /**
- * Created by zeman on 30-Oct-16.
+ * Implementation of WeaponDao Interface
+ * @author Ondrej Zeman
  */
 @Repository
+@Transactional
 public class WeaponDaoImpl implements WeaponDao {
 
 
-    @Inject
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -23,9 +24,9 @@ public class WeaponDaoImpl implements WeaponDao {
         entityManager.persist(weapon);
     }
 
+
     public void delete(Weapon weapon) {
-        Weapon mergedWeapon = entityManager.merge(weapon);
-        entityManager.remove(mergedWeapon);
+        entityManager.remove(findWeaponById(weapon.getId()));
     }
 
     public void update(Weapon weapon) {
@@ -43,9 +44,9 @@ public class WeaponDaoImpl implements WeaponDao {
 
     }
 
-    public List<Weapon> getWeaponsByName(String name) {
+    public Weapon getWeaponByName(String name) {
         return entityManager.createQuery("SELECT w FROM Weapon w WHERE name = :name", Weapon.class)
                 .setParameter("name", name)
-                .getResultList();
+                .getSingleResult();
     }
 }
