@@ -31,7 +31,7 @@ public class MonsterDaoImpl implements MonsterDao {
 	}
 
 	@Override
-	public Monster findById(Long id) {
+	public Monster findById(int id) {
 		return em.find(Monster.class, id);
 	}
 

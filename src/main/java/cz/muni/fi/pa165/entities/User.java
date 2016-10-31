@@ -1,11 +1,9 @@
 package cz.muni.fi.pa165.entities;
 
 import cz.muni.fi.pa165.enums.Gender;
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
-import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
@@ -27,22 +25,20 @@ public class User {
 	@Column(nullable = false, unique = true)
 	private String name;
 
-	@DecimalMin("0.1")
+	@Min(0)
 	private int age;
 
 	@NotNull
 	@Column(nullable = false)
-	@Length(min = 6)
 	private String password;
 
 	@NotNull
 	@Column(nullable = false, unique = true)
-	@Email
 	private String email;
 
-	private Boolean isAdmin;
+	private boolean isAdmin;
 
-	@NotNull
+	@Enumerated
 	private Gender gender;
 
 	@ManyToMany
@@ -89,11 +85,11 @@ public class User {
 		this.email = email;
 	}
 
-	public Boolean getAdmin() {
+	public boolean getAdmin() {
 		return isAdmin;
 	}
 
-	public void setAdmin(Boolean admin) {
+	public void setAdmin(boolean admin) {
 		isAdmin = admin;
 	}
 

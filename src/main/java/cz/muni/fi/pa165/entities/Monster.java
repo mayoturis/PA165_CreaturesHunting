@@ -27,7 +27,7 @@ public class Monster {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private int id;
 
 	@NotNull
 	@Column(nullable = false, unique = true)
@@ -51,7 +51,7 @@ public class Monster {
 	@ManyToMany
 	private Set<Area> areas = new HashSet<Area>();
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 

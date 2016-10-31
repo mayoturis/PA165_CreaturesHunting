@@ -31,7 +31,7 @@ public interface MonsterDao {
 	 * @param id id of a monster
 	 * @return found monster
 	 */
-	Monster findById(Long id);
+	Monster findById(int id);
 
 	/**
 	 * Finds monster by its type.

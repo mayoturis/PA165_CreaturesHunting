@@ -18,7 +18,6 @@ public interface UserDao {
 	List<User> findAll();
 
 	/**
-	 *
 	 * Finds user by id
 	 *
 	 * @param id Id of user
