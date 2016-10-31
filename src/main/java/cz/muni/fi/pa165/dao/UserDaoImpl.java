@@ -1,9 +1,9 @@
 package cz.muni.fi.pa165.dao;
 
 import cz.muni.fi.pa165.entities.User;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
@@ -11,6 +11,7 @@ import java.util.List;
 /**
  * Created by Marek on 26.10.2016.
  */
+@Repository
 public class UserDaoImpl implements UserDao {
 
 	@PersistenceContext

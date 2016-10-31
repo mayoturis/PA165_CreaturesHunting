@@ -1,7 +1,6 @@
 package cz.muni.fi.pa165;
 
 import cz.muni.fi.pa165.dao.UserDao;
-import cz.muni.fi.pa165.dao.UserDaoImpl;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -14,15 +13,19 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import javax.sql.DataSource;
 
 /**
- * Created by Marek on 26.10.2016.
+ * Application context configuration.
+ *
+ * @author Marek Turis
  */
 @Configuration
 @EnableTransactionManagement
+@EnableJpaRepositories
 @ComponentScan
 public class ApplicationContextConfiguration {
 
@@ -44,6 +47,7 @@ public class ApplicationContextConfiguration {
 	public LocalValidatorFactoryBean localValidatorFactoryBean(){
 		return new LocalValidatorFactoryBean();
 	}
+
 	@Bean
 	public LoadTimeWeaver instrumentationLoadTimeWeaver() {
 		return new InstrumentationLoadTimeWeaver();
