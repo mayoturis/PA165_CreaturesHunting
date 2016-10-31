@@ -2,12 +2,10 @@ package cz.muni.fi.pa165.dao;
 
 import cz.muni.fi.pa165.ApplicationContextConfiguration;
 import cz.muni.fi.pa165.entities.Monster;
-import cz.muni.fi.pa165.entities.Weapon;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContextAware;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -16,7 +14,6 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
 import org.springframework.transaction.annotation.Transactional;
 import javax.validation.ValidationException;
 
-import javax.inject.Inject;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -78,7 +75,6 @@ public class MonsterDaoTest extends AbstractTestNGSpringContextTests {
 	@Test
 	public void delete() {
 		Monster monster1 = getValidMonster1();
-
 		Monster monster2 = getValidMonster2();
 
 		monsterDao.create(monster1);
@@ -91,14 +87,27 @@ public class MonsterDaoTest extends AbstractTestNGSpringContextTests {
 		Assert.assertTrue(monster2.equals(monsters.get(0)));
 	}
 
+	@Test
 	public void findById() {
-		Monster monster1 = new Monster();
-		monster1.setType("Troll");
+		Monster monster1 = getValidMonster1();
 		monsterDao.create(monster1);
 
 		Monster createdMonster = monsterDao.findById(monster1.getId());
 
 		Assert.assertTrue(monster1.equals(createdMonster));
+	}
+
+	@Test
+	public void findByName() {
+		Monster monster1 = getValidMonster1();
+		Monster monster2 = getValidMonster2();
+
+		monsterDao.create(monster1);
+		monsterDao.create(monster2);
+
+		Monster foundMonster = monsterDao.findByType(monster1.getType());
+
+		Assert.assertTrue(monster1.equals(foundMonster));
 	}
 
 	private Monster getValidMonster1() {
