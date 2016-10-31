@@ -89,12 +89,17 @@ public class MonsterDaoTest extends AbstractTestNGSpringContextTests {
 
 	@Test
 	public void findById() {
-		Monster monster1 = getValidMonster1();
-		monsterDao.create(monster1);
+		Monster monster = getValidMonster1();
+		monsterDao.create(monster);
 
-		Monster createdMonster = monsterDao.findById(monster1.getId());
+		Monster createdMonster = monsterDao.findById(monster.getId());
 
-		Assert.assertTrue(monster1.equals(createdMonster));
+		Assert.assertTrue(monster.equals(createdMonster));
+		Assert.assertEquals(monster.getAgility(), createdMonster.getAgility());
+		Assert.assertEquals(monster.getStrength(), createdMonster.getStrength());
+		Assert.assertEquals(monster.getHeight(), createdMonster.getHeight());
+		Assert.assertEquals(monster.getWeight(), createdMonster.getWeight());
+		Assert.assertEquals(monster.getType(), createdMonster.getType());
 	}
 
 	@Test
