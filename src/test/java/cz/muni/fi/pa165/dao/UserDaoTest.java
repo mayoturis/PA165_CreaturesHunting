@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.validation.ValidationException;
 import java.util.List;
 
 /**
@@ -75,13 +76,13 @@ public class UserDaoTest extends AbstractTestNGSpringContextTests {
 	}
 
 	@Test
-	public void findAllTest() {
+	public void findAllUsersTest() {
 		List<User> users = userDao.findAll();
 		Assert.assertEquals(3, users.size());
 	}
 
 	@Test
-	public void findByIdTest() {
+	public void findUserByIdTest() {
 		User foundUser = userDao.findById(user.getId());
 
 		Assert.assertEquals(userName, foundUser.getName());
@@ -93,7 +94,7 @@ public class UserDaoTest extends AbstractTestNGSpringContextTests {
 	}
 
 	@Test
-	public void createTest() {
+	public void createUserTest() {
 		User user3 = new User();
 		user3.setName("testName");
 		user3.setEmail("testEmail");
@@ -105,8 +106,19 @@ public class UserDaoTest extends AbstractTestNGSpringContextTests {
 		Assert.assertEquals(foundUser, user3);
 	}
 
+	@Test(expected = ValidationException.class)
+	public void createUserWithInvalidAgeTest() {
+		User user3 = new User();
+		user3.setName("testName");
+		user3.setEmail("testEmail");
+		user3.setPassword("pass");
+		user3.setAge(-1);
+
+		userDao.create(user3);
+	}
+
 	@Test
-	public void deleteTest() {
+	public void deleteUserTest() {
 		userDao.delete(user);
 
 		List<User> users = userDao.findAll();
