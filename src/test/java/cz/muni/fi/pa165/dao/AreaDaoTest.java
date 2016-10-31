@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceException;
 import javax.validation.ConstraintViolationException;
 import javax.validation.ValidationException;
 import java.math.BigDecimal;
@@ -61,7 +62,6 @@ public class AreaDaoTest {
         em.persist(area3);
     }
 
-
     @Test
     public void createAreaTest() {
         Area area1 = new Area();
@@ -75,16 +75,20 @@ public class AreaDaoTest {
     @Test
     public void findAllTest() {
         List<Area> areas = areaDao.findAll();
-        Assert.assertEquals(areas.size(), 3);
+        Assert.assertEquals(3, areas.size());
+        Assert.assertEquals(area.getName(), areas.get(0).getName());
+        Assert.assertEquals(area2.getName(), areas.get(1).getName());
+        Assert.assertEquals(area3.getName(), areas.get(2).getName());
+
 
     }
 
     @Test
     public void findByIdTest() {
         Area found = areaDao.findById(area.getId());
-        Assert.assertEquals(found.getName(), "Kappa");
-        Assert.assertEquals(found.getDangerLvl(), DangerLvl.EASY);
-        Assert.assertEquals(found.getSize(), BigDecimal.TEN);
+        Assert.assertEquals(area.getName(), found.getName());
+        Assert.assertEquals(area.getDangerLvl(), found.getDangerLvl());
+        Assert.assertEquals(area.getSize(), found.getSize());
     }
 
     @Test
@@ -97,7 +101,7 @@ public class AreaDaoTest {
     @Test
     public void idNotInDatabase() {
         Area areaNull = areaDao.findById(Integer.MAX_VALUE);
-        Assert.assertEquals(areaNull, null);
+        Assert.assertEquals(null, areaNull);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -120,7 +124,7 @@ public class AreaDaoTest {
     }
 
     @Test(expected = ValidationException.class)
-    public void CreateBadSizeTest() {
+    public void createBadSizeTest() {
         Area badArea = new Area();
         badArea.setSize(BigDecimal.ZERO);
         badArea.setDangerLvl(DangerLvl.HARD);
@@ -129,8 +133,19 @@ public class AreaDaoTest {
         areaDao.create(badArea);
     }
 
+    @Test(expected = PersistenceException.class)
+    public void createAreasWithSameName() {
+        Area a1 = new Area();
+        a1.setName("Kappa");
+        a1.setDangerLvl(DangerLvl.EASY);
+        a1.setSize(BigDecimal.TEN);
 
-
-
+        Area a2 = new Area();
+        a2.setName("Kappa");
+        a2.setDangerLvl(DangerLvl.EASY);
+        a2.setSize(BigDecimal.TEN);
+        areaDao.create(a1);
+        areaDao.create(a2);
+    }
 
 }
