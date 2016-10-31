@@ -1,10 +1,10 @@
 package cz.muni.fi.pa165.entities;
 
-import com.sun.istack.internal.NotNull;
 import cz.muni.fi.pa165.enums.Ammunition;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
