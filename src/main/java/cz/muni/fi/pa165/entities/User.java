@@ -1,7 +1,14 @@
 package cz.muni.fi.pa165.entities;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Marek on 25.10.2016.
@@ -14,24 +21,32 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
+	@NotNull
+	@Column(nullable = false, unique = true)
 	private String name;
 
+	@DecimalMin("0.1")
 	private int age;
 
+	@NotNull
+	@Column(nullable = false, unique = true)
+	@Length(min = 6)
 	private String password;
 
+	@NotNull
+	@Column(nullable = false, unique = true)
+	@Email
 	private String email;
 
 	private Boolean isAdmin;
 
-//	not used for now, weapon entity has to be annotated
-//	@ManyToMany
-//	@JoinTable(name = "user_weapon")
-//	private List<Weapon> weapons;
-//
-//	public void addWeapon(Weapon weapon) {
-//		this.weapons.add(weapon);
-//	}
+	@ManyToMany
+	@JoinTable(name = "user_weapon")
+	private Set<Weapon> weapons = new HashSet<Weapon>();
+
+	public void addWeapon(Weapon weapon) {
+		this.weapons.add(weapon);
+	}
 
 	public String getName() {
 		return name;
@@ -74,6 +89,22 @@ public class User {
 	}
 
 	public int getId() {
+		return id;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		User user = (User) o;
+
+		return id == user.id;
+
+	}
+
+	@Override
+	public int hashCode() {
 		return id;
 	}
 }

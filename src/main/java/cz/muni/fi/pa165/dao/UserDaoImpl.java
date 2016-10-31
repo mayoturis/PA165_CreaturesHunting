@@ -33,7 +33,6 @@ public class UserDaoImpl implements UserDao {
 
 	@Transactional
 	public void delete(User user) {
-		User mergedUser = entityManager.merge(user);
-		entityManager.remove(mergedUser);
+		entityManager.remove(findById(user.getId()));
 	}
 }
