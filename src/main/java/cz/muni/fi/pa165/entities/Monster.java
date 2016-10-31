@@ -61,8 +61,7 @@ public class Monster {
 
 	public void addWeapon(Weapon weapon) {
 		weapons.add(weapon);
-		//TODO uncomment
-//		weapon.addMonster(this);
+		weapon.addMonster(this);
 	}
 
 	public Set<Area> getAreas() {
@@ -71,8 +70,7 @@ public class Monster {
 
 	public void addArea(Area area) {
 		areas.add(area);
-		//TODO uncomment
-//		area.addMonster(this);
+		area.addMonster(this);
 	}
 
 	public int getStrength() {

@@ -30,10 +30,10 @@ public class Weapon {
     @NotNull
     private Ammunition ammunition;
 
-    @ManyToMany
-    private Set<User> user = new HashSet<User>();
+    @ManyToMany(mappedBy = "weapons")
+    private Set<User> users = new HashSet<User>();
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "weapons")
     private Set<Monster> monsters = new HashSet<Monster>();
 
     public Weapon() {
@@ -71,24 +71,16 @@ public class Weapon {
         this.range = range;
     }
 
-    public Set<User> getUser() {
-        return user;
+    public Set<User> getUsers() {
+        return users;
     }
 
-    public void setUser(Set<User> user) {
-        this.user = user;
-    }
-
-    public void setMonsters(Set<Monster> monsters) {
-        this.monsters = monsters;
+    public Set<Monster> getMonsters() {
+        return monsters;
     }
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public Ammunition getAmmunition() {
@@ -105,7 +97,11 @@ public class Weapon {
 
     public void addMonster(Monster monster) {
         this.monsters.add(monster);
+        monster.addWeapon(this);
     }
 
-
+    public void addUser(User user) {
+        this.users.add(user);
+        user.addWeapon(this);
+    }
 }

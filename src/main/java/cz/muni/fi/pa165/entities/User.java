@@ -12,7 +12,9 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Created by Marek on 25.10.2016.
+ * Class used for storing information about user.
+ *
+ * @author Marek Turis
  */
 @Entity
 @Table(name = "Users") // User is reserved word in derby
@@ -45,11 +47,15 @@ public class User {
 	private Gender gender;
 
 	@ManyToMany
-	@JoinTable(name = "user_weapon")
 	private Set<Weapon> weapons = new HashSet<Weapon>();
 
 	public void addWeapon(Weapon weapon) {
 		this.weapons.add(weapon);
+		weapon.addUser(this);
+	}
+
+	public Set<Weapon> getWeapons() {
+		return weapons;
 	}
 
 	public String getName() {
@@ -107,16 +113,16 @@ public class User {
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
+		if (!(o instanceof User)) return false;
 
 		User user = (User) o;
 
-		return id == user.id;
+		return name.equals(user.getName());
 
 	}
 
 	@Override
 	public int hashCode() {
-		return id;
+		return name.hashCode();
 	}
 }

@@ -31,7 +31,7 @@ public class ApplicationContextConfiguration {
 
 	@Bean
 	public JpaTransactionManager transactionManager(){
-		return  new JpaTransactionManager(entityManagerFactory().getObject());
+		return new JpaTransactionManager(entityManagerFactory().getObject());
 	}
 
 	@Bean

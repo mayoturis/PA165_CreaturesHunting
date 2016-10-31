@@ -42,11 +42,12 @@ public class Area {
     @NotNull
     private DangerLvl dangerLvl;
 
-	@ManyToMany(mappedBy = "Area")
+	@ManyToMany(mappedBy = "areas")
 	private List<Monster> monsters = new ArrayList<Monster>();
 
     public void addMonster(Monster newMonster) {
         this.monsters.add(newMonster);
+        newMonster.addArea(this);
     }
 
     public int getId() { return id; }
@@ -77,7 +78,6 @@ public class Area {
         Area area = (Area) o;
 
         return name.equals(area.getName());
-
     }
 
     @Override
