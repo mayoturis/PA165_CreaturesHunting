@@ -38,4 +38,11 @@ public interface UserDao {
 	 * @param user
 	 */
 	void delete(User user);
+
+	/**
+	 * Updates user
+	 *
+	 * @param user
+	 */
+	void update(User user);
 }
