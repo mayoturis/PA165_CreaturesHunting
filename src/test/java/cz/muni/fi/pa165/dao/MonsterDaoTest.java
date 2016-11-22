@@ -7,11 +7,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.PersistenceException;
 import javax.validation.ValidationException;
 
 import java.math.BigDecimal;
@@ -22,9 +21,8 @@ import java.util.List;
  */
 @RunWith( SpringJUnit4ClassRunner.class )
 @ContextConfiguration(classes=ApplicationContextConfiguration.class)
-@TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
-public class MonsterDaoTest extends AbstractTestNGSpringContextTests {
+public class MonsterDaoTest {
 
 	@Autowired
 	public MonsterDao monsterDao;
@@ -113,6 +111,15 @@ public class MonsterDaoTest extends AbstractTestNGSpringContextTests {
 		Monster foundMonster = monsterDao.findByType(monster1.getType());
 
 		Assert.assertTrue(monster1.equals(foundMonster));
+	}
+
+	@Test(expected = PersistenceException.class)
+	public void twoMonstersWithSameTypeCannotBeCreated() {
+		Monster monster1 = getValidMonster1();
+		Monster monster2 = getMonster(monster1.getType(), 5, 5, 5, 5);
+
+		monsterDao.create(monster1);
+		monsterDao.create(monster2);
 	}
 
 	private Monster getValidMonster1() {
