@@ -37,4 +37,9 @@ public class AreaDaoImpl implements AreaDao {
     public void delete(Area toBeDeletedArea) {
         em.remove(findById(toBeDeletedArea.getId()));
     }
+
+    @Override
+    public void update(Area toBeUpdatedArea) {
+        em.merge(toBeUpdatedArea);
+    }
 }

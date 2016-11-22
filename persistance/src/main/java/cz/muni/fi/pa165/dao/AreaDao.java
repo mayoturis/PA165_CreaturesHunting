@@ -33,4 +33,11 @@ public interface AreaDao {
      * @param toBeDeletedArea area to be deleted
      */
     void delete(Area toBeDeletedArea);
+
+	/**
+	 * update Area information
+	 *
+	 * @param toBeUpdatedArea to be updated
+	 */
+	void update(Area toBeUpdatedArea);
 }
