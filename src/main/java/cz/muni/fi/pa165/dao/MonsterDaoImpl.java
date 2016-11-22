@@ -26,6 +26,11 @@ public class MonsterDaoImpl implements MonsterDao {
 	}
 
 	@Override
+	public void update(Monster monster) {
+		em.merge(monster);
+	}
+
+	@Override
 	public void delete(Monster monster) {
 		em.remove(findById(monster.getId()));
 	}

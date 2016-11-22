@@ -19,6 +19,13 @@ public interface MonsterDao {
 	void create(Monster monster);
 
 	/**
+	 * Updates a monster.
+	 *
+	 * @param monster monster object to update
+	 */
+	void update(Monster monster);
+
+	/**
 	 * Deletes monster.
 	 *
 	 * @param monster monster object to delete
