@@ -13,8 +13,8 @@ import java.util.Set;
  * Class created to store information about weapon.
  * @author Ondrej Zeman
  */
-@Entity
-public class Weapon {
+@javax.persistence.Entity
+public class Weapon implements Entity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

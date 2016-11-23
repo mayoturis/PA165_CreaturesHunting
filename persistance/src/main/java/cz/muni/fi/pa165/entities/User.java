@@ -13,9 +13,9 @@ import java.util.Set;
  *
  * @author Marek Turis
  */
-@Entity
+@javax.persistence.Entity
 @Table(name = "Users") // User is reserved word in derby
-public class User {
+public class User implements Entity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -97,6 +97,10 @@ public class User {
 		return id;
 	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public Gender getGender() {
 		return gender;
 	}
@@ -119,4 +123,6 @@ public class User {
 	public int hashCode() {
 		return name.hashCode();
 	}
+
+
 }

@@ -3,7 +3,6 @@ package cz.muni.fi.pa165.entities;
 import cz.muni.fi.pa165.enums.DangerLvl;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,8 +21,8 @@ import java.util.List;
  *
  * @author Michael Cada
  */
-@Entity
-public class Area {
+@javax.persistence.Entity
+public class Area implements Entity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

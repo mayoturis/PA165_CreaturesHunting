@@ -1,11 +1,13 @@
 package cz.muni.fi.pa165.service;
 
+import cz.muni.fi.pa165.entities.Entity;
+
 import java.util.List;
 
 /**
  * @author Marek Turis
  */
-public interface CrudService<TEntity> {
+public interface CrudService<TEntity extends Entity> {
 
 	/**
 	 * Finds entity by id.
@@ -26,8 +28,9 @@ public interface CrudService<TEntity> {
 	 * Saves new entity.
 	 *
 	 * @param entity Entity to create.
+	 * @return id of created entity
 	 */
-	void create(TEntity entity);
+	int create(TEntity entity);
 
 	/**
 	 * Updates entity.

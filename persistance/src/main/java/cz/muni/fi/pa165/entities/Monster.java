@@ -3,7 +3,6 @@ package cz.muni.fi.pa165.entities;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,8 +21,8 @@ import java.util.Set;
  *
  * @author Simona Kruppova
  */
-@Entity
-public class Monster {
+@javax.persistence.Entity
+public class Monster implements Entity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

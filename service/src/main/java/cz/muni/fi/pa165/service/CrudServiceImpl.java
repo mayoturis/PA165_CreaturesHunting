@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.service;
 
 import cz.muni.fi.pa165.dao.CrudDao;
+import cz.muni.fi.pa165.entities.Entity;
 import cz.muni.fi.pa165.service.exception.PersistenceException;
 
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.List;
 /**
  * @author Marek Turis
  */
-public class CrudServiceImpl<TEntity> implements CrudService<TEntity> {
+public class CrudServiceImpl<TEntity extends Entity> implements CrudService<TEntity> {
 
 	private CrudDao<TEntity> crudDao;
 
@@ -35,9 +36,10 @@ public class CrudServiceImpl<TEntity> implements CrudService<TEntity> {
 	}
 
 	@Override
-	public void create(TEntity entity) {
+	public int create(TEntity entity) {
 		try {
 			crudDao.create(entity);
+			return entity.getId();
 		} catch(RuntimeException exception) {
 			throw new PersistenceException("Exception while creating entity", exception);
 		}
