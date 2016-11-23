@@ -9,27 +9,7 @@ import java.util.List;
  *
  * @author Ondrej Zeman
  */
-public interface WeaponDao {
-	/**
-	 * Adds new weapon to database
-	 *
-	 * @param weapon to be created
-	 */
-	void create(Weapon weapon);
-
-	/**
-	 * deletes weapon from database
-	 *
-	 * @param weapon weapon to be deleted
-	 */
-	void delete(Weapon weapon);
-
-	/**
-	 * update weapon from database
-	 *
-	 * @param weapon to be updated
-	 */
-	void update(Weapon weapon);
+public interface WeaponDao extends CrudDao<Weapon> {
 
 	/**
 	 * finds weapon by id

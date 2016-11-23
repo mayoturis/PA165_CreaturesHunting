@@ -50,4 +50,14 @@ public class WeaponDaoImpl implements WeaponDao {
 				.setParameter("name", name)
 				.getSingleResult();
 	}
+
+	@Override
+	public List<Weapon> findAll() {
+		return listAll();
+	}
+
+	@Override
+	public Weapon findById(int id) {
+		return findWeaponById(id);
+	}
 }

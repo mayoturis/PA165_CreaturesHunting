@@ -9,36 +9,7 @@ import java.util.List;
  *
  * @author Simona Kruppova
  */
-public interface MonsterDao {
-
-	/**
-	 * Creates monster.
-	 *
-	 * @param monster monster object to create
-	 */
-	void create(Monster monster);
-
-	/**
-	 * Updates a monster.
-	 *
-	 * @param monster monster object to update
-	 */
-	void update(Monster monster);
-
-	/**
-	 * Deletes monster.
-	 *
-	 * @param monster monster object to delete
-	 */
-	void delete(Monster monster);
-
-	/**
-	 * Finds monster by id.
-	 *
-	 * @param id id of a monster
-	 * @return found monster
-	 */
-	Monster findById(int id);
+public interface MonsterDao extends CrudDao<Monster> {
 
 	/**
 	 * Finds monster by its type.
@@ -48,11 +19,4 @@ public interface MonsterDao {
 	 * @return found monster
 	 */
 	Monster findByType(String type);
-
-	/**
-	 * Finds all monsters.
-	 *
-	 * @return list of all monsters
-	 */
-	List<Monster> findAll();
 }
