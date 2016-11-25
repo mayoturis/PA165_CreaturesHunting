@@ -2,7 +2,7 @@ package cz.muni.fi.pa165.service.services;
 
 import cz.muni.fi.pa165.dao.WeaponDao;
 import cz.muni.fi.pa165.entities.Weapon;
-import cz.muni.fi.pa165.service.exceptions.PersistenceException;
+import cz.muni.fi.pa165.service.exceptions.HuntingPersistenceException;
 import cz.muni.fi.pa165.service.services.base.CrudServiceImpl;
 
 import javax.inject.Inject;
@@ -28,7 +28,7 @@ public class WeaponServiceImpl extends CrudServiceImpl<Weapon> implements Weapon
 		try{
 			return weaponDao.getWeaponByName(name);
 		}catch (RuntimeException e){
-			throw new PersistenceException("Something failed in database",e);
+			throw new HuntingPersistenceException("Something failed in database",e);
 		}
 	}
 

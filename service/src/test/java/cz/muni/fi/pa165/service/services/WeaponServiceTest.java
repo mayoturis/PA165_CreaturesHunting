@@ -128,7 +128,7 @@ public class WeaponServiceTest {
 		Assert.assertEquals(weapon, actualWeapon);
 	}
 
-	@Test(expected = PersistenceException.class)
+	@Test(expected = HuntingPersistenceException.class)
 	public void getWeaponByNameWithDatabaseFail() {
 		String name = "luk";
 		doThrow(RuntimeException.class).when(weaponDao).getWeaponByName(name);
