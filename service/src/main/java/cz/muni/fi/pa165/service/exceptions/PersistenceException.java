@@ -1,8 +1,10 @@
-package cz.muni.fi.pa165.service.exception;
+package cz.muni.fi.pa165.service.exceptions;
 
 import org.springframework.dao.DataAccessException;
 
 /**
+ * Exception caused by persisting data to database.
+ *
  * @author Marek Turis
  */
 public class PersistenceException extends DataAccessException {

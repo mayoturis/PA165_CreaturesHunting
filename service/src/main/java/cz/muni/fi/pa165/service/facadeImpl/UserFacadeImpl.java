@@ -1,10 +1,11 @@
-package cz.muni.fi.pa165.service.facade;
+package cz.muni.fi.pa165.service.facadeImpl;
 
 import cz.muni.fi.pa165.dto.UserDTO;
 import cz.muni.fi.pa165.entities.User;
 import cz.muni.fi.pa165.facade.UserFacade;
-import cz.muni.fi.pa165.service.CrudService;
-import cz.muni.fi.pa165.service.MappingService;
+import cz.muni.fi.pa165.service.facadeImpl.base.CrudFacadeImpl;
+import cz.muni.fi.pa165.service.services.base.CrudService;
+import cz.muni.fi.pa165.service.services.mapping.MappingService;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;

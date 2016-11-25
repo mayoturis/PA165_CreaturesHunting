@@ -1,9 +1,9 @@
-package cz.muni.fi.pa165.service.facade;
+package cz.muni.fi.pa165.service.facadeImpl.base;
 
 import cz.muni.fi.pa165.entities.base.Entity;
 import cz.muni.fi.pa165.facade.CrudFacade;
-import cz.muni.fi.pa165.service.CrudService;
-import cz.muni.fi.pa165.service.MappingService;
+import cz.muni.fi.pa165.service.services.base.CrudService;
+import cz.muni.fi.pa165.service.services.mapping.MappingService;
 
 import java.util.List;
 

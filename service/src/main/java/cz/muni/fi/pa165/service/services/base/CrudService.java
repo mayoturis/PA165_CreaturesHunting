@@ -1,4 +1,4 @@
-package cz.muni.fi.pa165.service;
+package cz.muni.fi.pa165.service.services.base;
 
 import cz.muni.fi.pa165.entities.base.Entity;
 

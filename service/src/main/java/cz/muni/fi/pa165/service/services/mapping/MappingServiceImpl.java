@@ -1,10 +1,8 @@
-package cz.muni.fi.pa165.service;
+package cz.muni.fi.pa165.service.services.mapping;
 
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.Collection;

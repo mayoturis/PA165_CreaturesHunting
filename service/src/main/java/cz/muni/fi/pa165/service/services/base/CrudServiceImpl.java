@@ -1,8 +1,8 @@
-package cz.muni.fi.pa165.service;
+package cz.muni.fi.pa165.service.services.base;
 
 import cz.muni.fi.pa165.dao.base.CrudDao;
 import cz.muni.fi.pa165.entities.base.Entity;
-import cz.muni.fi.pa165.service.exception.PersistenceException;
+import cz.muni.fi.pa165.service.exceptions.PersistenceException;
 
 import java.util.List;
 

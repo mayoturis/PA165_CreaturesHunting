@@ -1,10 +1,12 @@
-package cz.muni.fi.pa165.service;
+package cz.muni.fi.pa165.service.services;
 
 import cz.muni.fi.pa165.dao.UserDao;
 import cz.muni.fi.pa165.dao.WeaponDao;
 import cz.muni.fi.pa165.entities.User;
 import cz.muni.fi.pa165.entities.Weapon;
-import cz.muni.fi.pa165.service.exception.PersistenceException;
+import cz.muni.fi.pa165.service.exceptions.PersistenceException;
+import cz.muni.fi.pa165.service.services.WeaponService;
+import cz.muni.fi.pa165.service.services.WeaponServiceImpl;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

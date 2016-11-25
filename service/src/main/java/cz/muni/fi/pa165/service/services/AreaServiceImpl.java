@@ -1,7 +1,8 @@
-package cz.muni.fi.pa165.service;
+package cz.muni.fi.pa165.service.services;
 
 import cz.muni.fi.pa165.dao.AreaDao;
 import cz.muni.fi.pa165.entities.Area;
+import cz.muni.fi.pa165.service.services.base.CrudServiceImpl;
 
 import javax.inject.Inject;
 import javax.inject.Named;

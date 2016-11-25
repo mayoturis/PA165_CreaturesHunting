@@ -1,12 +1,13 @@
-package cz.muni.fi.pa165.service.facade;
+package cz.muni.fi.pa165.service.facadeImpl;
 
 import cz.muni.fi.pa165.dto.UserDTO;
 import cz.muni.fi.pa165.dto.WeaponDTO;
 import cz.muni.fi.pa165.entities.User;
 import cz.muni.fi.pa165.entities.Weapon;
 import cz.muni.fi.pa165.facade.WeaponFacade;
-import cz.muni.fi.pa165.service.MappingService;
-import cz.muni.fi.pa165.service.WeaponService;
+import cz.muni.fi.pa165.service.facadeImpl.base.CrudFacadeImpl;
+import cz.muni.fi.pa165.service.services.mapping.MappingService;
+import cz.muni.fi.pa165.service.services.WeaponService;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
