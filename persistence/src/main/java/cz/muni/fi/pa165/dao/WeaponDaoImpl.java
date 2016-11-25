@@ -26,22 +26,11 @@ public class WeaponDaoImpl implements WeaponDao {
 
 
 	public void delete(Weapon weapon) {
-		entityManager.remove(findWeaponById(weapon.getId()));
+		entityManager.remove(findById(weapon.getId()));
 	}
 
 	public void update(Weapon weapon) {
 		entityManager.merge(weapon);
-	}
-
-	public Weapon findWeaponById(int id) {
-		return entityManager.createQuery("SELECT w FROM Weapon w WHERE id = :id", Weapon.class)
-				.setParameter("id", id)
-				.getSingleResult();
-	}
-
-	public List<Weapon> listAll() {
-		return entityManager.createQuery("SELECT w FROM Weapon w", Weapon.class).getResultList();
-
 	}
 
 	public Weapon getWeaponByName(String name) {
@@ -52,11 +41,13 @@ public class WeaponDaoImpl implements WeaponDao {
 
 	@Override
 	public List<Weapon> findAll() {
-		return listAll();
+		return entityManager.createQuery("SELECT w FROM Weapon w", Weapon.class).getResultList();
 	}
 
 	@Override
 	public Weapon findById(int id) {
-		return findWeaponById(id);
+		return entityManager.createQuery("SELECT w FROM Weapon w WHERE id = :id", Weapon.class)
+				.setParameter("id", id)
+				.getSingleResult();
 	}
 }

@@ -17,15 +17,15 @@ import javax.inject.Named;
 @Named
 public class WeaponFacadeImpl extends CrudFacadeImpl<WeaponDTO, Weapon> implements WeaponFacade {
 
-	@Inject
 	private WeaponService weaponService;
 
-	@Inject
 	private MappingService mappingService;
 
 	@Inject
 	public WeaponFacadeImpl(WeaponService crudService, MappingService mappingService) {
 		super(crudService, mappingService, WeaponDTO.class, Weapon.class);
+		this.mappingService=mappingService;
+		this.weaponService=crudService;
 	}
 
 	@Override

@@ -16,16 +16,15 @@ import javax.inject.Named;
 public class WeaponServiceImpl extends CrudServiceImpl<Weapon> implements WeaponService {
 
 
-	@Inject
 	private UserDao userDao;
 
-	@Inject
 	private WeaponDao weaponDao;
 
 	@Inject
 	public WeaponServiceImpl(WeaponDao weaponDao , UserDao userDao)
 	{
 		super(weaponDao);
+		this.weaponDao=weaponDao;
 		this.userDao=userDao;
 	}
 

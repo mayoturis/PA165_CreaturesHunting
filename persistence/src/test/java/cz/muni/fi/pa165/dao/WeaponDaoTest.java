@@ -68,7 +68,7 @@ public class WeaponDaoTest {
     @Test(expected=NoResultException.class)
     public void deleteTest() {
         wDao.delete(w1);
-        wDao.findWeaponById(w1.getId());
+        wDao.findById(w1.getId());
 
         //clear after test to previous state
         em.persist(w1);
@@ -76,7 +76,7 @@ public class WeaponDaoTest {
 
     @Test
     public void findByIdTest() {
-        Weapon foundWeapon = wDao.findWeaponById(w1.getId());
+        Weapon foundWeapon = wDao.findById(w1.getId());
         Assert.assertTrue(foundWeapon.equals(w1));
     }
 
@@ -97,12 +97,12 @@ public class WeaponDaoTest {
 
     @Test
     public void listAllTest() {
-        List<Weapon> weapons = wDao.listAll();
+        List<Weapon> weapons = wDao.findAll();
         Assert.assertEquals(1, weapons.size());
 
         em.persist(w2);
 
-        weapons = wDao.listAll();
+        weapons = wDao.findAll();
         Assert.assertEquals(2, weapons.size());
 
         //clean after test to previous state
