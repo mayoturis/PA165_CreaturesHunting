@@ -97,11 +97,9 @@ public class Weapon implements Entity {
 
     public void addMonster(Monster monster) {
         this.monsters.add(monster);
-        monster.addWeapon(this);
     }
 
     public void addUser(User user) {
         this.users.add(user);
-        user.addWeapon(this);
     }
 }

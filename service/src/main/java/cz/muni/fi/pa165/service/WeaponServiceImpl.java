@@ -30,7 +30,5 @@ public class WeaponServiceImpl extends CrudServiceImpl<Weapon> implements Weapon
 		User user1 = userDao.findById(user.getId());
 		Weapon weapon1 = crudDao.findById(weapon.getId());
 		user1.addWeapon(weapon1);
-		userDao.update(user1);
-		
 	}
 }
