@@ -8,6 +8,8 @@ import cz.muni.fi.pa165.service.services.mapping.MappingService;
 import java.util.List;
 
 /**
+ * Facade implementation for basic create, update, delete, retrieve operations.
+ *
  * @author Marek Turis
  */
 public class CrudFacadeImpl<TEntityDTO, TEntity extends Entity> implements CrudFacade<TEntityDTO> {

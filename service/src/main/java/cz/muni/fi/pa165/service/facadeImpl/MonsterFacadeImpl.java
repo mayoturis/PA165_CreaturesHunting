@@ -10,6 +10,8 @@ import cz.muni.fi.pa165.service.services.mapping.MappingService;
 import javax.inject.Inject;
 
 /**
+ * Monster facade implementation.
+ *
  * @author Simona Kruppova
  */
 public class MonsterFacadeImpl extends CrudFacadeImpl<MonsterDTO, Monster> implements MonsterFacade {

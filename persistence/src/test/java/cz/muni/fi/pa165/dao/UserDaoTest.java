@@ -159,13 +159,6 @@ public class UserDaoTest {
 	}
 
 	private User GetValidUser() {
-
-		User user = new User("testName", "testEmail", "pass");
-
-		user.setName("testName");
-		user.setEmail("testEmail");
-		user.setPassword("pass");
-
-		return user;
+		return new User("testName", "testEmail", "pass");
 	}
 }

@@ -3,7 +3,7 @@ package cz.muni.fi.pa165.dao.base;
 import java.util.List;
 
 /**
- * Interface for basic crud operations.
+ * Interface for basic create, retrieve, update, delete operations.
  *
  * @author Marek Turis
  */

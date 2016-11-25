@@ -8,6 +8,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
+ * Implementation for user service.
+ *
  * @author Marek Turis
  */
 @Named

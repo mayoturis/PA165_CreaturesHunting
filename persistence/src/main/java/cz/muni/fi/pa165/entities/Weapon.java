@@ -57,7 +57,6 @@ public class Weapon implements cz.muni.fi.pa165.entities.base.Entity {
         Weapon weapon = (Weapon) o;
 
         return getName().equals(weapon.getName());
-
     }
 
     @Override

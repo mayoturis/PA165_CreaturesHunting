@@ -11,6 +11,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
+ * Implementation for weapon service.
+ *
  * @author Ondrej Zeman
  */
 @Named

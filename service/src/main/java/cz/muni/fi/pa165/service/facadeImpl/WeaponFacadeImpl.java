@@ -14,6 +14,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
+ * Weapon facade implementation.
+ *
  * @author Ondrej Zeman
  */
 @Named

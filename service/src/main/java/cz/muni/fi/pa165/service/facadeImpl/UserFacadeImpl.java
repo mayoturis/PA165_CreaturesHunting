@@ -12,6 +12,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
+ * User facade implementation.
+ *
  * @author Marek Turis
  */
 @Named

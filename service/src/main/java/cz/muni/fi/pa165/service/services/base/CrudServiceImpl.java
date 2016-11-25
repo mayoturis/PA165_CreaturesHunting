@@ -7,6 +7,8 @@ import cz.muni.fi.pa165.service.exceptions.PersistenceException;
 import java.util.List;
 
 /**
+ * Service implementation for basic create, update, delete, retrieve operations.
+ *
  * @author Marek Turis
  */
 public class CrudServiceImpl<TEntity extends Entity> implements CrudService<TEntity> {

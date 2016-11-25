@@ -9,6 +9,8 @@ import java.util.Collection;
 import java.util.List;
 
 /**
+ * Service implementation for mapping objects and collections.
+ *
  * @author Marek Turis
  */
 @Named

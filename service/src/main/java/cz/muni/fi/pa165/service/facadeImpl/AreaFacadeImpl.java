@@ -10,6 +10,8 @@ import cz.muni.fi.pa165.service.services.mapping.MappingService;
 import javax.inject.Inject;
 
 /**
+ * Area facade implementation.
+ *
  * @author Michael Cada
  */
 public class AreaFacadeImpl extends CrudFacadeImpl<AreaDTO, Area> implements AreaFacade {

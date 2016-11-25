@@ -5,6 +5,8 @@ import cz.muni.fi.pa165.entities.base.Entity;
 import java.util.List;
 
 /**
+ * Service interface for basic create, update, delete, retrieve operations.
+ *
  * @author Marek Turis
  */
 public interface CrudService<TEntity extends Entity> {

@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.List;
 
 /**
+ * Service interface for mapping objects and collections.
+ *
  * @author Marek Turis
  */
 public interface MappingService {
