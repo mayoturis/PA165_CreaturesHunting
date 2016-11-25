@@ -4,7 +4,7 @@ import cz.muni.fi.pa165.dao.UserDao;
 import cz.muni.fi.pa165.dao.WeaponDao;
 import cz.muni.fi.pa165.entities.User;
 import cz.muni.fi.pa165.entities.Weapon;
-import cz.muni.fi.pa165.service.exceptions.PersistenceException;
+import cz.muni.fi.pa165.service.exceptions.HuntingPersistenceException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -60,7 +60,7 @@ public class UserServiceTest {
 		Mockito.verify(userDao, oneTime).create(user);
 	}
 
-	@Test(expected = PersistenceException.class)
+	@Test(expected = HuntingPersistenceException.class)
 	public void createWithDatabaseProblem() {
 		Mockito.doThrow(RuntimeException.class).when(userDao).create(user);
 
@@ -114,7 +114,7 @@ public class UserServiceTest {
 		verify(user, oneTime).addWeapon(weapon);
 	}
 
-	@Test(expected = PersistenceException.class)
+	@Test(expected = HuntingPersistenceException.class)
 	public void addWeaponToUserThrowsPersistenceExceptionIfUserDaoThrowsException() {
 		int userId = 5;
 		int weaponId = 6;
@@ -127,7 +127,7 @@ public class UserServiceTest {
 		userService.addWeaponToUser(weapon, user);
 	}
 
-	@Test(expected = PersistenceException.class)
+	@Test(expected = HuntingPersistenceException.class)
 	public void addWeaponToUserThrowsPersistenceExceptionIfWeaponDaoThrowsException() {
 		int userId = 7;
 		int weaponId = 6;

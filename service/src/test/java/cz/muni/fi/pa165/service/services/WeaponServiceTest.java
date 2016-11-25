@@ -2,7 +2,7 @@ package cz.muni.fi.pa165.service.services;
 
 import cz.muni.fi.pa165.dao.WeaponDaoImpl;
 import cz.muni.fi.pa165.entities.Weapon;
-import cz.muni.fi.pa165.service.exceptions.PersistenceException;
+import cz.muni.fi.pa165.service.exceptions.HuntingPersistenceException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -48,7 +48,7 @@ public class WeaponServiceTest {
 		Assert.assertEquals(expectedId, actualId);
 	}
 
-	@Test(expected = PersistenceException.class)
+	@Test(expected = HuntingPersistenceException.class)
 	public void createThrowsPersistanceIncaptionInCaseOfDaoException() {
 		doThrow(RuntimeException.class).when(weaponDao).create(weapon);
 
@@ -62,7 +62,7 @@ public class WeaponServiceTest {
 		verify(weaponDao, once).update(weapon);
 	}
 
-	@Test(expected = PersistenceException.class)
+	@Test(expected = HuntingPersistenceException.class)
 	public void updateThrowsPersistanceIncaptionInCaseOfDaoException() {
 		doThrow(RuntimeException.class).when(weaponDao).update(weapon);
 
@@ -76,7 +76,7 @@ public class WeaponServiceTest {
 		verify(weaponDao, once).delete(weapon);
 	}
 
-	@Test(expected = PersistenceException.class)
+	@Test(expected = HuntingPersistenceException.class)
 	public void deleteThrowsPersistanceIncaptionInCaseOfDaoException() {
 		doThrow(RuntimeException.class).when(weaponDao).delete(weapon);
 
@@ -93,7 +93,7 @@ public class WeaponServiceTest {
 		Assert.assertEquals(weapon, actualWeapon);
 	}
 
-	@Test(expected = PersistenceException.class)
+	@Test(expected = HuntingPersistenceException.class)
 	public void findByIdThrowsPersistanceIncaptionInCaseOfDaoException() {
 		int id = 5;
 		doThrow(RuntimeException.class).when(weaponDao).findById(id);
@@ -111,7 +111,7 @@ public class WeaponServiceTest {
 		Assert.assertEquals(weaponList, actualWeaponList);
 	}
 
-	@Test(expected = PersistenceException.class)
+	@Test(expected = HuntingPersistenceException.class)
 	public void findAllThrowsPersistanceIncaptionInCaseOfDaoException() {
 		doThrow(RuntimeException.class).when(weaponDao).findAll();
 

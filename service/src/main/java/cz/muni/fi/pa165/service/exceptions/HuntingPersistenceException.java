@@ -7,13 +7,13 @@ import org.springframework.dao.DataAccessException;
  *
  * @author Marek Turis
  */
-public class PersistenceException extends DataAccessException {
+public class HuntingPersistenceException extends DataAccessException {
 
-	public PersistenceException(String msg) {
+	public HuntingPersistenceException(String msg) {
 		super(msg);
 	}
 
-	public PersistenceException(String msg, Throwable cause) {
+	public HuntingPersistenceException(String msg, Throwable cause) {
 		super(msg, cause);
 	}
 }

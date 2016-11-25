@@ -3,7 +3,7 @@ package cz.muni.fi.pa165.service.services;
 import cz.muni.fi.pa165.dao.AreaDao;
 import cz.muni.fi.pa165.entities.Area;
 import cz.muni.fi.pa165.enums.DangerLevel;
-import cz.muni.fi.pa165.service.exceptions.PersistenceException;
+import cz.muni.fi.pa165.service.exceptions.HuntingPersistenceException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -51,7 +51,7 @@ public class AreaServiceTest {
 		Assert.assertEquals(area.getId(), createdAreaId);
 	}
 
-	@Test(expected = PersistenceException.class)
+	@Test(expected = HuntingPersistenceException.class)
 	public void createWrapsRuntimeExceptionToPersistenceExceptionTest() {
 		Mockito.doThrow(RuntimeException.class).when(areaDao).create(area);
 		areaService.create(area);
@@ -63,7 +63,7 @@ public class AreaServiceTest {
 		Mockito.verify(areaDao, ONCE).update(area);
 	}
 
-	@Test(expected = PersistenceException.class)
+	@Test(expected = HuntingPersistenceException.class)
 	public void updateWrapsRuntimeExceptionToPersistenceExceptionTest() {
 		Mockito.doThrow(RuntimeException.class).when(areaDao).update(area);
 		areaService.update(area);
@@ -75,7 +75,7 @@ public class AreaServiceTest {
 		Mockito.verify(areaDao, ONCE).delete(area);
 	}
 
-	@Test(expected = PersistenceException.class)
+	@Test(expected = HuntingPersistenceException.class)
 	public void deleteWrapsRuntimeExceptionToPersistenceExceptionTest() {
 		Mockito.doThrow(RuntimeException.class).when(areaDao).delete(area);
 		areaService.delete(area);
@@ -90,7 +90,7 @@ public class AreaServiceTest {
 		Mockito.verify(areaDao, ONCE).findById(area.getId());
 	}
 
-	@Test(expected = PersistenceException.class)
+	@Test(expected = HuntingPersistenceException.class)
 	public void findByIdWrapsRuntimeExceptionToPersistenceExceptionTest() {
 		Mockito.doThrow(RuntimeException.class).when(areaDao).findById(area.getId());
 		areaService.findById(area.getId());
@@ -107,7 +107,7 @@ public class AreaServiceTest {
 		Mockito.verify(areaDao, ONCE).findAll();
 	}
 
-	@Test(expected = PersistenceException.class)
+	@Test(expected = HuntingPersistenceException.class)
 	public void findAllWrapsRuntimeExceptionToPersistenceExceptionTest() {
 		Mockito.doThrow(RuntimeException.class).when(areaDao).findAll();
 		areaService.findAll();

@@ -4,7 +4,7 @@ import cz.muni.fi.pa165.dao.UserDao;
 import cz.muni.fi.pa165.dao.WeaponDao;
 import cz.muni.fi.pa165.entities.User;
 import cz.muni.fi.pa165.entities.Weapon;
-import cz.muni.fi.pa165.service.exceptions.PersistenceException;
+import cz.muni.fi.pa165.service.exceptions.HuntingPersistenceException;
 import cz.muni.fi.pa165.service.services.base.CrudServiceImpl;
 
 import javax.inject.Inject;
@@ -36,7 +36,7 @@ public class UserServiceImpl extends CrudServiceImpl<User> implements UserServic
 			Weapon weapon1 = weaponDao.findById(weapon.getId());
 			user1.addWeapon(weapon1);
 		} catch (RuntimeException e) {
-			throw new PersistenceException("Exception in thrown by Hibernate", e);
+			throw new HuntingPersistenceException("Exception in thrown by Hibernate", e);
 		}
 	}
 }

@@ -2,7 +2,7 @@ package cz.muni.fi.pa165.service.services.base;
 
 import cz.muni.fi.pa165.dao.base.CrudDao;
 import cz.muni.fi.pa165.entities.base.Entity;
-import cz.muni.fi.pa165.service.exceptions.PersistenceException;
+import cz.muni.fi.pa165.service.exceptions.HuntingPersistenceException;
 
 import java.util.List;
 
@@ -28,7 +28,7 @@ public class CrudServiceImpl<TEntity extends Entity> implements CrudService<TEnt
 		try {
 			return crudDao.findById(id);
 		} catch(RuntimeException exception) {
-			throw new PersistenceException("Exception while finding entity by id", exception);
+			throw new HuntingPersistenceException("Exception while finding entity by id", exception);
 		}
 	}
 
@@ -37,7 +37,7 @@ public class CrudServiceImpl<TEntity extends Entity> implements CrudService<TEnt
 		try {
 			return crudDao.findAll();
 		} catch (RuntimeException exception) {
-			throw new PersistenceException("Exception while finding all entities", exception);
+			throw new HuntingPersistenceException("Exception while finding all entities", exception);
 		}
 	}
 
@@ -47,7 +47,7 @@ public class CrudServiceImpl<TEntity extends Entity> implements CrudService<TEnt
 			crudDao.create(entity);
 			return entity.getId();
 		} catch(RuntimeException exception) {
-			throw new PersistenceException("Exception while creating entity", exception);
+			throw new HuntingPersistenceException("Exception while creating entity", exception);
 		}
 	}
 
@@ -56,7 +56,7 @@ public class CrudServiceImpl<TEntity extends Entity> implements CrudService<TEnt
 		try {
 			crudDao.update(entity);
 		} catch(RuntimeException exception) {
-			throw new PersistenceException("Exception while updating entity", exception);
+			throw new HuntingPersistenceException("Exception while updating entity", exception);
 		}
 	}
 
@@ -65,7 +65,7 @@ public class CrudServiceImpl<TEntity extends Entity> implements CrudService<TEnt
 		try {
 			crudDao.delete(entity);
 		} catch(RuntimeException exception) {
-			throw new PersistenceException("Exception while deleting entity", exception);
+			throw new HuntingPersistenceException("Exception while deleting entity", exception);
 		}
 	}
 }
