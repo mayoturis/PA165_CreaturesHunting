@@ -4,7 +4,6 @@ import cz.muni.fi.pa165.dto.UserDTO;
 import cz.muni.fi.pa165.dto.WeaponDTO;
 import cz.muni.fi.pa165.entities.User;
 import cz.muni.fi.pa165.entities.Weapon;
-import cz.muni.fi.pa165.facade.WeaponFacade;
 import cz.muni.fi.pa165.service.services.WeaponService;
 import cz.muni.fi.pa165.service.services.mapping.MappingService;
 import org.junit.Assert;
@@ -28,7 +27,7 @@ import static org.mockito.Mockito.when;
 public class WeaponFacadeTest {
 	private static VerificationMode once = times(1);
 
-	private WeaponFacade weaponFacade;
+	private WeaponFacadeImpl weaponFacade;
 
 	@Mock
 	private Weapon weapon;

@@ -1,6 +1,6 @@
 package cz.muni.fi.pa165.service.services;
 
-import cz.muni.fi.pa165.dao.WeaponDao;
+import cz.muni.fi.pa165.dao.WeaponDaoImpl;
 import cz.muni.fi.pa165.entities.Weapon;
 import cz.muni.fi.pa165.service.exceptions.PersistenceException;
 import org.junit.Assert;
@@ -27,7 +27,7 @@ public class WeaponServiceTest {
 	private WeaponService weaponService;
 
 	@Mock
-	private WeaponDao weaponDao;
+	private WeaponDaoImpl weaponDao;
 
 	@Mock
 	private Weapon weapon;

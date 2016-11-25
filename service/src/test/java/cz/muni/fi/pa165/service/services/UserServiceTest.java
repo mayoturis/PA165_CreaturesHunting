@@ -32,7 +32,7 @@ public class UserServiceTest {
 
 	private static VerificationMode oneTime = times(1);
 
-	private UserService userService;
+	private UserServiceImpl userService;
 
 	@Mock
 	private UserDao userDao;
