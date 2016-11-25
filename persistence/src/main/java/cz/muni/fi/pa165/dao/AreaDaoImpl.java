@@ -14,7 +14,6 @@ import java.util.List;
  * @author Michael Cada
  */
 @Repository
-@Transactional
 public class AreaDaoImpl implements AreaDao {
 
     @PersistenceContext

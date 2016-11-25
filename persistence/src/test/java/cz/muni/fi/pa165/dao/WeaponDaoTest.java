@@ -31,7 +31,7 @@ public class WeaponDaoTest {
     private EntityManager em;
 
     @Inject
-    private WeaponDao wDao;
+    private WeaponDaoImpl wDao;
 
     private Weapon w1;
     private Weapon w2;

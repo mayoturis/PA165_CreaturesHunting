@@ -39,7 +39,7 @@ public class AreaDaoTest {
 	private EntityManager em;
 
 	@Inject
-	private AreaDao areaDao;
+	private AreaDaoImpl areaDao;
 
 	@Before
 	public void createAreas() {

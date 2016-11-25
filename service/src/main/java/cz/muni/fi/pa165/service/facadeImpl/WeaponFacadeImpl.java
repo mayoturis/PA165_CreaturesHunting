@@ -23,7 +23,6 @@ import javax.inject.Named;
 public class WeaponFacadeImpl extends CrudFacadeImpl<WeaponDTO, Weapon> implements WeaponFacade {
 
 	private WeaponService weaponService;
-
 	private MappingService mappingService;
 
 	@Inject
@@ -41,6 +40,5 @@ public class WeaponFacadeImpl extends CrudFacadeImpl<WeaponDTO, Weapon> implemen
 					mappingService.map(weapon,Weapon.class)
 					,mappingService.map(user, User.class));
 		}
-
 	}
 }

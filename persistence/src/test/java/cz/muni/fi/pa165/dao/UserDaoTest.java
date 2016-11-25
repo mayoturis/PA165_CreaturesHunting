@@ -29,7 +29,7 @@ import java.util.List;
 public class UserDaoTest {
 
 	@Inject
-	private UserDao userDao;
+	private UserDaoImpl userDao;
 
 	@PersistenceContext
 	private EntityManager em;

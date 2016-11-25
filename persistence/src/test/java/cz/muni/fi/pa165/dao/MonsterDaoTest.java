@@ -27,7 +27,7 @@ import java.util.List;
 public class MonsterDaoTest {
 
 	@Inject
-	public MonsterDao monsterDao;
+	public MonsterDaoImpl monsterDao;
 
 	@Test
 	public void findAllAndCreate() {

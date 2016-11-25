@@ -14,7 +14,6 @@ import java.util.List;
  * @author Ondrej Zeman
  */
 @Repository
-@Transactional
 public class WeaponDaoImpl implements WeaponDao {
 
 	@PersistenceContext

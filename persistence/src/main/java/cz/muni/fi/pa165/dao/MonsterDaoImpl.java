@@ -14,7 +14,6 @@ import java.util.List;
  * @author Simona Kruppova
  */
 @Repository
-@Transactional
 public class MonsterDaoImpl implements MonsterDao {
 
 	@PersistenceContext

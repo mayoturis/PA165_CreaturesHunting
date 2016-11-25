@@ -6,14 +6,18 @@ import cz.muni.fi.pa165.facade.AreaFacade;
 import cz.muni.fi.pa165.service.facadeImpl.base.CrudFacadeImpl;
 import cz.muni.fi.pa165.service.services.base.CrudService;
 import cz.muni.fi.pa165.service.services.mapping.MappingService;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 /**
  * Area facade implementation.
  *
  * @author Michael Cada
  */
+@Named
+@Transactional
 public class AreaFacadeImpl extends CrudFacadeImpl<AreaDTO, Area> implements AreaFacade {
 
 	@Inject
