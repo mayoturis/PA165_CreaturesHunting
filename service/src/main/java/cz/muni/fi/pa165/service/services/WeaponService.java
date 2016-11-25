@@ -10,4 +10,5 @@ import cz.muni.fi.pa165.service.services.base.CrudService;
  */
 public interface WeaponService extends CrudService<Weapon> {
 
+	Weapon getWeaponByName(String name);
 }

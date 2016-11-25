@@ -9,5 +9,6 @@ import cz.muni.fi.pa165.facade.base.CrudFacade;
  * @author Ondrej Zeman
  */
 public interface WeaponFacade extends CrudFacade<WeaponDTO> {
+	WeaponDTO getWeaponByName(String name);
 
 }

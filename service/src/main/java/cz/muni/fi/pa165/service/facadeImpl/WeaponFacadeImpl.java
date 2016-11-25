@@ -20,8 +20,18 @@ import javax.inject.Named;
 @Transactional
 public class WeaponFacadeImpl extends CrudFacadeImpl<WeaponDTO, Weapon> implements WeaponFacade {
 
+	private WeaponService weaponService;
+
+	private MappingService mappingService;
 	@Inject
 	public WeaponFacadeImpl(WeaponService weaponService, MappingService mappingService) {
 		super(weaponService, mappingService, WeaponDTO.class, Weapon.class);
+		this.weaponService=weaponService;
+		this.mappingService=mappingService;
 	}
+	public WeaponDTO getWeaponByName(String name){
+
+		return mappingService.map(weaponService.getWeaponByName(name),WeaponDTO.class);
+	}
+
 }

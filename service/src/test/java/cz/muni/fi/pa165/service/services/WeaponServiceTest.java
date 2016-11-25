@@ -117,4 +117,22 @@ public class WeaponServiceTest {
 
 		weaponService.findAll();
 	}
+
+	@Test
+	public void getWeaponByName() {
+		String name = "Luk";
+		when(weaponDao.getWeaponByName(name)).thenReturn(weapon);
+
+		Weapon actualWeapon = weaponService.getWeaponByName(name);
+
+		Assert.assertEquals(weapon, actualWeapon);
+	}
+
+	@Test(expected = PersistenceException.class)
+	public void getWeaponByNameWithDatabaseFail() {
+		String name = "luk";
+		doThrow(RuntimeException.class).when(weaponDao).getWeaponByName(name);
+
+		weaponService.getWeaponByName(name);
+	}
 }

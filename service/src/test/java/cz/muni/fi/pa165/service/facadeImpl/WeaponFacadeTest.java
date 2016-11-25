@@ -113,6 +113,18 @@ public class WeaponFacadeTest {
 	}
 
 	@Test
+	public void getWeaponByName() {
+		String name = "luk";
+		when(weaponService.getWeaponByName(name)).thenReturn(weapon);
+		when(mappingService.map(weapon, WeaponDTO.class)).thenReturn(weaponDTO);
+
+		WeaponDTO actualWeapon = weaponFacade.getWeaponByName(name);
+
+		verify(weaponService, once).getWeaponByName(name);
+		Assert.assertEquals(weaponDTO, actualWeapon);
+	}
+
+	@Test
 	public void findAllCallsService() {
 		List<Weapon> weaponList = Arrays.asList(weapon);
 		List<WeaponDTO> weaponDTOList = Arrays.asList(weaponDTO);
