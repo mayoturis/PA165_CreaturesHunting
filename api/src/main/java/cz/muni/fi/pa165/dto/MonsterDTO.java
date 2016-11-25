@@ -16,7 +16,7 @@ public class MonsterDTO {
 	private int agility;
 	private int strength;
 	private Set<WeaponDTO> weapons = new HashSet<WeaponDTO>();
-//	private Set<AreaDTO> areas = new HashSet<AreaDTO>();
+	private Set<AreaDTO> areas = new HashSet<AreaDTO>();
 
 	public int getId() {
 		return id;
@@ -72,6 +72,17 @@ public class MonsterDTO {
 
 	public void setWeapons(Set<WeaponDTO> weapons) {
 		this.weapons = weapons;
+	}
+
+	public Set<AreaDTO> getAreas() { return areas; }
+
+	public void setAreas(Set<AreaDTO> areas) {
+		this.areas = areas;
+	}
+
+	public void addArea(AreaDTO area) {
+		areas.add(area);
+		area.addMonster(this);
 	}
 
 	@Override
