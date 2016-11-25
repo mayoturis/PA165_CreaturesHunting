@@ -1,14 +1,13 @@
 package cz.muni.fi.pa165.entities;
 
-import cz.muni.fi.pa165.enums.DangerLvl;
+import cz.muni.fi.pa165.entities.base.Entity;
+import cz.muni.fi.pa165.enums.DangerLevel;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.Table;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
@@ -39,7 +38,7 @@ public class Area implements Entity {
     private BigDecimal size;
 
     @NotNull
-    private DangerLvl dangerLvl;
+    private DangerLevel dangerLevel;
 
 	@ManyToMany(mappedBy = "areas")
 	private List<Monster> monsters = new ArrayList<Monster>();
@@ -51,9 +50,9 @@ public class Area implements Entity {
 
     public int getId() { return id; }
 
-    public DangerLvl getDangerLvl() { return dangerLvl; }
+    public DangerLevel getDangerLevel() { return dangerLevel; }
 
-    public void setDangerLvl(DangerLvl dangerLvl) { this.dangerLvl = dangerLvl; }
+    public void setDangerLevel(DangerLevel dangerLevel) { this.dangerLevel = dangerLevel; }
 
     public String getName() { return name; }
 

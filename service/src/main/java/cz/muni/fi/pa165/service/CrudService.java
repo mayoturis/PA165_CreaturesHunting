@@ -1,6 +1,6 @@
 package cz.muni.fi.pa165.service;
 
-import cz.muni.fi.pa165.entities.Entity;
+import cz.muni.fi.pa165.entities.base.Entity;
 
 import java.util.List;
 

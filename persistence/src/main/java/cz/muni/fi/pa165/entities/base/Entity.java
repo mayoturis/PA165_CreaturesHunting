@@ -1,4 +1,4 @@
-package cz.muni.fi.pa165.entities;
+package cz.muni.fi.pa165.entities.base;
 
 /**
  * @author Marek Turis

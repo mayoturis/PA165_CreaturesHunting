@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.entities;
 
+import cz.muni.fi.pa165.entities.base.Entity;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.Column;

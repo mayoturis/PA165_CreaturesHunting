@@ -1,11 +1,14 @@
-package cz.muni.fi.pa165.dao;
+package cz.muni.fi.pa165.dao.base;
 
 import java.util.List;
 
 /**
+ * Interface for basic crud operations.
+ *
  * @author Marek Turis
  */
 public interface CrudDao<TEntity> {
+
 	/**
 	 * Finds all entities
 	 *

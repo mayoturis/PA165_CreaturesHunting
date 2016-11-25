@@ -15,7 +15,7 @@ import java.util.Set;
  */
 @javax.persistence.Entity
 @Table(name = "Users") // User is reserved word in derby
-public class User implements Entity {
+public class User implements cz.muni.fi.pa165.entities.base.Entity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

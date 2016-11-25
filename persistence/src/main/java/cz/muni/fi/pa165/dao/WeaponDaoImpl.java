@@ -17,7 +17,6 @@ import java.util.List;
 @Transactional
 public class WeaponDaoImpl implements WeaponDao {
 
-
 	@PersistenceContext
 	private EntityManager entityManager;
 

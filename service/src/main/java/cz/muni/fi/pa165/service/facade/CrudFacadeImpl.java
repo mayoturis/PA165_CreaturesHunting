@@ -1,6 +1,6 @@
 package cz.muni.fi.pa165.service.facade;
 
-import cz.muni.fi.pa165.entities.Entity;
+import cz.muni.fi.pa165.entities.base.Entity;
 import cz.muni.fi.pa165.facade.CrudFacade;
 import cz.muni.fi.pa165.service.CrudService;
 import cz.muni.fi.pa165.service.MappingService;

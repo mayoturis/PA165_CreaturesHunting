@@ -2,7 +2,7 @@ package cz.muni.fi.pa165.dao;
 
 import cz.muni.fi.pa165.ApplicationContextConfiguration;
 import cz.muni.fi.pa165.entities.Area;
-import cz.muni.fi.pa165.enums.DangerLvl;
+import cz.muni.fi.pa165.enums.DangerLevel;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -42,19 +42,19 @@ public class AreaDaoTest {
 	public void createAreas() {
 		area = new Area();
 		area.setName("Kappa");
-		area.setDangerLvl(DangerLvl.EASY);
+		area.setDangerLevel(DangerLevel.EASY);
 		area.setSize(BigDecimal.TEN);
 
 
 		area2 = new Area();
 		area2.setName("area2");
-		area2.setDangerLvl(DangerLvl.HARD);
+		area2.setDangerLevel(DangerLevel.HARD);
 		area2.setSize(BigDecimal.ONE);
 
 
 		area3 = new Area();
 		area3.setName("TwitchChat");
-		area3.setDangerLvl(DangerLvl.EXTREME);
+		area3.setDangerLevel(DangerLevel.EXTREME);
 		area3.setSize(new BigDecimal(100));
 
 		em.persist(area);
@@ -66,7 +66,7 @@ public class AreaDaoTest {
 	public void createAreaTest() {
 		Area area1 = new Area();
 		area1.setName("test");
-		area1.setDangerLvl(DangerLvl.EXTREME);
+		area1.setDangerLevel(DangerLevel.EXTREME);
 		area1.setSize(BigDecimal.TEN);
 		areaDao.create(area1);
 		Assert.assertEquals(areaDao.findById(area1.getId()), area1);
@@ -87,7 +87,7 @@ public class AreaDaoTest {
 	public void findByIdTest() {
 		Area found = areaDao.findById(area.getId());
 		Assert.assertEquals(area.getName(), found.getName());
-		Assert.assertEquals(area.getDangerLvl(), found.getDangerLvl());
+		Assert.assertEquals(area.getDangerLevel(), found.getDangerLevel());
 		Assert.assertEquals(area.getSize(), found.getSize());
 	}
 
@@ -108,7 +108,7 @@ public class AreaDaoTest {
 	public void removeNonexistent() {
 		Area nonExistentArea = new Area();
 		nonExistentArea.setSize(BigDecimal.ZERO);
-		nonExistentArea.setDangerLvl(DangerLvl.HARD);
+		nonExistentArea.setDangerLevel(DangerLevel.HARD);
 		nonExistentArea.setDescription("nonExistentArea");
 		nonExistentArea.setName("nonExistentArea");
 		areaDao.delete(nonExistentArea);
@@ -127,7 +127,7 @@ public class AreaDaoTest {
 	public void createBadSizeTest() {
 		Area badArea = new Area();
 		badArea.setSize(BigDecimal.ZERO);
-		badArea.setDangerLvl(DangerLvl.HARD);
+		badArea.setDangerLevel(DangerLevel.HARD);
 		badArea.setDescription("BadSizeArea");
 		badArea.setName("BadArea");
 		areaDao.create(badArea);
@@ -137,12 +137,12 @@ public class AreaDaoTest {
 	public void createAreasWithSameName() {
 		Area a1 = new Area();
 		a1.setName("Kappa");
-		a1.setDangerLvl(DangerLvl.EASY);
+		a1.setDangerLevel(DangerLevel.EASY);
 		a1.setSize(BigDecimal.TEN);
 
 		Area a2 = new Area();
 		a2.setName("Kappa");
-		a2.setDangerLvl(DangerLvl.EASY);
+		a2.setDangerLevel(DangerLevel.EASY);
 		a2.setSize(BigDecimal.TEN);
 		areaDao.create(a1);
 		areaDao.create(a2);

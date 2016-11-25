@@ -2,7 +2,11 @@ package cz.muni.fi.pa165.entities;
 
 import cz.muni.fi.pa165.enums.Ammunition;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.HashSet;
@@ -14,7 +18,7 @@ import java.util.Set;
  * @author Ondrej Zeman
  */
 @javax.persistence.Entity
-public class Weapon implements Entity {
+public class Weapon implements cz.muni.fi.pa165.entities.base.Entity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
