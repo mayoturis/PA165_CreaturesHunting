@@ -1,8 +1,6 @@
 package cz.muni.fi.pa165.service.services;
 
-import cz.muni.fi.pa165.dao.UserDao;
 import cz.muni.fi.pa165.dao.WeaponDao;
-import cz.muni.fi.pa165.entities.User;
 import cz.muni.fi.pa165.entities.Weapon;
 import cz.muni.fi.pa165.service.exceptions.PersistenceException;
 import org.junit.Assert;
@@ -29,20 +27,14 @@ public class WeaponServiceTest {
 	private WeaponService weaponService;
 
 	@Mock
-	private Weapon weapon;
-
-	@Mock
-	private User user;
-
-	@Mock
 	private WeaponDao weaponDao;
 
 	@Mock
-	private UserDao userDao;
+	private Weapon weapon;
 
 	@Before
 	public void setUp() {
-		weaponService = new WeaponServiceImpl(weaponDao, userDao);
+		weaponService = new WeaponServiceImpl(weaponDao);
 	}
 
 	@Test
@@ -124,45 +116,5 @@ public class WeaponServiceTest {
 		doThrow(RuntimeException.class).when(weaponDao).findAll();
 
 		weaponService.findAll();
-	}
-
-	@Test
-	public void weaponCanBeAddedToUser() {
-		int userId = 5;
-		int weaponId = 6;
-		when(user.getId()).thenReturn(userId);
-		when(weapon.getId()).thenReturn(weaponId);
-		when(userDao.findById(userId)).thenReturn(user);
-		when(weaponDao.findById(weaponId)).thenReturn(weapon);
-
-		weaponService.addWeaponToUser(weapon, user);
-
-		verify(user, once).addWeapon(weapon);
-	}
-
-	@Test(expected = PersistenceException.class)
-	public void addWeaponToUserThrowsPersitenceExceptionIfUserDaoTrhowsException() {
-		int userId = 5;
-		int weaponId = 6;
-		when(user.getId()).thenReturn(userId);
-		when(weapon.getId()).thenReturn(weaponId);
-		when(weaponDao.findById(weaponId)).thenReturn(weapon);
-
-		doThrow(RuntimeException.class).when(userDao).findById(userId);
-
-		weaponService.addWeaponToUser(weapon, user);
-	}
-
-	@Test(expected = PersistenceException.class)
-	public void addWeaponToUserThrowsPersitenceExceptionIfWeaponDaoTrhowsException() {
-		int userId = 7;
-		int weaponId = 6;
-		when(user.getId()).thenReturn(userId);
-		when(weapon.getId()).thenReturn(weaponId);
-		when(userDao.findById(userId)).thenReturn(user);
-
-		doThrow(RuntimeException.class).when(weaponDao).findById(weaponId);
-
-		weaponService.addWeaponToUser(weapon, user);
 	}
 }

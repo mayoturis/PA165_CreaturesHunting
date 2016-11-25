@@ -1,7 +1,9 @@
 package cz.muni.fi.pa165.service.services;
 
 import cz.muni.fi.pa165.dao.UserDao;
+import cz.muni.fi.pa165.dao.WeaponDao;
 import cz.muni.fi.pa165.entities.User;
+import cz.muni.fi.pa165.entities.Weapon;
 import cz.muni.fi.pa165.service.exceptions.PersistenceException;
 import org.junit.Assert;
 import org.junit.Before;
@@ -16,8 +18,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Collections;
 import java.util.List;
 
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.doThrow;
 
 /**
  * Tests for UserService
@@ -36,12 +38,17 @@ public class UserServiceTest {
 	private UserDao userDao;
 
 	@Mock
+	private WeaponDao weaponDao;
+
+	@Mock
 	private User user;
 
+	@Mock
+	private Weapon weapon;
 
 	@Before
 	public void setup() {
-		userService = new UserServiceImpl(userDao);
+		userService = new UserServiceImpl(weaponDao, userDao);
 	}
 
 	@Test
@@ -93,4 +100,43 @@ public class UserServiceTest {
 		Assert.assertEquals(expected, actual);
 	}
 
+	@Test
+	public void weaponCanBeAddedToUser() {
+		int userId = 5;
+		int weaponId = 6;
+		when(user.getId()).thenReturn(userId);
+		when(weapon.getId()).thenReturn(weaponId);
+		when(userDao.findById(userId)).thenReturn(user);
+		when(weaponDao.findById(weaponId)).thenReturn(weapon);
+
+		userService.addWeaponToUser(weapon, user);
+
+		verify(user, oneTime).addWeapon(weapon);
+	}
+
+	@Test(expected = PersistenceException.class)
+	public void addWeaponToUserThrowsPersitenceExceptionIfUserDaoTrhowsException() {
+		int userId = 5;
+		int weaponId = 6;
+		when(user.getId()).thenReturn(userId);
+		when(weapon.getId()).thenReturn(weaponId);
+		when(weaponDao.findById(weaponId)).thenReturn(weapon);
+
+		doThrow(RuntimeException.class).when(userDao).findById(userId);
+
+		userService.addWeaponToUser(weapon, user);
+	}
+
+	@Test(expected = PersistenceException.class)
+	public void addWeaponToUserThrowsPersitenceExceptionIfWeaponDaoTrhowsException() {
+		int userId = 7;
+		int weaponId = 6;
+		when(user.getId()).thenReturn(userId);
+		when(weapon.getId()).thenReturn(weaponId);
+		when(userDao.findById(userId)).thenReturn(user);
+
+		doThrow(RuntimeException.class).when(weaponDao).findById(weaponId);
+
+		userService.addWeaponToUser(weapon, user);
+	}
 }
