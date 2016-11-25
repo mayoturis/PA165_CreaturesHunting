@@ -5,8 +5,6 @@ import cz.muni.fi.pa165.dao.WeaponDao;
 import cz.muni.fi.pa165.entities.User;
 import cz.muni.fi.pa165.entities.Weapon;
 import cz.muni.fi.pa165.service.exceptions.PersistenceException;
-import cz.muni.fi.pa165.service.services.WeaponService;
-import cz.muni.fi.pa165.service.services.WeaponServiceImpl;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,7 +12,6 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.mockito.verification.VerificationMode;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,25 +21,24 @@ import static org.mockito.Mockito.*;
 /**
  * @author Marek Turis
  */
-@Transactional
 @RunWith(MockitoJUnitRunner.class)
 public class WeaponServiceTest {
 
 	private static VerificationMode once = times(1);
 
-	WeaponService weaponService;
+	private WeaponService weaponService;
 
 	@Mock
-	Weapon weapon;
+	private Weapon weapon;
 
 	@Mock
-	User user;
+	private User user;
 
 	@Mock
-	WeaponDao weaponDao;
+	private WeaponDao weaponDao;
 
 	@Mock
-	UserDao userDao;
+	private UserDao userDao;
 
 	@Before
 	public void setUp() {

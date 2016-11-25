@@ -26,19 +26,19 @@ public class WeaponFacadeImpl extends CrudFacadeImpl<WeaponDTO, Weapon> implemen
 	private MappingService mappingService;
 
 	@Inject
-	public WeaponFacadeImpl(WeaponService crudService, MappingService mappingService) {
-		super(crudService, mappingService, WeaponDTO.class, Weapon.class);
-		this.mappingService=mappingService;
-		this.weaponService=crudService;
+	public WeaponFacadeImpl(WeaponService weaponService, MappingService mappingService) {
+		super(weaponService, mappingService, WeaponDTO.class, Weapon.class);
+		this.mappingService = mappingService;
+		this.weaponService = weaponService;
 	}
 
 	@Override
 	public void addWeaponToUser(WeaponDTO weapon, UserDTO user) {
 
-		if(user!=null||weapon!=null){
+		if(user != null || weapon != null){
 			weaponService.addWeaponToUser(
-					mappingService.map(weapon,Weapon.class)
-					,mappingService.map(user, User.class));
+					mappingService.map(weapon,Weapon.class),
+					mappingService.map(user, User.class));
 		}
 	}
 }
