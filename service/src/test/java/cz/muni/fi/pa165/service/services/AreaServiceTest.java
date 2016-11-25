@@ -36,7 +36,7 @@ public class AreaServiceTest {
 
 	private AreaService areaService;
 
-	private Area area =  new Area("area", DangerLevel.EASY, BigDecimal.ONE);;
+	private Area area =  new Area("area", DangerLevel.EASY, BigDecimal.ONE);
 
 	@Before
 	public void setUp() {

@@ -21,6 +21,15 @@ public class AreaDTO {
 
 	private List<MonsterDTO> monsters = new ArrayList<MonsterDTO>();
 
+	public AreaDTO(String name, DangerLevel dangerLevel, BigDecimal size) {
+		this.name = name;
+		this.dangerLevel = dangerLevel;
+		this.size = size;
+	}
+
+	public AreaDTO() {
+	}
+
 	public void addMonster(MonsterDTO newMonster) {
 		this.monsters.add(newMonster);
 		newMonster.addArea(this);
