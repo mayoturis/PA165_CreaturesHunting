@@ -78,7 +78,7 @@ public class UserDaoTest {
 
 	@Test
 	public void createUserTest() {
-		User user = GetValidUser();
+		User user = getValidUser();
 
 		userDao.create(user);
 
@@ -88,7 +88,7 @@ public class UserDaoTest {
 
 	@Test(expected = ValidationException.class)
 	public void createUserWithInvalidAgeTest() {
-		User user = GetValidUser();
+		User user = getValidUser();
 		user.setAge(-1);
 
 		userDao.create(user);
@@ -96,7 +96,7 @@ public class UserDaoTest {
 
 	@Test(expected = ValidationException.class)
 	public void createUserWithNullEmailTest() {
-		User user = GetValidUser();
+		User user = getValidUser();
 		user.setEmail(null);
 
 		userDao.create(user);
@@ -104,7 +104,7 @@ public class UserDaoTest {
 
 	@Test(expected = ValidationException.class)
 	public void createUserWithNullPasswordTest() {
-		User user = GetValidUser();
+		User user = getValidUser();
 		user.setPassword(null);
 
 		userDao.create(user);
@@ -112,7 +112,7 @@ public class UserDaoTest {
 
 	@Test(expected = NullPointerException.class)
 	public void createUserWithNullNameTest() {
-		User user = GetValidUser();
+		User user = getValidUser();
 		user.setName(null);
 
 		userDao.create(user);
@@ -120,8 +120,8 @@ public class UserDaoTest {
 
 	@Test(expected = PersistenceException.class)
 	public void createUserWithNameNotUniqueTest() {
-		User user = GetValidUser();
-		User user1 = GetValidUser();
+		User user = getValidUser();
+		User user1 = getValidUser();
 		user1.setEmail("testEmail1");
 
 		userDao.create(user);
@@ -130,8 +130,8 @@ public class UserDaoTest {
 
 	@Test(expected = PersistenceException.class)
 	public void createUserWithEmailNotUniqueTest() {
-		User user = GetValidUser();
-		User user1 = GetValidUser();
+		User user = getValidUser();
+		User user1 = getValidUser();
 		user1.setName("testName1");
 
 		userDao.create(user);
@@ -158,7 +158,7 @@ public class UserDaoTest {
 		Assert.assertEquals(2, users.size());
 	}
 
-	private User GetValidUser() {
+	private User getValidUser() {
 		return new User("testName", "testEmail", "pass");
 	}
 }
