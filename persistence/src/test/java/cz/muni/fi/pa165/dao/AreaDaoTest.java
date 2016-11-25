@@ -19,7 +19,6 @@ import javax.validation.ConstraintViolationException;
 import javax.validation.ValidationException;
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.logging.Logger;
 
 /**
  * Area dao tests.
@@ -121,6 +120,17 @@ public class AreaDaoTest {
 
 		areaDao.create(a1);
 		areaDao.create(a2);
+	}
+	@Test(expected = ConstraintViolationException.class)
+	public void createWithNullDangerLevel(){
+		Area a1 = new Area("Kappa", null, BigDecimal.TEN);
+		areaDao.create(a1);
+	}
+
+	@Test(expected = ConstraintViolationException.class)
+	public void createWithNullSize(){
+		Area a1 = new Area("Kappa", DangerLevel.EASY, null);
+		areaDao.create(a1);
 	}
 
 	@Test

@@ -54,9 +54,9 @@ public class UserServiceTest {
 	@Test
 	public void create() {
 
-		Mockito.when(user.getId()).thenReturn(5);
+		Mockito.when(user.getId()).thenReturn(1337);
 		int actual = userService.create(user);
-		Assert.assertEquals(5, actual);
+		Assert.assertEquals(1337, actual);
 		Mockito.verify(userDao, oneTime).create(user);
 	}
 
@@ -82,7 +82,7 @@ public class UserServiceTest {
 
 	@Test
 	public void findById() {
-		int id = 5;
+		int id = 1337;
 		Mockito.when(userDao.findById(id)).thenReturn(user);
 
 		User actualEntity = userService.findById(id);
@@ -115,7 +115,7 @@ public class UserServiceTest {
 	}
 
 	@Test(expected = PersistenceException.class)
-	public void addWeaponToUserThrowsPersitenceExceptionIfUserDaoTrhowsException() {
+	public void addWeaponToUserThrowsPersistenceExceptionIfUserDaoThrowsException() {
 		int userId = 5;
 		int weaponId = 6;
 		when(user.getId()).thenReturn(userId);
@@ -128,7 +128,7 @@ public class UserServiceTest {
 	}
 
 	@Test(expected = PersistenceException.class)
-	public void addWeaponToUserThrowsPersitenceExceptionIfWeaponDaoTrhowsException() {
+	public void addWeaponToUserThrowsPersistenceExceptionIfWeaponDaoThrowsException() {
 		int userId = 7;
 		int weaponId = 6;
 		when(user.getId()).thenReturn(userId);
