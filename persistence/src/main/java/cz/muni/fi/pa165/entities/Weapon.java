@@ -40,7 +40,13 @@ public class Weapon implements cz.muni.fi.pa165.entities.base.Entity {
     @ManyToMany(mappedBy = "weapons")
     private Set<Monster> monsters = new HashSet<Monster>();
 
-    public Weapon() {
+    protected Weapon() {
+        // required by Hibernate
+    }
+
+    public Weapon(String name, Ammunition ammunition) {
+        this.name = name;
+        this.ammunition = ammunition;
     }
 
     @Override

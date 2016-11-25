@@ -51,6 +51,14 @@ public class Monster implements Entity {
 	@ManyToMany
 	private Set<Area> areas = new HashSet<Area>();
 
+	protected Monster() {
+		// required by Hibernate
+	}
+
+	public Monster(String type) {
+		this.type = type;
+	}
+
 	public int getId() {
 		return id;
 	}

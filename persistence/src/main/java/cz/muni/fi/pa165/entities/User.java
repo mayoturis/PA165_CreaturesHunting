@@ -44,6 +44,16 @@ public class User implements cz.muni.fi.pa165.entities.base.Entity {
 	@ManyToMany
 	private Set<Weapon> weapons = new HashSet<Weapon>();
 
+	protected User() {
+		// required by Hibernate
+	}
+
+	public User(String name, String email, String password) {
+		this.name = name;
+		this.email = email;
+		this.password = password;
+	}
+
 	public void addWeapon(Weapon weapon) {
 		this.weapons.add(weapon);
 		weapon.addUser(this);

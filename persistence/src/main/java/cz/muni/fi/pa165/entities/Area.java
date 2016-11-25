@@ -43,6 +43,16 @@ public class Area implements Entity {
 	@ManyToMany(mappedBy = "areas")
 	private List<Monster> monsters = new ArrayList<Monster>();
 
+    protected Area() {
+        // required by Hibernate
+    }
+
+    public Area(String name, DangerLevel dangerLevel, BigDecimal size) {
+        this.name = name;
+        this.dangerLevel = dangerLevel;
+        this.size = size;
+    }
+
     public void addMonster(Monster newMonster) {
         this.monsters.add(newMonster);
         newMonster.addArea(this);

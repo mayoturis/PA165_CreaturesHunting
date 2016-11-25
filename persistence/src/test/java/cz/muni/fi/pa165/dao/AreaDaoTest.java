@@ -40,22 +40,9 @@ public class AreaDaoTest {
 
 	@Before
 	public void createAreas() {
-		area = new Area();
-		area.setName("Kappa");
-		area.setDangerLevel(DangerLevel.EASY);
-		area.setSize(BigDecimal.TEN);
-
-
-		area2 = new Area();
-		area2.setName("area2");
-		area2.setDangerLevel(DangerLevel.HARD);
-		area2.setSize(BigDecimal.ONE);
-
-
-		area3 = new Area();
-		area3.setName("TwitchChat");
-		area3.setDangerLevel(DangerLevel.EXTREME);
-		area3.setSize(new BigDecimal(100));
+		area = new Area("Kappa", DangerLevel.EASY, BigDecimal.TEN);
+		area2 = new Area("area2", DangerLevel.HARD, BigDecimal.ONE);
+		area3 = new Area("TwitchChat", DangerLevel.EXTREME, new BigDecimal(100));
 
 		em.persist(area);
 		em.persist(area2);
@@ -64,7 +51,7 @@ public class AreaDaoTest {
 
 	@Test
 	public void createAreaTest() {
-		Area area1 = new Area();
+		Area area1 = new Area("test", DangerLevel.EXTREME, BigDecimal.TEN);
 		area1.setName("test");
 		area1.setDangerLevel(DangerLevel.EXTREME);
 		area1.setSize(BigDecimal.TEN);
@@ -79,8 +66,6 @@ public class AreaDaoTest {
 		Assert.assertEquals(area.getName(), areas.get(0).getName());
 		Assert.assertEquals(area2.getName(), areas.get(1).getName());
 		Assert.assertEquals(area3.getName(), areas.get(2).getName());
-
-
 	}
 
 	@Test
@@ -106,44 +91,31 @@ public class AreaDaoTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void removeNonexistent() {
-		Area nonExistentArea = new Area();
-		nonExistentArea.setSize(BigDecimal.ZERO);
-		nonExistentArea.setDangerLevel(DangerLevel.HARD);
+		Area nonExistentArea = new Area("nonExistentArea", DangerLevel.HARD, BigDecimal.ZERO);
 		nonExistentArea.setDescription("nonExistentArea");
-		nonExistentArea.setName("nonExistentArea");
 		areaDao.delete(nonExistentArea);
 	}
 
 
 	@Test(expected = ConstraintViolationException.class)
 	public void createBadInputTest() {
-		Area badArea = new Area();
-		badArea.setName("BadArea");
+		Area badArea = new Area("BadArea", null, null);
 		areaDao.create(badArea);
 
 	}
 
 	@Test(expected = ValidationException.class)
 	public void createBadSizeTest() {
-		Area badArea = new Area();
-		badArea.setSize(BigDecimal.ZERO);
-		badArea.setDangerLevel(DangerLevel.HARD);
+		Area badArea = new Area("BadArea", DangerLevel.HARD, BigDecimal.ZERO);
 		badArea.setDescription("BadSizeArea");
-		badArea.setName("BadArea");
 		areaDao.create(badArea);
 	}
 
 	@Test(expected = PersistenceException.class)
 	public void createAreasWithSameName() {
-		Area a1 = new Area();
-		a1.setName("Kappa");
-		a1.setDangerLevel(DangerLevel.EASY);
-		a1.setSize(BigDecimal.TEN);
+		Area a1 = new Area("Kappa", DangerLevel.EASY, BigDecimal.TEN);
+		Area a2 = new Area("Kappa", DangerLevel.EASY, BigDecimal.TEN);
 
-		Area a2 = new Area();
-		a2.setName("Kappa");
-		a2.setDangerLevel(DangerLevel.EASY);
-		a2.setSize(BigDecimal.TEN);
 		areaDao.create(a1);
 		areaDao.create(a2);
 	}
@@ -153,16 +125,11 @@ public class AreaDaoTest {
 		area.setName("Mordor");
 		areaDao.update(area);
 		Assert.assertEquals(area.getId(), areaDao.findById(area.getId()).getId());
-
-
 	}
 
 	@Test(expected = ConstraintViolationException.class)
 	public void updateEntityDoesntExist() {
-		Area a = new Area();
-		a.setName("Riverrun");
+		Area a = new Area("Riverrun", null, null);
 		areaDao.update(a);
-
 	}
-
 }

@@ -37,15 +37,10 @@ public class WeaponDaoTest {
 
     @Before
     public void createWeapons() {
-        w1 = new Weapon();
-        w2 = new Weapon();
+        w1 = new Weapon("Legolasuv luk", Ammunition.ARROW);
+        w2 = new Weapon("Excalibur", Ammunition.NONE);
 
-        w1.setAmmunition(Ammunition.ARROW);
-        w1.setName("Legolasuv luk");
         w1.setRange(50);
-
-        w2.setAmmunition(Ammunition.NONE);
-        w2.setName("Excalibur");
         w2.setRange(2);
 
         em.persist(w1);

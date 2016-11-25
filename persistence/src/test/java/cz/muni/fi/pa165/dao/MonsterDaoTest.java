@@ -131,8 +131,7 @@ public class MonsterDaoTest {
 	}
 
 	private Monster getMonster(String type, int height, int weight, int agility, int strength) {
-		Monster monster = new Monster();
-		monster.setType(type);
+		Monster monster = new Monster(type);
 		monster.setHeight(new BigDecimal(height));
 		monster.setWeight(new BigDecimal(weight));
 		monster.setAgility(agility);
