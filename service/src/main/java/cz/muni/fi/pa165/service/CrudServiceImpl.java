@@ -1,7 +1,7 @@
 package cz.muni.fi.pa165.service;
 
-import cz.muni.fi.pa165.dao.CrudDao;
-import cz.muni.fi.pa165.entities.Entity;
+import cz.muni.fi.pa165.dao.base.CrudDao;
+import cz.muni.fi.pa165.entities.base.Entity;
 import cz.muni.fi.pa165.service.exception.PersistenceException;
 
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class CrudServiceImpl<TEntity extends Entity> implements CrudService<TEntity> {
 
-	protected CrudDao<TEntity> crudDao;
+	private CrudDao<TEntity> crudDao;
 
 	public CrudServiceImpl(CrudDao<TEntity> crudDao) {
 		this.crudDao = crudDao;

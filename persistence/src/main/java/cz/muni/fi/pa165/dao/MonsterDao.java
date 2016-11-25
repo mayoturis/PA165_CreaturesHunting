@@ -1,8 +1,7 @@
 package cz.muni.fi.pa165.dao;
 
+import cz.muni.fi.pa165.dao.base.CrudDao;
 import cz.muni.fi.pa165.entities.Monster;
-
-import java.util.List;
 
 /**
  * Interface providing access to operations related to entities.
