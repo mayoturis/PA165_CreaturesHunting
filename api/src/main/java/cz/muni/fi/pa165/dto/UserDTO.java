@@ -2,7 +2,12 @@ package cz.muni.fi.pa165.dto;
 
 import cz.muni.fi.pa165.enums.Gender;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
+ * Data transfer object for user.
+ *
  * @author Marek Turis
  */
 public class UserDTO {
@@ -14,8 +19,13 @@ public class UserDTO {
 	private String email;
 	private boolean isAdmin;
 	private Gender gender;
-	// private Set<WeaponDTO> weapons = new HashSet<WeaponDTO>(); todo uncomment when WeaponDTO is created
 
+	private Set<WeaponDTO> weapons = new HashSet<WeaponDTO>();
+
+	public void addWeapon(WeaponDTO weapon) {
+		this.weapons.add(weapon);
+		weapon.addUser(this);
+	}
 
 	public int getId() {
 		return id;

@@ -1,8 +1,10 @@
-package cz.muni.fi.pa165.facade;
+package cz.muni.fi.pa165.facade.base;
 
 import java.util.List;
 
 /**
+ * Facade interface for basic create, update, delete, retrieve operations.
+ *
  * @author Marek Turis
  */
 public interface CrudFacade<TEntityDTO> {
@@ -45,7 +47,8 @@ public interface CrudFacade<TEntityDTO> {
 	void delete(TEntityDTO entityDto);
 
 	/**
-	 * Deletes entity with given id
+	 * Deletes entity with given id.
+	 *
 	 * @param id id of entity
 	 */
 	void delete(int id);

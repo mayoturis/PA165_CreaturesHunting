@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
+ * Data transfer object for monster.
+ *
  * @author Simona Kruppova
  */
 public class MonsterDTO {
@@ -15,8 +17,19 @@ public class MonsterDTO {
 	private BigDecimal weight;
 	private int agility;
 	private int strength;
+
 	private Set<WeaponDTO> weapons = new HashSet<WeaponDTO>();
 	private Set<AreaDTO> areas = new HashSet<AreaDTO>();
+
+	public void addArea(AreaDTO area) {
+		areas.add(area);
+		area.addMonster(this);
+	}
+
+	public void addWeapon(WeaponDTO weapon) {
+		weapons.add(weapon);
+		weapon.addMonster(this);
+	}
 
 	public int getId() {
 		return id;
@@ -78,11 +91,6 @@ public class MonsterDTO {
 
 	public void setAreas(Set<AreaDTO> areas) {
 		this.areas = areas;
-	}
-
-	public void addArea(AreaDTO area) {
-		areas.add(area);
-		area.addMonster(this);
 	}
 
 	@Override

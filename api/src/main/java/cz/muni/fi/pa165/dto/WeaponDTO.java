@@ -6,22 +6,29 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
+ * Data transfer object for weapon.
+ *
  * @author Ondrej Zeman
  */
 public class WeaponDTO {
 
 	private int id;
-
 	private String name;
-
 	private int range;
-
 	private Ammunition ammunition;
 
 	private Set<UserDTO> users = new HashSet<UserDTO>();
+	private Set<MonsterDTO> monsters = new HashSet<MonsterDTO>();
 
-//	private Set<MonsterDTO> monsters = new HashSet<Monster>();
+	public void addMonster(MonsterDTO monster) {
+		this.monsters.add(monster);
+		monster.addWeapon(this);
+	}
 
+	public void addUser(UserDTO user) {
+		this.users.add(user);
+		user.addWeapon(this);
+	}
 
 	public int getId() {
 		return id;
@@ -78,6 +85,4 @@ public class WeaponDTO {
 	public int hashCode() {
 		return getName().hashCode();
 	}
-
-
 }

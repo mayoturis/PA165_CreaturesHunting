@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Data transfer object for area.
+ *
  * @author Michael Cada
  */
 public class AreaDTO {
@@ -15,7 +17,6 @@ public class AreaDTO {
 	private String name;
 	private String description;
 	private BigDecimal size;
-
 	private DangerLevel dangerLevel;
 
 	private List<MonsterDTO> monsters = new ArrayList<MonsterDTO>();
