@@ -5,6 +5,7 @@ import cz.muni.fi.pa165.entities.Weapon;
 import cz.muni.fi.pa165.facade.WeaponFacade;
 import cz.muni.fi.pa165.service.MappingService;
 import cz.muni.fi.pa165.service.WeaponService;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -13,6 +14,7 @@ import javax.inject.Named;
  * @author Ondrej Zeman
  */
 @Named
+@Transactional
 public class WeaponFacadeImpl extends CrudFacadeImpl<WeaponDTO, Weapon> implements WeaponFacade {
 
 	@Inject
