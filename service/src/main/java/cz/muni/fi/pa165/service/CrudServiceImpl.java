@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class CrudServiceImpl<TEntity extends Entity> implements CrudService<TEntity> {
 
-	protected CrudDao<TEntity> crudDao;
+	private CrudDao<TEntity> crudDao;
 
 	public CrudServiceImpl(CrudDao<TEntity> crudDao) {
 		this.crudDao = crudDao;
