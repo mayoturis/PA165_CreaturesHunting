@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceException;
 import javax.validation.ValidationException;
 import java.util.List;
 
@@ -34,8 +35,6 @@ public class UserDaoTest {
 	private EntityManager em;
 
 	private User user;
-	private User user1;
-	private User user2;
 
 	private String userName = "Peter";
 	private String userEmail = "peter@email.com";
@@ -47,8 +46,8 @@ public class UserDaoTest {
 	@Before
 	public void createUsers() {
 		user = new User();
-		user1 = new User();
-		user2 = new User();
+		User user1 = new User();
+		User user2 = new User();
 
 		user.setName(userName);
 		user.setGender(userGender);
@@ -90,26 +89,76 @@ public class UserDaoTest {
 
 	@Test
 	public void createUserTest() {
-		User user3 = new User();
-		user3.setName("testName");
-		user3.setEmail("testEmail");
-		user3.setPassword("pass");
+		User user = GetValidUser();
 
-		userDao.create(user3);
+		userDao.create(user);
 
-		User foundUser = userDao.findById(user3.getId());
-		Assert.assertEquals(foundUser, user3);
+		User foundUser = userDao.findById(user.getId());
+		Assert.assertEquals(foundUser, user);
 	}
 
 	@Test(expected = ValidationException.class)
 	public void createUserWithInvalidAgeTest() {
-		User user3 = new User();
-		user3.setName("testName");
-		user3.setEmail("testEmail");
-		user3.setPassword("pass");
-		user3.setAge(-1);
+		User user = GetValidUser();
+		user.setAge(-1);
 
-		userDao.create(user3);
+		userDao.create(user);
+	}
+
+	@Test(expected = ValidationException.class)
+	public void createUserWithNullEmailTest() {
+		User user = GetValidUser();
+		user.setEmail(null);
+
+		userDao.create(user);
+	}
+
+	@Test(expected = ValidationException.class)
+	public void createUserWithNullPasswordTest() {
+		User user = GetValidUser();
+		user.setPassword(null);
+
+		userDao.create(user);
+	}
+
+	@Test(expected = NullPointerException.class)
+	public void createUserWithNullNameTest() {
+		User user = GetValidUser();
+		user.setName(null);
+
+		userDao.create(user);
+	}
+
+	@Test(expected = PersistenceException.class)
+	public void createUserWithNameNotUniqueTest() {
+		User user = GetValidUser();
+		User user1 = GetValidUser();
+		user1.setEmail("testEmail1");
+
+		userDao.create(user);
+		userDao.create(user1);
+	}
+
+	@Test(expected = PersistenceException.class)
+	public void createUserWithEmailNotUniqueTest() {
+		User user = GetValidUser();
+		User user1 = GetValidUser();
+		user1.setName("testName1");
+
+		userDao.create(user);
+		userDao.create(user1);
+	}
+
+	@Test
+	public void updateUserTest() {
+		String newUserName = "newName";
+		user.setName(newUserName);
+		userDao.update(user);
+
+		User foundUser = userDao.findById(user.getId());
+
+		Assert.assertEquals(newUserName, foundUser.getName());
+		Assert.assertEquals(userEmail, foundUser.getEmail());
 	}
 
 	@Test
@@ -118,5 +167,16 @@ public class UserDaoTest {
 
 		List<User> users = userDao.findAll();
 		Assert.assertEquals(2, users.size());
+	}
+
+	private User GetValidUser() {
+
+		User user = new User();
+
+		user.setName("testName");
+		user.setEmail("testEmail");
+		user.setPassword("pass");
+
+		return user;
 	}
 }

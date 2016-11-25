@@ -123,6 +123,4 @@ public class User implements cz.muni.fi.pa165.entities.base.Entity {
 	public int hashCode() {
 		return name.hashCode();
 	}
-
-
 }
