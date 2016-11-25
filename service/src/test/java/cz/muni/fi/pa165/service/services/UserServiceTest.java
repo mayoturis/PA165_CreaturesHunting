@@ -19,7 +19,6 @@ import java.util.Collections;
 import java.util.List;
 
 import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.doThrow;
 
 /**
  * Tests for UserService
@@ -93,7 +92,7 @@ public class UserServiceTest {
 	@Test
 	public void findAll() {
 		List<User> expected = Collections.singletonList(user);
-		when(userDao.findAll()).thenReturn(expected);
+		Mockito.when(userDao.findAll()).thenReturn(expected);
 
 		List<User> actual = userService.findAll();
 

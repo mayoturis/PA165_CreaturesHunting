@@ -21,14 +21,14 @@ public class WeaponServiceImpl extends CrudServiceImpl<Weapon> implements Weapon
 	@Inject
 	public WeaponServiceImpl(WeaponDao weaponDao) {
 		super(weaponDao);
-		this.weaponDao= weaponDao;
+		this.weaponDao = weaponDao;
 	}
 
-	public Weapon getWeaponByName(String name){
-		try{
+	public Weapon getWeaponByName(String name) {
+		try {
 			return weaponDao.getWeaponByName(name);
-		}catch (RuntimeException e){
-			throw new HuntingPersistenceException("Something failed in database",e);
+		} catch (RuntimeException e) {
+			throw new HuntingPersistenceException("Something failed in database", e);
 		}
 	}
 
