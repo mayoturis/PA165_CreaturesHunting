@@ -113,7 +113,7 @@ public class WeaponDaoTest {
 		w1.setRange(1);
 		w1.setName(null);
 
-				wDao.create(w1);
+		wDao.create(w1);
 	}
 
 	@Test(expected = PersistenceException.class)
@@ -121,14 +121,15 @@ public class WeaponDaoTest {
 		w1 = new Weapon("Legolasuv luk", Ammunition.ARROW);
 		w1.setRange(1);
 
-				wDao.create(w1);
+		wDao.create(w1);
 	}
 
 	@Test(expected = ConstraintViolationException.class)
 	public void negativeRangeTest() {
 		w1 = new Weapon("Nejaka Zbran", Ammunition.ARROW);
 		w1.setRange(-1);
-				wDao.create(w1);
+
+		wDao.create(w1);
 	}
 
 	@Test(expected = ConstraintViolationException.class)
