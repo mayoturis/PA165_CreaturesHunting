@@ -60,6 +60,10 @@ public class Area implements Entity {
 
 	public int getId() { return id; }
 
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public DangerLevel getDangerLevel() { return dangerLevel; }
 
 	public void setDangerLevel(DangerLevel dangerLevel) { this.dangerLevel = dangerLevel; }
