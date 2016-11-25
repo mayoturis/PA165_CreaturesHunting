@@ -23,73 +23,73 @@ import java.util.List;
 @javax.persistence.Entity
 public class Area implements Entity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 
-    @NotNull
-    @Column(nullable = false, unique = true)
-    private String name;
+	@NotNull
+	@Column(nullable = false, unique = true)
+	private String name;
 
-    private String description;
+	private String description;
 
-    @NotNull
-    @DecimalMin("0.1")
-    private BigDecimal size;
+	@NotNull
+	@DecimalMin("0.1")
+	private BigDecimal size;
 
-    @NotNull
-    private DangerLevel dangerLevel;
+	@NotNull
+	private DangerLevel dangerLevel;
 
 	@ManyToMany(mappedBy = "areas")
 	private List<Monster> monsters = new ArrayList<Monster>();
 
-    protected Area() {
-        // required by Hibernate
-    }
+	protected Area() {
+		// required by Hibernate
+	}
 
-    public Area(String name, DangerLevel dangerLevel, BigDecimal size) {
-        this.name = name;
-        this.dangerLevel = dangerLevel;
-        this.size = size;
-    }
+	public Area(String name, DangerLevel dangerLevel, BigDecimal size) {
+		this.name = name;
+		this.dangerLevel = dangerLevel;
+		this.size = size;
+	}
 
-    public void addMonster(Monster newMonster) {
-        this.monsters.add(newMonster);
-        newMonster.addArea(this);
-    }
+	public void addMonster(Monster newMonster) {
+		this.monsters.add(newMonster);
+		newMonster.addArea(this);
+	}
 
-    public int getId() { return id; }
+	public int getId() { return id; }
 
-    public DangerLevel getDangerLevel() { return dangerLevel; }
+	public DangerLevel getDangerLevel() { return dangerLevel; }
 
-    public void setDangerLevel(DangerLevel dangerLevel) { this.dangerLevel = dangerLevel; }
+	public void setDangerLevel(DangerLevel dangerLevel) { this.dangerLevel = dangerLevel; }
 
-    public String getName() { return name; }
+	public String getName() { return name; }
 
-    public void setName(String name) { this.name = name; }
+	public void setName(String name) { this.name = name; }
 
-    public String getDescription() { return description; }
+	public String getDescription() { return description; }
 
-    public void setDescription(String description) { this.description = description; }
+	public void setDescription(String description) { this.description = description; }
 
-    public BigDecimal getSize() { return size; }
+	public BigDecimal getSize() { return size; }
 
-    public void setSize(BigDecimal size) { this.size = size; }
+	public void setSize(BigDecimal size) { this.size = size; }
 
-    public List<Monster> getMonsters() { return monsters; }
+	public List<Monster> getMonsters() { return monsters; }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Area)) return false;
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Area)) return false;
 
-        Area area = (Area) o;
+		Area area = (Area) o;
 
-        return name.equals(area.getName());
-    }
+		return name.equals(area.getName());
+	}
 
-    @Override
-    public int hashCode() {
-        return name.hashCode();
-    }
+	@Override
+	public int hashCode() {
+		return name.hashCode();
+	}
 }
