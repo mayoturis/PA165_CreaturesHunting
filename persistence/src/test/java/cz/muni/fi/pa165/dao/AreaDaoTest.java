@@ -22,6 +22,8 @@ import java.util.List;
 import java.util.logging.Logger;
 
 /**
+ * Area dao tests.
+ *
  * @author Ondrej Zeman
  */
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -29,12 +31,13 @@ import java.util.logging.Logger;
 @ContextConfiguration(classes = ApplicationContextConfiguration.class)
 public class AreaDaoTest {
 
-	final static Logger logger = Logger.getLogger(AreaDaoTest.class.toString());
-	Area area;
-	Area area2;
-	Area area3;
+	private Area area;
+	private Area area2;
+	private Area area3;
+
 	@PersistenceContext
 	private EntityManager em;
+
 	@Inject
 	private AreaDao areaDao;
 

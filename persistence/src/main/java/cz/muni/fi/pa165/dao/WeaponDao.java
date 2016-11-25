@@ -10,8 +10,6 @@ import cz.muni.fi.pa165.entities.Weapon;
  */
 public interface WeaponDao extends CrudDao<Weapon> {
 
-
-
 	/**
 	 * finds weapon by name
 	 *

@@ -20,18 +20,22 @@ public class AreaDaoImpl implements AreaDao {
     @PersistenceContext
     private EntityManager em;
 
+    @Override
     public List<Area> findAll() {
         return em.createQuery("Select a from Area a", Area.class).getResultList();
     }
 
+    @Override
     public Area findById(int id) {
         return em.find(Area.class, id);
     }
 
+    @Override
     public void create(Area newArea) {
         em.persist(newArea);
     }
 
+    @Override
     public void delete(Area toBeDeletedArea) {
         em.remove(findById(toBeDeletedArea.getId()));
     }

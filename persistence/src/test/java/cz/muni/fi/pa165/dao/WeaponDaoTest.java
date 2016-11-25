@@ -7,18 +7,19 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
 /**
- * Basic tests for WeaponDao
+ * Basic tests for WeaponDao.
+ *
  * @author Michael Cada
  */
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -29,7 +30,7 @@ public class WeaponDaoTest {
     @PersistenceContext
     private EntityManager em;
 
-    @Autowired
+    @Inject
     private WeaponDao wDao;
 
     private Weapon w1;
@@ -103,6 +104,4 @@ public class WeaponDaoTest {
         //clean after test to previous state
         em.remove(w2);
     }
-
-
 }

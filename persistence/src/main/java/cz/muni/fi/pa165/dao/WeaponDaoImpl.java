@@ -20,19 +20,22 @@ public class WeaponDaoImpl implements WeaponDao {
 	@PersistenceContext
 	private EntityManager entityManager;
 
+	@Override
 	public void create(Weapon weapon) {
 		entityManager.persist(weapon);
 	}
 
-
+	@Override
 	public void delete(Weapon weapon) {
 		entityManager.remove(findById(weapon.getId()));
 	}
 
+	@Override
 	public void update(Weapon weapon) {
 		entityManager.merge(weapon);
 	}
 
+	@Override
 	public Weapon getWeaponByName(String name) {
 		return entityManager.createQuery("SELECT w FROM Weapon w WHERE name = :name", Weapon.class)
 				.setParameter("name", name)

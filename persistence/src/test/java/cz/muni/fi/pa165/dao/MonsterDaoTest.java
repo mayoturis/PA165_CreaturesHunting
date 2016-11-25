@@ -5,11 +5,11 @@ import cz.muni.fi.pa165.entities.Monster;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.inject.Inject;
 import javax.persistence.PersistenceException;
 import javax.validation.ValidationException;
 
@@ -17,6 +17,8 @@ import java.math.BigDecimal;
 import java.util.List;
 
 /**
+ * Monster dao tests.
+ *
  * @author Marek Turis
  */
 @RunWith( SpringJUnit4ClassRunner.class )
@@ -24,7 +26,7 @@ import java.util.List;
 @Transactional
 public class MonsterDaoTest {
 
-	@Autowired
+	@Inject
 	public MonsterDao monsterDao;
 
 	@Test
