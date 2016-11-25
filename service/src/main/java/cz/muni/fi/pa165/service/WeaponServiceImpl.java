@@ -26,11 +26,12 @@ public class WeaponServiceImpl extends CrudServiceImpl<Weapon> implements Weapon
 	public WeaponServiceImpl(WeaponDao weaponDao , UserDao userDao)
 	{
 		super(weaponDao);
-		this.userDao=userDao;
+		this.userDao = userDao;
+		this.weaponDao = weaponDao;
 	}
 
 	@Override
-	public void AddWeaponToUser(Weapon weapon, User user) {
+	public void addWeaponToUser(Weapon weapon, User user) {
 		try{
 			User user1 = userDao.findById(user.getId());
 			Weapon weapon1 = weaponDao.findById(weapon.getId());

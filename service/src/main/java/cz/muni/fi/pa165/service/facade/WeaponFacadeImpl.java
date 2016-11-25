@@ -31,10 +31,10 @@ public class WeaponFacadeImpl extends CrudFacadeImpl<WeaponDTO, Weapon> implemen
 	}
 
 	@Override
-	public void AddWeaponToUser(WeaponDTO weapon, UserDTO user) {
+	public void addWeaponToUser(WeaponDTO weapon, UserDTO user) {
 
 		if(user!=null||weapon!=null){
-			weaponService.AddWeaponToUser(
+			weaponService.addWeaponToUser(
 					mappingService.map(weapon,Weapon.class)
 					,mappingService.map(user, User.class));
 		}

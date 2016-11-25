@@ -8,6 +8,6 @@ import cz.muni.fi.pa165.entities.Weapon;
  */
 public interface WeaponService extends CrudService<Weapon> {
 
-	void AddWeaponToUser(Weapon weapon , User user);
+	void addWeaponToUser(Weapon weapon , User user);
 
 }
