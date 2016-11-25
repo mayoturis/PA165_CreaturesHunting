@@ -16,6 +16,10 @@ public class CrudServiceImpl<TEntity extends Entity> implements CrudService<TEnt
 	private CrudDao<TEntity> crudDao;
 
 	public CrudServiceImpl(CrudDao<TEntity> crudDao) {
+		if (crudDao == null) {
+			throw new IllegalArgumentException("Dao is null.");
+		}
+
 		this.crudDao = crudDao;
 	}
 
