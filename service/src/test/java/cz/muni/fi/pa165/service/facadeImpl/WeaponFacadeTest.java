@@ -1,8 +1,6 @@
 package cz.muni.fi.pa165.service.facadeImpl;
 
-import cz.muni.fi.pa165.dto.UserDTO;
 import cz.muni.fi.pa165.dto.WeaponDTO;
-import cz.muni.fi.pa165.entities.User;
 import cz.muni.fi.pa165.entities.Weapon;
 import cz.muni.fi.pa165.service.services.WeaponService;
 import cz.muni.fi.pa165.service.services.mapping.MappingService;
@@ -33,13 +31,7 @@ public class WeaponFacadeTest {
 	private Weapon weapon;
 
 	@Mock
-	private User user;
-
-	@Mock
 	private WeaponDTO weaponDTO;
-
-	@Mock
-	private UserDTO userDTO;
 
 	@Mock
 	private WeaponService weaponService;
