@@ -21,6 +21,8 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
+ * Tests for MonsterFacadeImpl - monster facade implementation
+ *
  * @author Michael Cada
  */
 @RunWith(MockitoJUnitRunner.class)
