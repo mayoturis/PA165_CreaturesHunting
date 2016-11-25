@@ -21,7 +21,7 @@ public class WeaponServiceImpl extends CrudServiceImpl<Weapon> implements Weapon
 	private WeaponDao weaponDao;
 
 	@Inject
-	public WeaponServiceImpl(WeaponDao weaponDao , UserDao userDao)
+	public WeaponServiceImpl(WeaponDao weaponDao, UserDao userDao)
 	{
 		super(weaponDao);
 		this.userDao = userDao;
@@ -30,14 +30,12 @@ public class WeaponServiceImpl extends CrudServiceImpl<Weapon> implements Weapon
 
 	@Override
 	public void addWeaponToUser(Weapon weapon, User user) {
-		try{
+		try {
 			User user1 = userDao.findById(user.getId());
 			Weapon weapon1 = weaponDao.findById(weapon.getId());
 			user1.addWeapon(weapon1);
-		}catch (RuntimeException e){
-			throw new PersistenceException("Exception while finding all entities",e);
+		} catch (RuntimeException e){
+			throw new PersistenceException("Exception while finding an entity", e);
 		}
-
-
 	}
 }
