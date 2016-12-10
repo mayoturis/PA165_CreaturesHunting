@@ -10,6 +10,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.6.0</version>
         <configuration>
           <source>1.6</source>
           <target>1.6</target>
@@ -21,6 +22,7 @@
     <module>persistence</module>
     <module>service</module>
     <module>api</module>
+    <module>web</module>
   </modules>
   <packaging>pom</packaging>
 
