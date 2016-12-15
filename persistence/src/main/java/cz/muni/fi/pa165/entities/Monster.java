@@ -64,7 +64,7 @@ public class Monster implements Entity {
 	}
 
 	public Set<Weapon> getWeapons() {
-		return Collections.unmodifiableSet(weapons);
+		return weapons;
 	}
 
 	public void addWeapon(Weapon weapon) {
@@ -73,7 +73,7 @@ public class Monster implements Entity {
 	}
 
 	public Set<Area> getAreas() {
-		return Collections.unmodifiableSet(areas);
+		return areas;
 	}
 
 	public void addArea(Area area) {

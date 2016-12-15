@@ -8,11 +8,11 @@ import javax.servlet.Filter;
 /**
  * @author Marek Turis
  */
-public class MyStartInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class StartInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class<?>[]{MySpringMvcConfig.class};
+		return new Class<?>[]{SpringMvcConfig.class};
 	}
 
 	@Override
@@ -31,5 +31,4 @@ public class MyStartInitializer extends AbstractAnnotationConfigDispatcherServle
 	protected Class<?>[] getServletConfigClasses() {
 		return null;
 	}
-
 }
