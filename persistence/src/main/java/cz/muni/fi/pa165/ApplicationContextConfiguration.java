@@ -25,7 +25,7 @@ import javax.sql.DataSource;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories
-@ComponentScan
+@ComponentScan("cz.muni.fi.pa165.dao")
 public class ApplicationContextConfiguration {
 
 	@Bean
