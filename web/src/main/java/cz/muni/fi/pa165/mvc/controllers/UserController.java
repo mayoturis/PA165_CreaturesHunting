@@ -7,9 +7,7 @@ import cz.muni.fi.pa165.service.exceptions.HuntingPersistenceException;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.inject.Inject;
@@ -87,5 +85,12 @@ public class UserController {
 						 UriComponentsBuilder uriBuilder) {
 		request.getSession().removeAttribute("authenticatedEmail");
 		return "redirect:" + uriBuilder.path("/user/login").toUriString();
+	}
+
+	@RequestMapping(value = "/doDelete/{id}", method = RequestMethod.POST)
+	public String doDelete(UriComponentsBuilder uriBuilder,
+						   @PathVariable int id) {
+		userFacade.delete(id);
+		return "redirect:" + uriBuilder.path("/user/list").toUriString();
 	}
 }

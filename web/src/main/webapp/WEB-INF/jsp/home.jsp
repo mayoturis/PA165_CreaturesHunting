@@ -8,7 +8,7 @@
 <my:pagetemplate>
 <jsp:attribute name="body">
 	<div class="jumbotron">
-		<h1>Welcome <c:out value="${user.getName()}"/> to Creature Hunting!</h1>
+		<h1><c:out value="${user.getName()}"/>, welcome to Creature Hunting!</h1>
 		<p class="lead">Here you can find out various information about monsters, including areas where they were seen and weapons useful against them.</p>
 		<p><a class="btn btn-lg btn-success" href="${pageContext.request.contextPath}/monster/list"
 			  role="button">Go hunting!</a></p>

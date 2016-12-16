@@ -15,6 +15,7 @@
             <th>Age</th>
             <th>Gender</th>
             <th>Is admin</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -32,11 +33,14 @@
                         false
                     </c:if>
                 </td>
+                <td>
+                    <form:form method="post" action="${pageContext.request.contextPath}/user/doDelete/${user.id}">
+                        <input type="submit" class="btn" value="Delete">
+                    </form:form>
+                </td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
-
-
 </jsp:attribute>
 </my:pagetemplate>
