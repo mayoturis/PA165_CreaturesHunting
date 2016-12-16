@@ -22,9 +22,13 @@ public class UserDTO {
 
 	private Set<WeaponDTO> weapons = new HashSet<WeaponDTO>();
 
+
+
 	public void addWeapon(WeaponDTO weapon) {
 		this.weapons.add(weapon);
-		weapon.addUser(this);
+		if(!weapon.getUsers().contains(this)) {
+			weapon.addUser(this);
+		}
 	}
 
 	public int getId() {
@@ -83,6 +87,7 @@ public class UserDTO {
 		this.gender = gender;
 	}
 
+	public Set<WeaponDTO> getWeapons() { return weapons; }
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;

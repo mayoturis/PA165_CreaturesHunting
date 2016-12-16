@@ -32,7 +32,9 @@ public class AreaDTO {
 
 	public void addMonster(MonsterDTO newMonster) {
 		this.monsters.add(newMonster);
-		newMonster.addArea(this);
+		if(!monsters.contains(newMonster)) {
+			newMonster.addArea(this);
+		}
 	}
 
 	public int getId() { return id; }

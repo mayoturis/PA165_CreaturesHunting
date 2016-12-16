@@ -22,12 +22,16 @@ public class WeaponDTO {
 
 	public void addMonster(MonsterDTO monster) {
 		this.monsters.add(monster);
-		monster.addWeapon(this);
+		if(!monster.getWeapons().contains(this)) {
+			monster.addWeapon(this);
+		}
 	}
 
 	public void addUser(UserDTO user) {
 		this.users.add(user);
-		user.addWeapon(this);
+		if(!user.getWeapons().contains(this)) {
+			user.addWeapon(this);
+		}
 	}
 
 	public int getId() {
@@ -65,6 +69,8 @@ public class WeaponDTO {
 	public Set<UserDTO> getUsers() {
 		return users;
 	}
+
+	public Set<MonsterDTO> getMonsters() { return monsters; }
 
 	public void addUsers(Set<UserDTO> users) {
 		this.users.addAll(users);

@@ -23,12 +23,16 @@ public class MonsterDTO {
 
 	public void addArea(AreaDTO area) {
 		areas.add(area);
-		area.addMonster(this);
+		if(!area.getMonsters().contains(this)) {
+			area.addMonster(this);
+		}
 	}
 
 	public void addWeapon(WeaponDTO weapon) {
 		weapons.add(weapon);
-		weapon.addMonster(this);
+		if(!weapon.getMonsters().contains(this)) {
+			weapon.addMonster(this);
+		}
 	}
 
 	public int getId() {
