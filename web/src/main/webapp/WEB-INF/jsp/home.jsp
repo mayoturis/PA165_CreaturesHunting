@@ -7,13 +7,11 @@
 
 <my:pagetemplate>
 <jsp:attribute name="body">
-
-	<h1>Welcome <c:out value="${user.getName()}"/> (<c:out value="${user.email}"/>)</h1>
-
-	<c:if test="${empty user}">
-		<div class="page-header">
-			<h1>si prazdny</h1>
-		</div>
-	</c:if>
+	<div class="jumbotron">
+		<h1>Welcome <c:out value="${user.getName()}"/> to Creature Hunting!</h1>
+		<p class="lead">Here you can find out various information about monsters, including areas where they were seen and weapons useful against them.</p>
+		<p><a class="btn btn-lg btn-success" href="${pageContext.request.contextPath}/monster/list"
+			  role="button">Go hunting!</a></p>
+	</div>
 </jsp:attribute>
 </my:pagetemplate>
