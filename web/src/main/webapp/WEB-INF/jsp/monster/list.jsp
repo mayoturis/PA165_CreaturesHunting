@@ -9,21 +9,18 @@
 <jsp:attribute name="body">
 
     <table class="table">
-        <caption>Monsters</caption>
         <thead>
         <tr>
-            <th>id</th>
-            <th>type</th>
-            <th>height</th>
-            <th>weight</th>
-            <th>agility</th>
-            <th>strength</th>
+            <th>Type</th>
+            <th>Height</th>
+            <th>Weight</th>
+            <th>Agility</th>
+            <th>Strength</th>
         </tr>
         </thead>
         <tbody>
         <c:forEach items="${monsters}" var="monster">
             <tr>
-                <td>${monster.id}</td>
                 <td><c:out value="${monster.type}"/></td>
                 <td><c:out value="${monster.height}"/></td>
                 <td><c:out value="${monster.weight}"/></td>

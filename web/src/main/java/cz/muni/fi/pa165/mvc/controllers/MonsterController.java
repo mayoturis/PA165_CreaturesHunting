@@ -1,8 +1,6 @@
 package cz.muni.fi.pa165.mvc.controllers;
 
-import cz.muni.fi.pa165.dto.MonsterDTO;
 import cz.muni.fi.pa165.facade.MonsterFacade;
-import cz.muni.fi.pa165.facade.base.CrudFacade;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +18,7 @@ import javax.inject.Inject;
 public class MonsterController {
 
 	@Inject
-	private CrudFacade<MonsterDTO> monsterFacade;
+	private MonsterFacade monsterFacade;
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(Model model) {
