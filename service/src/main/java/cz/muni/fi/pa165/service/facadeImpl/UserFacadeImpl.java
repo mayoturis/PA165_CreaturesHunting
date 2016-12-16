@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.List;
 
 /**
  * User facade implementation.
@@ -51,4 +52,10 @@ public class UserFacadeImpl extends CrudFacadeImpl<UserDTO, User> implements Use
 	public UserDTO findByEmail(String email) {
 		return mappingService.map(userService.findByEmail(email), UserDTO.class);
 	}
+
+	public List<WeaponDTO> getWeaponsByUserId(int userId) {
+		User user = userService.findById(userId);
+		return mappingService.map(user.getWeapons(), WeaponDTO.class);
+	}
+
 }

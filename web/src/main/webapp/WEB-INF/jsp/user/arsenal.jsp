@@ -7,12 +7,10 @@
 
 <my:pagetemplate title="Weapons">
     <jsp:attribute name="body">
-    <c:if test="${authenticatedUser.isAdmin()}">
-            <my:a href="/weapon/create" class="btn btn-primary">
+        <my:a href="/user/addWeapon" class="btn btn-primary">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                New Weapon
-            </my:a>
-    </c:if>
+                Add Weapon
+        </my:a>
     <table class="table">
         <thead>
         <tr>
@@ -32,20 +30,6 @@
                 <td>
                     <my:a href="/weapon/view/${weapon.id}" class="btn btn-primary">View</my:a>
                 </td>
-                <td>
-                    <my:a href="/weapon/update/${weapon.id}" class="btn btn-primary">Update</my:a>
-                </td>
-                <td>
-                    <form method="post" action="${pageContext.request.contextPath}/weapon/delete/${weapon.id}">
-                        <button type="submit" class="btn btn-primary">Delete</button>
-                    </form>
-                </td>
-                    <%--<td>--%>
-                    <%--<form method="post"--%>
-                    <%--action="${pageContext.request.contextPath}/user/addWeaponToCurrentUser/${weapon.id}">--%>
-                    <%--<button type="submit" class="btn btn-primary">Add</button>--%>
-                    <%--</form>--%>
-                    <%--</td>--%>
             </tr>
         </c:forEach>
         </tbody>

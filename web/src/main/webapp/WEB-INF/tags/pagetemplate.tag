@@ -37,7 +37,9 @@
 				<li><f:message key="navigation.hunting"/></li>
 				<li><my:a href="/monster/list"><f:message key="navigation.admin.monsters"/></my:a></li>
 				<li><my:a href="/weapon/list"><f:message key="navigation.admin.weapons"/></my:a></li>
-				<li><my:a href="/area/list"><f:message key="navigation.admin.areas"/></my:a></li>
+                <li><my:a href="/user/arsenal"><f:message key="navigation.admin.arsenal"/></my:a></li>
+
+                <li><my:a href="/area/list"><f:message key="navigation.admin.areas"/></my:a></li>
 				<c:if test="${authenticatedUser.isAdmin()}">
 					<li><my:a href="/user/list"><f:message key="navigation.admin.users"/></my:a></li>
 				</c:if>

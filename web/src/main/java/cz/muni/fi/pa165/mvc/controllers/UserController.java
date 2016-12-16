@@ -2,12 +2,19 @@ package cz.muni.fi.pa165.mvc.controllers;
 
 import cz.muni.fi.pa165.dto.UserAuthenticationDTO;
 import cz.muni.fi.pa165.dto.UserDTO;
+import cz.muni.fi.pa165.dto.WeaponDTO;
 import cz.muni.fi.pa165.facade.UserFacade;
+import cz.muni.fi.pa165.facade.WeaponFacade;
 import cz.muni.fi.pa165.service.exceptions.HuntingPersistenceException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.inject.Inject;
@@ -22,11 +29,14 @@ import java.util.List;
 @Transactional
 public class UserController {
 
+	final static Logger log = LoggerFactory.getLogger(UserController.class);
 	private UserFacade userFacade;
+	private WeaponFacade weaponFacade;
 
 	@Inject
-	public UserController(UserFacade userFacade) {
+	public UserController(UserFacade userFacade, WeaponFacade weaponFacade) {
 		this.userFacade = userFacade;
+		this.weaponFacade = weaponFacade;
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
@@ -93,4 +103,30 @@ public class UserController {
 		userFacade.delete(id);
 		return "redirect:" + uriBuilder.path("/user/list").toUriString();
 	}
+
+	@RequestMapping(value = "/arsenal", method = RequestMethod.GET)
+	public String arsenal(Model model, HttpServletRequest request) {
+
+		String email = (String) request.getSession().getAttribute("authenticatedEmail");
+
+		UserDTO user = userFacade.findByEmail(email);
+		List<WeaponDTO> weapons = userFacade.getWeaponsByUserId(user.getId());
+		model.addAttribute("weapons", weapons);
+
+
+		return "user/arsenal";
+	}
+
+//	@RequestMapping(value = "/addWeaponToCurrentUser/{id}", method = RequestMethod.POST)
+//	public String addWeaponToCurrentUser(@PathVariable int id, Model model,
+//										 HttpServletRequest request) {
+//
+//		UserDTO user = userFacade.findByEmail((String) request.getSession()
+//				.getAttribute("authenticatedEmail"));
+//
+//		WeaponDTO weapon = weaponFacade.findById(1);
+//		userFacade.addWeaponToUser(weapon,user);
+//
+//		return "weapon/list";
+//	}
 }

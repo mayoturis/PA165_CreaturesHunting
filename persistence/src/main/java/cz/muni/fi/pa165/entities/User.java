@@ -5,6 +5,7 @@ import cz.muni.fi.pa165.enums.Gender;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -60,7 +61,7 @@ public class User implements cz.muni.fi.pa165.entities.base.Entity {
 	}
 
 	public Set<Weapon> getWeapons() {
-		return weapons;
+		return Collections.unmodifiableSet(weapons);
 	}
 
 	public String getName() {

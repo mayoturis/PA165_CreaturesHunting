@@ -44,11 +44,11 @@ public class WeaponController {
 		return "/weapon/list";
 	}
 
-	@RequestMapping(value = "/new", method = RequestMethod.GET)
-	public String newWeapon(Model model) {
+	@RequestMapping(value = "/create", method = RequestMethod.GET)
+	public String createNewWeapon(Model model) {
 		model.addAttribute("WeaponCreate", new WeaponDTO() {
 		});
-		return "weapon/new";
+		return "weapon/create";
 	}
 
 
@@ -78,7 +78,7 @@ public class WeaponController {
 				model.addAttribute(fe.getField() + "_error", true);
 				log.trace("FieldError: {}", fe);
 			}
-			return "weapon/new";
+			return "weapon/create";
 		}
 		int id = weaponFacade.create(formBean);
 		redirectAttributes.addFlashAttribute("alert_success", "Weapon " + id + " was created");
@@ -94,4 +94,24 @@ public class WeaponController {
 		redirectAttributes.addFlashAttribute("alert_success", "Weapon \"" + weapon.getName() + "\" was deleted.");
 		return "redirect:" + uriBuilder.path("/weapon/list").toUriString();
 	}
+
+//	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
+//	public String updateWeapon(@PathVariable int id, Model model) {
+//		WeaponDTO weapon = weaponFacade.findById(id);
+//		if (weapon == null) {
+//			return "redirect:/weapon/list";
+//		}
+//		model.addAttribute("weapon", weapon);
+//		return "weapon/update";
+//	}
+//	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
+//	public String updateWeapon(@ModelAttribute("weapon") WeaponDTO weapon, @PathVariable("id") int id,
+//							 Model model, UriComponentsBuilder uriBuilder) {
+//
+//		weapon.setId(id);
+//		weaponFacade.update(weapon);
+//		log.debug(weapon.toString()+" updated");
+//		return "redirect:" + uriBuilder.path("/weapon/view/"+weapon.getId()).toUriString();
+//	}
+
 }
