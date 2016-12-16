@@ -35,7 +35,7 @@
                 </td>
                 <td>
                     <form:form method="post" action="${pageContext.request.contextPath}/user/doDelete/${user.id}">
-                        <input type="submit" class="btn" value="Delete">
+                        <input type="submit" class="btn btn-default" value="Delete">
                     </form:form>
                 </td>
             </tr>
