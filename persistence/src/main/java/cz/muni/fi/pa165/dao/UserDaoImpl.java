@@ -45,4 +45,17 @@ public class UserDaoImpl implements UserDao {
 	public void update(User user) {
 		entityManager.merge(user);
 	}
+
+	@Override
+	public User findByEmail(String email) {
+		List<User> users = entityManager.createQuery("SELECT u FROM User u WHERE email = :email", User.class)
+				.setParameter("email", email)
+				.getResultList();
+
+		if (users.size() == 0) {
+			return null;
+		}
+
+		return users.get(0);
+	}
 }

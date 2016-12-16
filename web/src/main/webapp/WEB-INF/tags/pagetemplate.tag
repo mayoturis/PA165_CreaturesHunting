@@ -39,6 +39,7 @@
 				<li><my:a href="/user/list"><f:message key="navigation.admin.users"/></my:a></li>
 				<li><my:a href="/weapon/list"><f:message key="navigation.admin.weapons"/></my:a></li>
 				<li><my:a href="/area/list"><f:message key="navigation.admin.areas"/></my:a></li>
+				<li><my:a href="/user/logoff">Log off</my:a></li>
 			</ul>
 		</div><!--/.nav-collapse -->
 	</div>
@@ -51,20 +52,6 @@
 		<div class="page-header">
 			<h1><c:out value="${title}"/></h1>
 		</div>
-	</c:if>
-
-	<!-- authenticated user info -->
-	<c:if test="${not empty authenticatedUser}">
-	<div class="row">
-		<div class="col-xs-6 col-sm-8 col-md-9 col-lg-10"></div>
-		<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-			<div class="panel panel-default">
-				<div class="panel-body">
-					<c:out value="${authenticatedUser.givenName} ${authenticatedUser.surname}"/>
-				</div>
-			</div>
-		</div>
-	</div>
 	</c:if>
 
 	<!-- alerts -->
@@ -85,11 +72,6 @@
 
 	<!-- page body -->
 	<jsp:invoke fragment="body"/>
-
-	<!-- footer -->
-	<footer class="footer">
-		<p>&copy;&nbsp;<%=java.time.Year.now().toString()%>&nbsp;Masaryk University</p>
-	</footer>
 </div>
 <!-- javascripts placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

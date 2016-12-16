@@ -11,28 +11,30 @@
             <form:form method="post" action="${pageContext.request.contextPath}/user/doRegister"
                        modelAttribute="user" cssClass="form-horizontal">
                 <div class="form-group">
+                    <label for="email" class="col-sm-2 control-label">Email</label>
+                    <div class="col-sm-10">
+                        <input type="email" name="email" id="email" required="required" class="form-control "/>
+                    </div>
+                </div>
+
+                <div class="form-group">
                     <label for="name" class="col-sm-2 control-label">Name</label>
                     <div class="col-sm-10">
                         <input type="text" name="name" pattern=".{3,}" title="Min 3 characters" required="required" id="name" class="form-control "/>
                     </div>
                 </div>
+
                 <div class="form-group">
                     <label for="password" class="col-sm-2 control-label">Password</label>
                     <div class="col-sm-10">
                         <input type="password" pattern=".{6,}" title="Min 6 characters" name="password" required="required" id="password" class="form-control "/>
                     </div>
                 </div>
+
                 <div class="form-group">
                     <label for="age" class="col-sm-2 control-label">Age</label>
                     <div class="col-sm-10">
                         <input type="number" name="age" id="age" required="required" class="form-control "/>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="email" class="col-sm-2 control-label">Email</label>
-                    <div class="col-sm-10">
-                        <input type="email" name="email" id="email" required="required" class="form-control "/>
                     </div>
                 </div>
 
@@ -42,7 +44,6 @@
                         <input type="checkbox" name="admin" id="isAdmin" class=""/>
                     </div>
                 </div>
-
 
                 <div class="form-group">
                     <label for="gender" class="col-sm-2 control-label">Gender</label>

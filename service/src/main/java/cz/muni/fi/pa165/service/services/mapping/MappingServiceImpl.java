@@ -33,6 +33,6 @@ public class MappingServiceImpl implements MappingService {
 
 	@Override
 	public <T> T map(Object object, Class<T> mapToClass) {
-		return dozerMapper.map(object,mapToClass);
+		return object == null ? null : dozerMapper.map(object,mapToClass);
 	}
 }

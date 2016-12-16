@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.service.facadeImpl;
 
+import cz.muni.fi.pa165.dto.UserAuthenticationDTO;
 import cz.muni.fi.pa165.dto.UserDTO;
 import cz.muni.fi.pa165.dto.WeaponDTO;
 import cz.muni.fi.pa165.entities.User;
@@ -39,5 +40,15 @@ public class UserFacadeImpl extends CrudFacadeImpl<UserDTO, User> implements Use
 					mappingService.map(weapon,Weapon.class),
 					mappingService.map(user, User.class));
 		}
+	}
+
+	@Override
+	public boolean canBeAuthenticated(UserAuthenticationDTO user) {
+		return userService.canBeAuthenticated(user.getEmail(), user.getPassword());
+	}
+
+	@Override
+	public UserDTO findByEmail(String email) {
+		return mappingService.map(userService.findByEmail(email), UserDTO.class);
 	}
 }

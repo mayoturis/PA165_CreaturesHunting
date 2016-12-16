@@ -52,8 +52,8 @@ public class UserServiceTest {
 
 	@Test
 	public void create() {
-
 		Mockito.when(user.getId()).thenReturn(1337);
+		Mockito.when(user.getPassword()).thenReturn("password");
 		int actual = userService.create(user);
 		Assert.assertEquals(1337, actual);
 		Mockito.verify(userDao, oneTime).create(user);
@@ -61,6 +61,7 @@ public class UserServiceTest {
 
 	@Test(expected = HuntingPersistenceException.class)
 	public void createWithDatabaseProblem() {
+		Mockito.when(user.getPassword()).thenReturn("password");
 		Mockito.doThrow(RuntimeException.class).when(userDao).create(user);
 
 		userService.create(user);

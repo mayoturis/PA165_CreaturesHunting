@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.service.services;
 
+import cz.muni.fi.pa165.dto.UserAuthenticationDTO;
 import cz.muni.fi.pa165.entities.User;
 import cz.muni.fi.pa165.entities.Weapon;
 import cz.muni.fi.pa165.service.services.base.CrudService;
@@ -11,4 +12,6 @@ import cz.muni.fi.pa165.service.services.base.CrudService;
  */
 public interface UserService extends CrudService<User> {
 	void addWeaponToUser(Weapon weapon , User user);
+	boolean canBeAuthenticated(String email, String password);
+	public User findByEmail(String email);
 }

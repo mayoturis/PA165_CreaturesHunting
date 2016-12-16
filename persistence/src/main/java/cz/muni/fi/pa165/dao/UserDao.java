@@ -9,4 +9,5 @@ import cz.muni.fi.pa165.entities.User;
  * @author Marek Turis
  */
 public interface UserDao extends CrudDao<User> {
+	public User findByEmail(String email);
 }
