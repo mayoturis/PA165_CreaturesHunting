@@ -1,21 +1,32 @@
 package cz.muni.fi.pa165.mvc.controllers;
 
 import cz.muni.fi.pa165.dto.WeaponDTO;
+import cz.muni.fi.pa165.enums.Ammunition;
 import cz.muni.fi.pa165.facade.WeaponFacade;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
 
 /**
  * @author Ondrej Zeman
  */
 @Controller
 @RequestMapping("/weapon")
+@Transactional
 public class WeaponController {
 
 	private static final Logger log = LoggerFactory.getLogger(WeaponController.class);
@@ -40,4 +51,47 @@ public class WeaponController {
 		return "weapon/new";
 	}
 
+
+	@ModelAttribute("ammunitions")
+	public Ammunition[] ammunitions() {
+		return Ammunition.ARROW.getDeclaringClass().getEnumConstants();
+
+	}
+
+	@RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
+	public String view(@PathVariable int id, Model model) {
+		log.debug("view({})", id);
+		model.addAttribute("weapon", weaponFacade.findById(id));
+		return "weapon/view";
+	}
+
+
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	public String create(@Valid @ModelAttribute("WeaponCreate") WeaponDTO formBean, BindingResult bindingResult,
+						 Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
+		log.debug("create(WeaponCreate={})", formBean);
+		if (bindingResult.hasErrors()) {
+			for (ObjectError ge : bindingResult.getGlobalErrors()) {
+				log.trace("ObjectError: {}", ge);
+			}
+			for (FieldError fe : bindingResult.getFieldErrors()) {
+				model.addAttribute(fe.getField() + "_error", true);
+				log.trace("FieldError: {}", fe);
+			}
+			return "weapon/new";
+		}
+		int id = weaponFacade.create(formBean);
+		redirectAttributes.addFlashAttribute("alert_success", "Weapon " + id + " was created");
+		return "redirect:" + uriBuilder.path("/weapon/view/{id}").buildAndExpand(id).encode().toUriString();
+	}
+
+
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
+	public String delete(@PathVariable int id, Model model, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes) {
+		WeaponDTO weapon = weaponFacade.findById(id);
+		weaponFacade.delete(id);
+		log.debug("delete({})", id);
+		redirectAttributes.addFlashAttribute("alert_success", "Weapon \"" + weapon.getName() + "\" was deleted.");
+		return "redirect:" + uriBuilder.path("/weapon/list").toUriString();
+	}
 }

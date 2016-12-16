@@ -9,7 +9,7 @@
     <jsp:attribute name="body">
     <my:a href="/weapon/new" class="btn btn-primary">
         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-        New product
+        New Weapon
     </my:a>
 
     <table class="table">
