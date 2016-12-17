@@ -76,19 +76,22 @@ public class AreaController {
 	@RequestMapping(value = "/details/{id}", method = RequestMethod.GET)
 	public String view(@PathVariable int id, Model model) {
 		model.addAttribute("area", areaFacade.findById(id));
-		model.addAttribute("monsters", areaFacade.findById(id).getMonsters());
+		model.addAttribute("monsters", areaFacade.getMonstersInArea(id));
 		return "area/details";
 	}
 
 	@RequestMapping(value = "/addMonster/{id}", method = RequestMethod.POST)
 	public String addMonster(@PathVariable int id, @ModelAttribute("monsterId") int monsterId, Model model) {
-		AreaDTO areaObject = areaFacade.findById(id);
-		MonsterDTO monsterObject = monsterFacade.findById(monsterId);
-		areaObject.addMonster(monsterObject);
-		areaFacade.update(areaObject);
-		monsterFacade.update(monsterObject);
-		model.addAttribute("area", areaObject);
+		try {
+			areaFacade.addMonsterToArea(monsterId, id);
+		} catch (IllegalArgumentException ex) {
+			model.addAttribute("alert_danger", ex.getMessage());
+			return "area/details";
+		}
 
+		AreaDTO areaObject = areaFacade.findById(id);
+		model.addAttribute("area", areaObject);
+		model.addAttribute("alert_success", "Successfully added");
 		return "area/details";
 	}
 }

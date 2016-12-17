@@ -36,9 +36,10 @@ public class UserServiceImpl extends CrudServiceImpl<User> implements UserServic
 	@Override
 	public void addWeaponToUser(Weapon weapon, User user) {
 		try {
-			User user1 = userDao.findById(user.getId());
-			Weapon weapon1 = weaponDao.findById(weapon.getId());
-			user1.addWeapon(weapon1);
+			User foundUser = userDao.findById(user.getId());
+			Weapon foundWeapon = weaponDao.findById(weapon.getId());
+			foundUser.addWeapon(foundWeapon);
+			foundWeapon.addUser(foundUser);
 		} catch (RuntimeException e) {
 			throw new HuntingPersistenceException("Exception in thrown by Hibernate", e);
 		}

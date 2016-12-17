@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.service.services;
 
 import cz.muni.fi.pa165.dao.AreaDao;
+import cz.muni.fi.pa165.dao.MonsterDao;
 import cz.muni.fi.pa165.entities.Area;
 import cz.muni.fi.pa165.enums.DangerLevel;
 import cz.muni.fi.pa165.service.exceptions.HuntingPersistenceException;
@@ -34,13 +35,16 @@ public class AreaServiceTest {
 	@Mock
 	private AreaDao areaDao;
 
+	@Mock
+	private MonsterDao monsterDao;
+
 	private AreaService areaService;
 
 	private Area area =  new Area("area", DangerLevel.EASY, BigDecimal.ONE);
 
 	@Before
 	public void setUp() {
-		areaService = new AreaServiceImpl(areaDao);
+		areaService = new AreaServiceImpl(areaDao, monsterDao);
 		area.setId(1);
 	}
 

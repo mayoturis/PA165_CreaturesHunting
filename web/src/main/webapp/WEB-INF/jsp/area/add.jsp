@@ -21,7 +21,7 @@
         <div class="form-group ${size_error?'has-error':''}">
                     <form:label path="size" cssClass="col-sm-2 control-label">Size</form:label>
                     <div class="col-sm-10">
-                        <input type="number" min="0" name="size" id="size" cssClass="form-control"/>
+                        <input type="number" min="0" name="size" id="size" class="form-control"/>
                         <form:errors path="size" cssClass="help-block"/>
                     </div>
                 </div>

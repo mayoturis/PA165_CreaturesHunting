@@ -13,7 +13,11 @@ import java.io.IOException;
 /**
  * @author Marek Turis
  */
-@WebFilter(urlPatterns = {"/user/list", "/user/doDelete/*", "/weapon/create"})
+@WebFilter(urlPatterns = {
+		"/user/list", "/user/doDelete/*",
+		"/weapon/create",
+		"/area/add", "/area/create", "/area/delete/*",
+		"/monster/add", "/monster/create", "/monster/delete/*"})
 public class AdminFilter implements Filter {
 
 	@Override

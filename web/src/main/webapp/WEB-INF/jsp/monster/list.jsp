@@ -7,10 +7,12 @@
 
 <my:pagetemplate title="Monsters">
 <jsp:attribute name="body">
-    <my:a href="/monster/new" class="btn btn-default">
-        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-        New Monster
-    </my:a>
+    <c:if test="${authenticatedUser.isAdmin()}">
+        <my:a href="/monster/new" class="btn btn-default">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            New Monster
+        </my:a>
+    </c:if>
 
     <table class="table">
         <thead>

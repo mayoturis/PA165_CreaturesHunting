@@ -3,11 +3,7 @@ package cz.muni.fi.pa165.entities;
 import cz.muni.fi.pa165.entities.base.Entity;
 import cz.muni.fi.pa165.enums.DangerLevel;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
@@ -40,8 +36,8 @@ public class Area implements Entity {
 	@NotNull
 	private DangerLevel dangerLevel;
 
-	@ManyToMany(mappedBy = "areas")
-	private List<Monster> monsters = new ArrayList<Monster>();
+	@ManyToMany(mappedBy = "areas", fetch = FetchType.EAGER)
+	private List<Monster> monsters = new ArrayList<>();
 
 	protected Area() {
 		// required by Hibernate

@@ -12,11 +12,13 @@
 <div style="float: left; width: 130px">
     <my:a href="/area/list" class="btn btn-default">Back to areas</my:a>
 </div>
-<div style="float: right; width: 225px">
-    <form method="post" action="${pageContext.request.contextPath}/area/delete/${area.id}">
-            <button type="submit" class="btn btn-default">Delete this area</button>
-        </form>
-</div>
+    <c:if test="${authenticatedUser.isAdmin()}">
+        <div style="float: right; width: 225px">
+            <form method="post" action="${pageContext.request.contextPath}/area/delete/${area.id}">
+                <button type="submit" class="btn btn-default">Delete this area</button>
+            </form>
+        </div>
+    </c:if>
 </div>
 
     <table class="table">

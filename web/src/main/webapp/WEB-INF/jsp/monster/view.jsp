@@ -7,10 +7,11 @@
 
 <my:pagetemplate title="Monster View">
 <jsp:attribute name="body">
-
-    <form method="post" action="${pageContext.request.contextPath}/monster/delete/${monster.id}">
-        <button type="submit" class="btn btn-default">Delete</button>
-    </form>
+    <c:if test="${authenticatedUser.isAdmin()}">
+        <form method="post" action="${pageContext.request.contextPath}/monster/delete/${monster.id}">
+            <button type="submit" class="btn btn-default">Delete</button>
+        </form>
+    </c:if>
 
     <table class="table">
         <thead>

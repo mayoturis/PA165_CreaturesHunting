@@ -57,7 +57,6 @@ public class User implements cz.muni.fi.pa165.entities.base.Entity {
 
 	public void addWeapon(Weapon weapon) {
 		this.weapons.add(weapon);
-		weapon.addUser(this);
 	}
 
 	public Set<Weapon> getWeapons() {
