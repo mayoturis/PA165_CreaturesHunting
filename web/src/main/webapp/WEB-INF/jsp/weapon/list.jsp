@@ -40,12 +40,6 @@
                         <button type="submit" class="btn btn-primary">Delete</button>
                     </form>
                 </td>
-                    <%--<td>--%>
-                    <%--<form method="post"--%>
-                    <%--action="${pageContext.request.contextPath}/user/addWeaponToCurrentUser/${weapon.id}">--%>
-                    <%--<button type="submit" class="btn btn-primary">Add</button>--%>
-                    <%--</form>--%>
-                    <%--</td>--%>
             </tr>
         </c:forEach>
         </tbody>

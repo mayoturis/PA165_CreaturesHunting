@@ -13,6 +13,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.math.BigInteger;
 import java.security.SecureRandom;
+import java.util.Set;
 
 /**
  * Implementation for user service.
@@ -34,19 +35,53 @@ public class UserServiceImpl extends CrudServiceImpl<User> implements UserServic
 	}
 
 	@Override
-	public void addWeaponToUser(Weapon weapon, User user) {
+	public void addWeaponToUser(int weaponId, int userId) {
 		try {
-			User foundUser = userDao.findById(user.getId());
-			Weapon foundWeapon = weaponDao.findById(weapon.getId());
-			foundUser.addWeapon(foundWeapon);
-			foundWeapon.addUser(foundUser);
+			User user = userDao.findById(userId);
+			Weapon weapon = weaponDao.findById(weaponId);
+
+			if (user == null || weapon == null) {
+				throw new IllegalArgumentException("Monster or area with given id doesn't exist");
+			}
+
+			user.addWeapon(weapon);
+			weapon.addUser(user);
 		} catch (RuntimeException e) {
-			throw new HuntingPersistenceException("Exception in thrown by Hibernate", e);
+			throw new HuntingPersistenceException("Error while adding weapon to user", e);
 		}
 	}
 
 	public User findByEmail(String email) {
 		return userDao.findByEmail(email);
+	}
+
+	@Override
+	public boolean userHasWeapon(int weaponId, int userId) {
+		User user = userDao.findById(userId);
+		Weapon weapon = weaponDao.findById(weaponId);
+
+		if (user == null || weapon == null) {
+			throw new IllegalArgumentException("Monster or area with given id doesn't exist");
+		}
+
+		return user.getWeapons().contains(weapon);
+	}
+
+	@Override
+	public Set<Weapon> getWeaponsByUserId(int userId) {
+		return findById(userId).getWeapons();
+	}
+
+	@Override
+	public void removeWeaponFromUser(int weaponId, int userId) {
+		User user = userDao.findById(userId);
+		Weapon weapon = weaponDao.findById(weaponId);
+
+		if (user == null || weapon == null) {
+			throw new IllegalArgumentException("Monster or area with given id doesn't exist");
+		}
+
+		user.removeWeapon(weapon);
 	}
 
 	@Override

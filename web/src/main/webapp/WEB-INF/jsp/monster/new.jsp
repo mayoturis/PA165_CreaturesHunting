@@ -42,7 +42,7 @@
             </div>
         </div>
 
-        <button class="btn btn-default" type="submit">Create Monster</button>
+        <button class="btn btn-primary" type="submit">Create Monster</button>
     </form:form>
 
 </jsp:attribute>

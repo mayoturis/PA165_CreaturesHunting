@@ -10,12 +10,12 @@
 
 <div style="width:400px;">
 <div style="float: left; width: 130px">
-    <my:a href="/area/list" class="btn btn-default">Back to areas</my:a>
+    <my:a href="/area/list" class="btn btn-primary">Back to areas</my:a>
 </div>
     <c:if test="${authenticatedUser.isAdmin()}">
         <div style="float: right; width: 225px">
             <form method="post" action="${pageContext.request.contextPath}/area/delete/${area.id}">
-                <button type="submit" class="btn btn-default">Delete this area</button>
+                <button type="submit" class="btn btn-primary">Delete this area</button>
             </form>
         </div>
     </c:if>
@@ -40,7 +40,7 @@
         </tbody>
     </table>
 <br/>
-    <H1>Monsters in the area:</H1>
+    <h2>Monsters in the area:</h2>
 
     <form method="post" action="${pageContext.request.contextPath}/area/addMonster/${area.id}" modelAttribute="monsterId">
         <label for="monsterId" cssClass="col-sm-2 control-label">Add monster to this area:</label>
@@ -49,9 +49,7 @@
                     <option value="${monster.id}"><c:out value="${monster.type}"/></option>
                 </c:forEach>
             </select>
-               <!-- <input type="number" min="0" name="monsterId" id="monsterId" cssClass="form-control"/>-->
-
-        <button type="submit" class="btn btn-default">Add</button>
+        <button type="submit" class="btn btn-primary">Add</button>
     </form>
 
     <table class="table">

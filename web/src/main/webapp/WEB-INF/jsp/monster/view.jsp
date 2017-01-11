@@ -9,7 +9,7 @@
 <jsp:attribute name="body">
     <c:if test="${authenticatedUser.isAdmin()}">
         <form method="post" action="${pageContext.request.contextPath}/monster/delete/${monster.id}">
-            <button type="submit" class="btn btn-default">Delete</button>
+            <button type="submit" class="btn btn-primary">Delete</button>
         </form>
     </c:if>
 

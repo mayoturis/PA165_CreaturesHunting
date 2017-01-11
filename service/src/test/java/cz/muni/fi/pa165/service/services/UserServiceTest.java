@@ -104,12 +104,10 @@ public class UserServiceTest {
 	public void weaponCanBeAddedToUser() {
 		int userId = 5;
 		int weaponId = 6;
-		when(user.getId()).thenReturn(userId);
-		when(weapon.getId()).thenReturn(weaponId);
 		when(userDao.findById(userId)).thenReturn(user);
 		when(weaponDao.findById(weaponId)).thenReturn(weapon);
 
-		userService.addWeaponToUser(weapon, user);
+		userService.addWeaponToUser(weaponId, userId);
 
 		verify(user, oneTime).addWeapon(weapon);
 	}
@@ -118,25 +116,21 @@ public class UserServiceTest {
 	public void addWeaponToUserThrowsPersistenceExceptionIfUserDaoThrowsException() {
 		int userId = 5;
 		int weaponId = 6;
-		when(user.getId()).thenReturn(userId);
-		when(weapon.getId()).thenReturn(weaponId);
 		when(weaponDao.findById(weaponId)).thenReturn(weapon);
 
 		doThrow(RuntimeException.class).when(userDao).findById(userId);
 
-		userService.addWeaponToUser(weapon, user);
+		userService.addWeaponToUser(weaponId, userId);
 	}
 
 	@Test(expected = HuntingPersistenceException.class)
 	public void addWeaponToUserThrowsPersistenceExceptionIfWeaponDaoThrowsException() {
 		int userId = 7;
 		int weaponId = 6;
-		when(user.getId()).thenReturn(userId);
-		when(weapon.getId()).thenReturn(weaponId);
 		when(userDao.findById(userId)).thenReturn(user);
 
 		doThrow(RuntimeException.class).when(weaponDao).findById(weaponId);
 
-		userService.addWeaponToUser(weapon, user);
+		userService.addWeaponToUser(weaponId, userId);
 	}
 }

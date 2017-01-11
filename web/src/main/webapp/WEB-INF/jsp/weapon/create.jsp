@@ -29,7 +29,6 @@
             <form:label path="ammunition" cssClass="col-sm-2 control-label">Ammunition</form:label>
             <div class="col-sm-10">
                 <form:select path="ammunition" class="form-control" id="ammunition">
-                    <form:option value="-" label="--Please Select"/>
                     <form:options items="${ammunitions}"/>
                 </form:select>
             </div>

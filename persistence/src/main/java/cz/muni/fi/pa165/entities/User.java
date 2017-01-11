@@ -133,4 +133,8 @@ public class User implements cz.muni.fi.pa165.entities.base.Entity {
 	public int hashCode() {
 		return name.hashCode();
 	}
+
+	public void removeWeapon(Weapon weapon) {
+		weapons.remove(weapon);
+	}
 }

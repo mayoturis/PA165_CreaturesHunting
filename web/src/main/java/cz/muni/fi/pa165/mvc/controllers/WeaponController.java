@@ -81,7 +81,7 @@ public class WeaponController {
 			return "weapon/create";
 		}
 		int id = weaponFacade.create(formBean);
-		redirectAttributes.addFlashAttribute("alert_success", "Weapon " + id + " was created");
+		redirectAttributes.addFlashAttribute("alert_success", "Weapon " + formBean.getName() + " was created");
 		return "redirect:" + uriBuilder.path("/weapon/view/{id}").buildAndExpand(id).encode().toUriString();
 	}
 

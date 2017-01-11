@@ -15,7 +15,7 @@ import java.io.IOException;
 /**
  * @author Marek Turis
  */
-@WebFilter(urlPatterns = {"/weapon/*", "/area/*", "/monster/*", "/user/list", "/"})
+@WebFilter(urlPatterns = {"/weapon/*", "/area/*", "/monster/*", "/user/list", "/", "/user/arsenal"})
 public class AuthenticationFilter implements Filter {
 
 	@Override

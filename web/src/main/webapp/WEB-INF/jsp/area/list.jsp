@@ -8,7 +8,7 @@
 <my:pagetemplate title="Areas">
 <jsp:attribute name="body">
     <c:if test="${authenticatedUser.isAdmin()}">
-        <my:a href="/area/add" class="btn btn-default">
+        <my:a href="/area/add" class="btn btn-primary">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
             Add area
         </my:a>
@@ -31,12 +31,12 @@
                 <td><c:out value="${area.dangerLevel}"/></td>
                 <td><c:out value="${area.description}"/></td>
                 <td>
-                    <my:a href="/area/details/${area.id}" class="btn btn-default">Show details</my:a>
+                    <my:a href="/area/details/${area.id}" class="btn btn-primary">Show details</my:a>
                 </td>
                 <td>
                     <c:if test="${authenticatedUser.isAdmin()}">
                         <form method="post" action="${pageContext.request.contextPath}/area/delete/${area.id}">
-                            <button type="submit" class="btn btn-default">Delete</button>
+                            <button type="submit" class="btn btn-primary">Delete</button>
                         </form>
                     </c:if>
                 </td>

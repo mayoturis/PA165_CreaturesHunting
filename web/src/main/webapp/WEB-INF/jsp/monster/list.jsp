@@ -8,7 +8,7 @@
 <my:pagetemplate title="Monsters">
 <jsp:attribute name="body">
     <c:if test="${authenticatedUser.isAdmin()}">
-        <my:a href="/monster/new" class="btn btn-default">
+        <my:a href="/monster/new" class="btn btn-primary">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
             New Monster
         </my:a>
@@ -33,11 +33,11 @@
                 <td><c:out value="${monster.agility}"/></td>
                 <td><c:out value="${monster.strength}"/></td>
                 <td>
-                    <my:a href="/monster/view/${monster.id}" class="btn btn-default">View</my:a>
+                    <my:a href="/monster/view/${monster.id}" class="btn btn-primary">View</my:a>
                 </td>
                 <td>
                     <form method="post" action="${pageContext.request.contextPath}/monster/delete/${monster.id}">
-                        <button type="submit" class="btn btn-default">Delete</button>
+                        <button type="submit" class="btn btn-primary">Delete</button>
                     </form>
                 </td>
             </tr>
