@@ -130,4 +130,8 @@ public class Monster implements Entity {
 	public int hashCode() {
 		return type.hashCode();
 	}
+
+	public void removeArea(Area area) {
+		areas.remove(area);
+	}
 }

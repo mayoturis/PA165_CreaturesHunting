@@ -16,7 +16,7 @@ import java.io.IOException;
 @WebFilter(urlPatterns = {
 		"/user/list", "/user/doDelete/*",
 		"/weapon/create",
-		"/area/add", "/area/create", "/area/delete/*",
+		"/area/add", "/area/create", "/area/delete/*", "/area/removeMonsterFromArea",
 		"/monster/add", "/monster/create", "/monster/delete/*"})
 public class AdminFilter implements Filter {
 

@@ -91,4 +91,8 @@ public class Area implements Entity {
 	public int hashCode() {
 		return name.hashCode();
 	}
+
+	public void removeMonster(Monster monster) {
+		monsters.remove(monster);
+	}
 }

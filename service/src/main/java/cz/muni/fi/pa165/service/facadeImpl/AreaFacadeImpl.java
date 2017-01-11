@@ -48,5 +48,8 @@ public class AreaFacadeImpl extends CrudFacadeImpl<AreaDTO, Area> implements Are
 		return areaService.monsterExistsInArea(monsterId, areaId);
 	}
 
-
+	@Override
+	public void removeMonsterFromArea(int monsterId, int areaId) {
+		areaService.removeMonsterFromArea(monsterId, areaId);
+	}
 }

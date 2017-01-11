@@ -105,4 +105,20 @@ public class AreaController {
 		model.addAttribute("alert_success", "Successfully added");
 		return "area/details";
 	}
+
+	@RequestMapping(value = "/removeMonsterFromArea", method = RequestMethod.POST)
+	public String removeMonsterFromArea(
+			@ModelAttribute("monsterId") int monsterId,
+			@ModelAttribute("areaId") int areaId,
+			Model model
+	) {
+		areaFacade.removeMonsterFromArea(monsterId, areaId);
+
+		AreaDTO areaObject = areaFacade.findById(areaId);
+		model.addAttribute("area", areaObject);
+		model.addAttribute("allMonsters", monsterFacade.findAll());
+		model.addAttribute("monsters", areaFacade.getMonstersInArea(areaId));
+		model.addAttribute("alert_success", "Monster successfully removed from area");
+		return "area/details";
+	}
 }

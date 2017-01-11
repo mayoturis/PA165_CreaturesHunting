@@ -133,6 +133,7 @@ public class UserController {
 
 		userFacade.addWeaponToUser(weaponId, user.getId());
 
+		weapons = userFacade.getWeaponsByUserId(user.getId());
 		model.addAttribute("weapons", weapons);
 		model.addAttribute("alert_success", "Successfully added");
 		return "user/arsenal";

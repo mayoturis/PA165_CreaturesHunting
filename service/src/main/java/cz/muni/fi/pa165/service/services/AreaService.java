@@ -16,4 +16,5 @@ public interface AreaService extends CrudService<Area> {
 	void addMonsterToArea(int monsterId, int areaId);
 	List<Monster> getMonstersInArea(int areaId);
 	boolean monsterExistsInArea(int monsterId, int areaId);
+	void removeMonsterFromArea(int monsterId, int areaId);
 }

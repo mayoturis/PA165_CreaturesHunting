@@ -61,6 +61,7 @@
                 <th>Weight</th>
                 <th>Agility</th>
                 <th>Strength</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -72,6 +73,15 @@
                     <td><c:out value="${monster.weight}"/></td>
                     <td><c:out value="${monster.agility}"/></td>
                     <td><c:out value="${monster.strength}"/></td>
+                    <td>
+                        <c:if test="${authenticatedUser.isAdmin()}">
+                            <form method="post" action="${pageContext.request.contextPath}/area/removeMonsterFromArea">
+                                <input type="hidden" name="monsterId" value="${monster.id}">
+                                <input type="hidden" name="areaId" value="${area.id}">
+                                <button type="submit" class="btn btn-primary">Remove monster from this area</button>
+                            </form>
+                        </c:if>
+                    </td>
                 </tr>
             </c:forEach>
 
