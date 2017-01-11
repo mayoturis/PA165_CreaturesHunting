@@ -36,7 +36,6 @@
             <form:label path="dangerLevel" cssClass="col-sm-2 control-label">Danger Level</form:label>
             <div class="col-sm-10">
                 <form:select path="dangerLevel" class="form-control" id="dangerLevel">
-                    <form:option value="-" label="--Please Select"/>
                     <form:options items="${dangerLevel}"/>
                 </form:select>
             </div>

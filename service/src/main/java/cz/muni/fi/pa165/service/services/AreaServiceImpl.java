@@ -45,4 +45,16 @@ public class AreaServiceImpl extends CrudServiceImpl<Area> implements AreaServic
 	public List<Monster> getMonstersInArea(int areaId) {
 		return findById(areaId).getMonsters();
 	}
+
+	@Override
+	public boolean monsterExistsInArea(int monsterId, int areaId) {
+		Monster monster = monsterDao.findById(monsterId);
+		Area area = areaDao.findById(areaId);
+
+		if (monster == null || area == null) {
+			throw new IllegalArgumentException("Monster or area with given id doesn't exist");
+		}
+
+		return area.getMonsters().contains(monster);
+	}
 }

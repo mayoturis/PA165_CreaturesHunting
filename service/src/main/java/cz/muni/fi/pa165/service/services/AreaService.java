@@ -15,4 +15,5 @@ import java.util.List;
 public interface AreaService extends CrudService<Area> {
 	void addMonsterToArea(int monsterId, int areaId);
 	List<Monster> getMonstersInArea(int areaId);
+	boolean monsterExistsInArea(int monsterId, int areaId);
 }

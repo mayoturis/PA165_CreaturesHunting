@@ -61,7 +61,7 @@ public class AreaController {
 			return "area/add";
 		}
 		int id = areaFacade.create(formBean);
-		redirectAttributes.addFlashAttribute("alert_success", "Area " + id + " was created");
+		redirectAttributes.addFlashAttribute("alert_success", "Area " + formBean.getName() + " was created");
 		return "redirect:" + uriBuilder.path("/area/list").build().encode().toUriString();
 	}
 
@@ -76,12 +76,24 @@ public class AreaController {
 	@RequestMapping(value = "/details/{id}", method = RequestMethod.GET)
 	public String view(@PathVariable int id, Model model) {
 		model.addAttribute("area", areaFacade.findById(id));
+		model.addAttribute("allMonsters", monsterFacade.findAll());
 		model.addAttribute("monsters", areaFacade.getMonstersInArea(id));
 		return "area/details";
 	}
 
 	@RequestMapping(value = "/addMonster/{id}", method = RequestMethod.POST)
 	public String addMonster(@PathVariable int id, @ModelAttribute("monsterId") int monsterId, Model model) {
+		AreaDTO areaObject = areaFacade.findById(id);
+		model.addAttribute("area", areaObject);
+		model.addAttribute("allMonsters", monsterFacade.findAll());
+		model.addAttribute("monsters", areaFacade.getMonstersInArea(id));
+
+		if (areaFacade.monsterExistsInArea(monsterId, id)) {
+			model.addAttribute("alert_info", "This monster already exists in this area");
+			model.addAttribute("monsters", areaFacade.getMonstersInArea(id));
+			return "area/details";
+		}
+
 		try {
 			areaFacade.addMonsterToArea(monsterId, id);
 		} catch (IllegalArgumentException ex) {
@@ -89,8 +101,7 @@ public class AreaController {
 			return "area/details";
 		}
 
-		AreaDTO areaObject = areaFacade.findById(id);
-		model.addAttribute("area", areaObject);
+		model.addAttribute("monsters", areaFacade.getMonstersInArea(id));
 		model.addAttribute("alert_success", "Successfully added");
 		return "area/details";
 	}

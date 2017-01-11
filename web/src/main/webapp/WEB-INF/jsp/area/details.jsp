@@ -43,8 +43,13 @@
     <H1>Monsters in the area:</H1>
 
     <form method="post" action="${pageContext.request.contextPath}/area/addMonster/${area.id}" modelAttribute="monsterId">
-        <label for="monsterId" cssClass="col-sm-2 control-label">Add monster with id to this area:</label>
-                <input type="number" min="0" name="monsterId" id="monsterId" cssClass="form-control"/>
+        <label for="monsterId" cssClass="col-sm-2 control-label">Add monster to this area:</label>
+            <select name="monsterId" id="monsterId" class="form-control" style="width: 200px; display: inline-block">
+                <c:forEach items="${allMonsters}" var="monster">
+                    <option value="${monster.id}"><c:out value="${monster.type}"/></option>
+                </c:forEach>
+            </select>
+               <!-- <input type="number" min="0" name="monsterId" id="monsterId" cssClass="form-control"/>-->
 
         <button type="submit" class="btn btn-default">Add</button>
     </form>

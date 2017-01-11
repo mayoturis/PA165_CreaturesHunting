@@ -36,7 +36,8 @@ public class Area implements Entity {
 	@NotNull
 	private DangerLevel dangerLevel;
 
-	@ManyToMany(mappedBy = "areas", fetch = FetchType.EAGER)
+	@JoinTable(name = "monster_area")
+	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "areas")
 	private List<Monster> monsters = new ArrayList<>();
 
 	protected Area() {

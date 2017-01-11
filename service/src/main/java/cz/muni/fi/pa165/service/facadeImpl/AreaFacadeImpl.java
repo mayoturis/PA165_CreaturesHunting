@@ -42,4 +42,11 @@ public class AreaFacadeImpl extends CrudFacadeImpl<AreaDTO, Area> implements Are
 	public List<MonsterDTO> getMonstersInArea(int areaId) {
 		return mappingService.map(areaService.getMonstersInArea(areaId), MonsterDTO.class);
 	}
+
+	@Override
+	public boolean monsterExistsInArea(int monsterId, int areaId) {
+		return areaService.monsterExistsInArea(monsterId, areaId);
+	}
+
+
 }
