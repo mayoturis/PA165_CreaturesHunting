@@ -51,7 +51,6 @@ public class Area implements Entity {
 
 	public void addMonster(Monster newMonster) {
 		this.monsters.add(newMonster);
-		newMonster.addArea(this);
 	}
 
 	public int getId() { return id; }

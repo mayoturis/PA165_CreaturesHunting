@@ -78,7 +78,6 @@ public class Monster implements Entity {
 
 	public void addArea(Area area) {
 		areas.add(area);
-		area.addMonster(this);
 	}
 
 	public int getStrength() {
