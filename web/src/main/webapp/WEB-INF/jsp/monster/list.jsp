@@ -22,6 +22,8 @@
             <th>Weight</th>
             <th>Agility</th>
             <th>Strength</th>
+            <th></th>
+            <th></th>
         </tr>
         </thead>
         <tbody>

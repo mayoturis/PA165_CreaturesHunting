@@ -21,6 +21,8 @@
             <th>Size</th>
             <th>Danger Level</th>
             <th>Description</th>
+            <th></th>
+            <th></th>
         </tr>
         </thead>
         <tbody>

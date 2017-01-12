@@ -61,7 +61,7 @@ public class UserServiceImpl extends CrudServiceImpl<User> implements UserServic
 		Weapon weapon = weaponDao.findById(weaponId);
 
 		if (user == null || weapon == null) {
-			throw new IllegalArgumentException("Monster or area with given id doesn't exist");
+			throw new IllegalArgumentException("User or weapon with given id doesn't exist");
 		}
 
 		return user.getWeapons().contains(weapon);
@@ -78,7 +78,7 @@ public class UserServiceImpl extends CrudServiceImpl<User> implements UserServic
 		Weapon weapon = weaponDao.findById(weaponId);
 
 		if (user == null || weapon == null) {
-			throw new IllegalArgumentException("Monster or area with given id doesn't exist");
+			throw new IllegalArgumentException("User or weapon with given id doesn't exist");
 		}
 
 		user.removeWeapon(weapon);

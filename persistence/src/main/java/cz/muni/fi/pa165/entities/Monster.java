@@ -65,7 +65,6 @@ public class Monster implements Entity {
 
 	public void addWeapon(Weapon weapon) {
 		weapons.add(weapon);
-		weapon.addMonster(this);
 	}
 
 	public Set<Area> getAreas() {
@@ -133,5 +132,9 @@ public class Monster implements Entity {
 
 	public void removeArea(Area area) {
 		areas.remove(area);
+	}
+
+	public void removeWeapon(Weapon weapon) {
+		weapons.remove(weapon);
 	}
 }

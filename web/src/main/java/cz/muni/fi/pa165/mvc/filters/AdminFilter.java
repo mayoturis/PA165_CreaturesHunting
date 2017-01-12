@@ -17,7 +17,7 @@ import java.io.IOException;
 		"/user/list", "/user/doDelete/*",
 		"/weapon/create",
 		"/area/add", "/area/create", "/area/delete/*", "/area/removeMonsterFromArea",
-		"/monster/add", "/monster/create", "/monster/delete/*"})
+		"/monster/add", "/monster/create", "/monster/delete/*", "/monster/removeWeaponFromMonster"})
 public class AdminFilter implements Filter {
 
 	@Override

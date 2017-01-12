@@ -40,7 +40,7 @@
         </tbody>
     </table>
 <br/>
-    <h2>Monsters in the area:</h2>
+    <h2>Spotted monsters in this area:</h2>
 
     <form method="post" action="${pageContext.request.contextPath}/area/addMonster/${area.id}" modelAttribute="monsterId">
         <label for="monsterId" cssClass="col-sm-2 control-label">Add monster to this area:</label>

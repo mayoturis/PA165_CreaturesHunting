@@ -3,6 +3,7 @@ package cz.muni.fi.pa165.mvc.controllers;
 import cz.muni.fi.pa165.dto.MonsterDTO;
 import cz.muni.fi.pa165.entities.Monster;
 import cz.muni.fi.pa165.facade.MonsterFacade;
+import cz.muni.fi.pa165.facade.WeaponFacade;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 /**
@@ -33,6 +35,9 @@ public class MonsterController {
 
 	@Inject
 	private MonsterFacade monsterFacade;
+
+	@Inject
+	private WeaponFacade weaponFacade;
 
 	private static final Logger log = LoggerFactory.getLogger(MonsterController.class);
 
@@ -83,6 +88,8 @@ public class MonsterController {
 	public String view(@PathVariable int id, Model model) {
 		log.debug("view({})", id);
 		model.addAttribute("monster", monsterFacade.findById(id));
+		model.addAttribute("allWeapons", weaponFacade.findAll());
+		model.addAttribute("weapons", monsterFacade.findWeaponsForMonster(id));
 		return "monster/view";
 	}
 
@@ -93,5 +100,42 @@ public class MonsterController {
 		log.debug("delete({})", id);
 		redirectAttributes.addFlashAttribute("alert_success", monster.getType() + " monster type was deleted.");
 		return "redirect:" + uriBuilder.path("/monster/list").toUriString();
+	}
+
+	@RequestMapping(value = "/addWeapon", method = RequestMethod.POST)
+	public String addWeapon(@ModelAttribute("weaponId") int weaponId,
+							 @ModelAttribute("monsterId") int monsterId,
+							 Model model,
+							 HttpServletRequest request) {
+		model.addAttribute("monster", monsterFacade.findById(monsterId));
+		model.addAttribute("allWeapons", weaponFacade.findAll());
+		model.addAttribute("weapons", monsterFacade.findWeaponsForMonster(monsterId));
+
+		if (monsterFacade.monsterHasWeapon(monsterId, weaponId)) {
+			model.addAttribute("alert_info", "Given weapon is already assigned to monster");
+			return "monster/view";
+		}
+
+		monsterFacade.addWeaponToMonster(weaponId, monsterId);
+
+		model.addAttribute("monster", monsterFacade.findById(monsterId));
+		model.addAttribute("allWeapons", weaponFacade.findAll());
+		model.addAttribute("weapons", monsterFacade.findWeaponsForMonster(monsterId));
+		model.addAttribute("alert_success", "Successfully added");
+		return "monster/view";
+	}
+
+	@RequestMapping(value = "/removeWeaponFromMonster", method = RequestMethod.POST)
+	public String removeWeaponFromMonster(
+			@ModelAttribute("monsterId") int monsterId,
+			@ModelAttribute("weaponId") int weaponId,
+			Model model
+	) {
+		monsterFacade.removeWeaponFromMonster(weaponId, monsterId);
+		model.addAttribute("monster", monsterFacade.findById(monsterId));
+		model.addAttribute("allWeapons", weaponFacade.findAll());
+		model.addAttribute("weapons", monsterFacade.findWeaponsForMonster(monsterId));
+		model.addAttribute("alert_success", "Weapon removed");
+		return "monster/view";
 	}
 }
