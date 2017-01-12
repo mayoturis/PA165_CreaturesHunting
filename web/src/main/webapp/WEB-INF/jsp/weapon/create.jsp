@@ -14,14 +14,14 @@
         <div class="form-group ${name_error?'has-error':''}">
             <form:label path="name" cssClass="col-sm-2 control-label">Name</form:label>
             <div class="col-sm-10">
-                <form:input path="name" cssClass="form-control"/>
+                <form:input path="name" cssClass="form-control" required="required"/>
                 <form:errors path="name" cssClass="help-block"/>
             </div>
         </div>
         <div class="form-group ${range_error?'has-error':''}">
             <form:label path="range" cssClass="col-sm-2 control-label">Range</form:label>
             <div class="col-sm-10">
-                <form:textarea path="range" cssClass="form-control"/>
+                <form:input path="range" cssClass="form-control" type="number" min="0" required="required"/>
                 <form:errors path="range" cssClass="help-block"/>
             </div>
         </div>
@@ -33,7 +33,12 @@
                 </form:select>
             </div>
         </div>
-        <button class="btn btn-primary" type="submit">Create Weapon</button>
+        <div class="form-group">
+            <div class="col-sm-2 control-label"></div>
+            <div class="col-sm-10">
+                <button class="btn btn-primary" type="submit">Create Weapon</button>
+            </div>
+        </div>
     </form:form>
 
 </jsp:attribute>

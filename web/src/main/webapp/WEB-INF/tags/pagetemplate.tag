@@ -49,7 +49,7 @@
 	</div>
 </nav>
 
-<div class="container">
+<div class="container" style="padding-bottom: 30px">
 
 	<!-- page title -->
 	<c:if test="${not empty title}">

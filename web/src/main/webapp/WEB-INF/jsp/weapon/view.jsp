@@ -5,7 +5,7 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<my:pagetemplate title="Weapon Administration">
+<my:pagetemplate title="${weapon.name} weapon detail">
 <jsp:attribute name="body">
 
     <c:if test="${authenticatedUser.isAdmin()}">
@@ -13,21 +13,19 @@
             <button type="submit" class="btn btn-primary">Delete</button>
         </form>
     </c:if>
-
-    <table class="table">
-        <thead>
-        <tr>
-            <th>id</th>
-            <th>name</th>
-            <th>range</th>
-            <th>ammunition</th>
-        </tr>
-        </thead>
+    <br>
+    <table class="table" style="width: 50%">
         <tbody>
         <tr>
-            <td>${weapon.id}</td>
+            <td>Name</td>
             <td><c:out value="${weapon.name}"/></td>
+        </tr>
+        <tr>
+            <td>Range</td>
             <td><c:out value="${weapon.range}"/></td>
+        </tr>
+        <tr>
+            <td>Ammunition</td>
             <td><c:out value="${weapon.ammunition}"/></td>
         </tr>
         </tbody>

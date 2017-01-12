@@ -48,6 +48,5 @@
         </c:forEach>
         </tbody>
     </table>
-
 </jsp:attribute>
 </my:pagetemplate>

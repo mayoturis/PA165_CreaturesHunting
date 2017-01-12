@@ -5,38 +5,37 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<my:pagetemplate title="Area details">
+<my:pagetemplate title="${area.name} area details">
 <jsp:attribute name="body">
-
-<div style="width:400px;">
-<div style="float: left; width: 130px">
-    <my:a href="/area/list" class="btn btn-primary">Back to areas</my:a>
-</div>
-    <c:if test="${authenticatedUser.isAdmin()}">
-        <div style="float: right; width: 225px">
-            <form method="post" action="${pageContext.request.contextPath}/area/delete/${area.id}">
-                <button type="submit" class="btn btn-primary">Delete this area</button>
-            </form>
+    <div style="width:400px;">
+        <div style="float: left; width: 130px">
+            <my:a href="/area/list">Back to areas</my:a>
         </div>
-    </c:if>
-</div>
-
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Size</th>
-            <th>Danger Level</th>
-        </tr>
-        </thead>
+        <br>
+        <br>
+        <c:if test="${authenticatedUser.isAdmin()}">
+            <div style="width: 225px">
+                <form method="post" action="${pageContext.request.contextPath}/area/delete/${area.id}">
+                    <button type="submit" class="btn btn-primary">Delete this area</button>
+                </form>
+            </div>
+        </c:if>
+    </div>
+    <br>
+    <table class="table" style="width: 50%">
         <tbody>
-        <tr>
-            <td>${area.id}</td>
-            <td><c:out value="${area.name}"/></td>
-            <td><c:out value="${area.size}"/></td>
-            <td><c:out value="${area.dangerLevel}"/></td>
-        </tr>
+            <tr>
+                <td>Name</td>
+                <td><c:out value="${area.name}"/></td>
+            </tr>
+            <tr>
+                <td>Size</td>
+                <td><c:out value="${area.size}"/></td>
+            </tr>
+            <tr>
+                <td>Danger level</td>
+                <td><c:out value="${area.dangerLevel}"/></td>
+            </tr>
         </tbody>
     </table>
 <br/>
@@ -53,7 +52,7 @@
     </form>
 
     <table class="table">
-            <thead>
+        <thead>
             <tr>
                 <th>Id</th>
                 <th>Type</th>
@@ -63,8 +62,8 @@
                 <th>Strength</th>
                 <th></th>
             </tr>
-            </thead>
-            <tbody>
+        </thead>
+        <tbody>
              <c:forEach items="${monsters}" var="monster">
                 <tr>
                     <td>${monster.id}</td>
@@ -84,9 +83,8 @@
                     </td>
                 </tr>
             </c:forEach>
-
-            </tbody>
-        </table>
+        </tbody>
+    </table>
 
 </jsp:attribute>
 </my:pagetemplate>

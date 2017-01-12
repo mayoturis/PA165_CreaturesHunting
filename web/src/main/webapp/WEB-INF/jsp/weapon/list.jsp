@@ -16,10 +16,9 @@
     <table class="table">
         <thead>
         <tr>
-            <th>id</th>
-            <th>name</th>
-            <th>range</th>
-            <th>ammunition</th>
+            <th>Name</th>
+            <th>Range</th>
+            <th>Ammunition</th>
             <th></th>
             <th></th>
             <th></th>
@@ -28,16 +27,15 @@
         <tbody>
         <c:forEach items="${weapons}" var="weapon">
             <tr>
-                <td>${weapon.id}</td>
                 <td><c:out value="${weapon.name}"/></td>
                 <td><c:out value="${weapon.range}"/></td>
                 <td><c:out value="${weapon.ammunition}"/></td>
                 <td>
-                    <my:a href="/weapon/view/${weapon.id}" class="btn btn-primary">View</my:a>
+                    <my:a href="/weapon/view/${weapon.id}" class="btn btn-primary">Detail</my:a>
                 </td>
                 <td>
                     <c:if test="${authenticatedUser.isAdmin()}">
-                        <my:a href="/weapon/update/${weapon.id}" class="btn btn-primary">Update</my:a>
+                        <!--<my:a href="/weapon/update/${weapon.id}" class="btn btn-primary">Update</my:a>-->
                     </c:if>
                 </td>
                 <td>
