@@ -35,7 +35,7 @@
                 </td>
                 <td>
                     <c:if test="${authenticatedUser.isAdmin()}">
-                        <!--<my:a href="/weapon/update/${weapon.id}" class="btn btn-primary">Update</my:a>-->
+                        <my:a href="/weapon/update/${weapon.id}" class="btn btn-primary">Update</my:a>
                     </c:if>
                 </td>
                 <td>
