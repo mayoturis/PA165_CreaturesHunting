@@ -39,6 +39,11 @@
                 </td>
                 <td>
                     <c:if test="${authenticatedUser.isAdmin()}">
+                        <my:a href="/monster/update/${monster.id}" class="btn btn-primary">Update</my:a>
+                    </c:if>
+                </td>
+                <td>
+                    <c:if test="${authenticatedUser.isAdmin()}">
                         <form method="post" action="${pageContext.request.contextPath}/monster/delete/${monster.id}">
                             <button type="submit" class="btn btn-primary">Delete</button>
                         </form>

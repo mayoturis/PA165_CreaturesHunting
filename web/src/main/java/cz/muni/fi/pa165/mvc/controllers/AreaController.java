@@ -1,7 +1,6 @@
 package cz.muni.fi.pa165.mvc.controllers;
 
 import cz.muni.fi.pa165.dto.AreaDTO;
-import cz.muni.fi.pa165.dto.MonsterDTO;
 import cz.muni.fi.pa165.enums.DangerLevel;
 import cz.muni.fi.pa165.facade.AreaFacade;
 import cz.muni.fi.pa165.facade.MonsterFacade;
@@ -120,5 +119,25 @@ public class AreaController {
 		model.addAttribute("monsters", areaFacade.getMonstersInArea(areaId));
 		model.addAttribute("alert_success", "Monster successfully removed from area");
 		return "area/details";
+	}
+
+
+	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
+	public String updateArea(@PathVariable int id, Model model) {
+		AreaDTO area = areaFacade.findById(id);
+		if (area == null) {
+			return "redirect:/area/list";
+		}
+		model.addAttribute("area", area);
+		return "area/update";
+	}
+
+	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
+	public String updateArea(@ModelAttribute("area") AreaDTO area, @PathVariable("id") int id,
+							 Model model, UriComponentsBuilder uriBuilder) {
+
+		area.setId(id);
+		areaFacade.update(area);
+		return "redirect:" + uriBuilder.path("/area/list").toUriString();
 	}
 }

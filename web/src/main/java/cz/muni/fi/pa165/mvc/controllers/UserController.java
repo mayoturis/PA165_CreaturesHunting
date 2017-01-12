@@ -154,4 +154,23 @@ public class UserController {
 		model.addAttribute("alert_success", "Weapon was successfully removed from your arsenal");
 		return "user/arsenal";
 	}
+
+	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
+	public String updateUser(@PathVariable int id, Model model) {
+		UserDTO user = userFacade.findById(id);
+		if (user == null) {
+			return "redirect:/user/list";
+		}
+		model.addAttribute("user", user);
+		return "user/update";
+	}
+
+	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
+	public String updateUser(@ModelAttribute("user") UserDTO user, @PathVariable("id") int id,
+							 Model model, UriComponentsBuilder uriBuilder) {
+
+		user.setId(id);
+		userFacade.update(user);
+		return "redirect:" + uriBuilder.path("/user/list").toUriString();
+	}
 }

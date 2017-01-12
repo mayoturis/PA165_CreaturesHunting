@@ -1,7 +1,6 @@
 package cz.muni.fi.pa165.mvc.controllers;
 
 import cz.muni.fi.pa165.dto.MonsterDTO;
-import cz.muni.fi.pa165.entities.Monster;
 import cz.muni.fi.pa165.facade.MonsterFacade;
 import cz.muni.fi.pa165.facade.WeaponFacade;
 import org.slf4j.Logger;
@@ -33,13 +32,11 @@ import javax.validation.Valid;
 @Transactional
 public class MonsterController {
 
+	private static final Logger log = LoggerFactory.getLogger(MonsterController.class);
 	@Inject
 	private MonsterFacade monsterFacade;
-
 	@Inject
 	private WeaponFacade weaponFacade;
-
-	private static final Logger log = LoggerFactory.getLogger(MonsterController.class);
 
 	/**
 	 * Shows a list of monsters with the ability to add, delete or edit.
@@ -137,5 +134,24 @@ public class MonsterController {
 		model.addAttribute("weapons", monsterFacade.findWeaponsForMonster(monsterId));
 		model.addAttribute("alert_success", "Weapon removed");
 		return "monster/view";
+	}
+
+	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
+	public String updateMonster(@PathVariable int id, Model model) {
+		MonsterDTO monster = monsterFacade.findById(id);
+		if (monster == null) {
+			return "redirect:/monster/list";
+		}
+		model.addAttribute("monster", monster);
+		return "monster/update";
+	}
+
+	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
+	public String updateMonster(@ModelAttribute("monster") MonsterDTO monster, @PathVariable("id") int id,
+								Model model, UriComponentsBuilder uriBuilder) {
+
+		monster.setId(id);
+		monsterFacade.update(monster);
+		return "redirect:" + uriBuilder.path("/monster/list").toUriString();
 	}
 }

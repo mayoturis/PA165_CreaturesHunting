@@ -35,6 +35,11 @@
                 </td>
                 <td>
                     <c:if test="${authenticatedUser.isAdmin()}">
+                        <my:a href="/area/update/${area.id}" class="btn btn-primary">Update</my:a>
+                    </c:if>
+                </td>
+                <td>
+                    <c:if test="${authenticatedUser.isAdmin()}">
                         <form method="post" action="${pageContext.request.contextPath}/area/delete/${area.id}">
                             <button type="submit" class="btn btn-primary">Delete</button>
                         </form>
