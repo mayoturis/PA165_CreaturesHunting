@@ -19,8 +19,7 @@
         <tr>
             <th>Name</th>
             <th>Size</th>
-            <th>Danger Level</th>
-            <th>Description</th>
+            <th>Danger&nbsp;Level</th>
             <th></th>
             <th></th>
         </tr>
@@ -31,7 +30,6 @@
                 <td><c:out value="${area.name}"/></td>
                 <td><c:out value="${area.size}"/></td>
                 <td><c:out value="${area.dangerLevel}"/></td>
-                <td><c:out value="${area.description}"/></td>
                 <td>
                     <my:a href="/area/details/${area.id}" class="btn btn-primary">Show details</my:a>
                 </td>

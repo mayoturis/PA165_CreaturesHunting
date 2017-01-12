@@ -33,8 +33,12 @@
                 <td><c:out value="${area.size}"/></td>
             </tr>
             <tr>
-                <td>Danger level</td>
+                <td>Danger&nbsp;level</td>
                 <td><c:out value="${area.dangerLevel}"/></td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td><c:out value="${area.description}"/></td>
             </tr>
         </tbody>
     </table>

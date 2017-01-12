@@ -38,12 +38,12 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <!--<div class="form-group">
                     <label for="isAdmin" class="col-sm-2 control-label">Is admin</label>
                     <div class="col-sm-10">
                         <input type="checkbox" name="admin" id="isAdmin" class=""/>
                     </div>
-                </div>
+                </div>-->
 
                 <div class="form-group">
                     <label for="gender" class="col-sm-2 control-label">Gender</label>

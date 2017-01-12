@@ -49,10 +49,12 @@ public class User implements cz.muni.fi.pa165.entities.base.Entity {
 		// required by Hibernate
 	}
 
-	public User(String name, String email, String password) {
+	public User(String name, String email, String password, int age, Gender gender) {
 		this.name = name;
 		this.email = email;
 		this.password = password;
+		this.age = age;
+		this.gender = gender;
 	}
 
 	public void addWeapon(Weapon weapon) {

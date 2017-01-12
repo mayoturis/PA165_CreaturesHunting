@@ -45,9 +45,9 @@ public class UserDaoTest {
 
 	@Before
 	public void createUsers() {
-		user = new User(userName, userEmail, userPassword);
-		User user1 = new User("Jakub", "mypass", "jakub@email.com");
-		User user2 = new User("Janka", "testpass", "janka@email.com");
+		user = new User(userName, userEmail, userPassword, 5, Gender.MALE);
+		User user1 = new User("Jakub", "mypass", "jakub@email.com", 5, Gender.MALE);
+		User user2 = new User("Janka", "testpass", "janka@email.com", 5, Gender.MALE);
 
 		user.setGender(userGender);
 		user.setAdmin(userIsAdmin);
@@ -159,6 +159,6 @@ public class UserDaoTest {
 	}
 
 	private User getValidUser() {
-		return new User("testName", "testEmail", "pass");
+		return new User("testName", "testEmail", "pass", 5, Gender.MALE);
 	}
 }
