@@ -8,10 +8,11 @@
 <my:pagetemplate title="Weapon Administration">
 <jsp:attribute name="body">
 
-    <form method="post" action="${pageContext.request.contextPath}/weapon/delete/${weapon.id}">
-        <button type="submit" class="btn btn-primary">Delete</button>
-    </form>
-
+    <c:if test="${authenticatedUser.isAdmin()}">
+        <form method="post" action="${pageContext.request.contextPath}/weapon/delete/${weapon.id}">
+            <button type="submit" class="btn btn-primary">Delete</button>
+        </form>
+    </c:if>
 
     <table class="table">
         <thead>

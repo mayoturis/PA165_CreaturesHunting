@@ -36,12 +36,16 @@
                     <my:a href="/weapon/view/${weapon.id}" class="btn btn-primary">View</my:a>
                 </td>
                 <td>
-                    <my:a href="/weapon/update/${weapon.id}" class="btn btn-primary">Update</my:a>
+                    <c:if test="${authenticatedUser.isAdmin()}">
+                        <my:a href="/weapon/update/${weapon.id}" class="btn btn-primary">Update</my:a>
+                    </c:if>
                 </td>
                 <td>
-                    <form method="post" action="${pageContext.request.contextPath}/weapon/delete/${weapon.id}">
-                        <button type="submit" class="btn btn-primary">Delete</button>
-                    </form>
+                    <c:if test="${authenticatedUser.isAdmin()}">
+                        <form method="post" action="${pageContext.request.contextPath}/weapon/delete/${weapon.id}">
+                            <button type="submit" class="btn btn-primary">Delete</button>
+                        </form>
+                    </c:if>
                 </td>
             </tr>
         </c:forEach>
