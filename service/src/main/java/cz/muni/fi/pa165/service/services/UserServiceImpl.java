@@ -101,6 +101,15 @@ public class UserServiceImpl extends CrudServiceImpl<User> implements UserServic
 		return super.create(user);
 	}
 
+	@Override
+	public void delete(int userId) {
+		User user = findById(userId);
+		user.getWeapons().forEach(weapon -> weapon.removeUser(user));
+		user.getWeapons().clear();
+
+		userDao.delete(user);
+	}
+
 	private static String createHash(String password) {
 		final int SALT_BYTE_SIZE = 24;
 		final int HASH_BYTE_SIZE = 24;

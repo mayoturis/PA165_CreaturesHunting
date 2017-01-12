@@ -111,4 +111,12 @@ public class Weapon implements cz.muni.fi.pa165.entities.base.Entity {
 	public void addUser(User user) {
 		this.users.add(user);
 	}
+
+	public void removeMonster(Monster monster) {
+		monsters.remove(monster);
+	}
+
+	public void removeUser(User user) {
+		users.remove(user);
+	}
 }

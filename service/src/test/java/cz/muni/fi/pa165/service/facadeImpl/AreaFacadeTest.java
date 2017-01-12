@@ -80,18 +80,9 @@ public class AreaFacadeTest {
 
 	@Test
 	public void deleteByIdTest() {
-		Mockito.when(areaService.findById(area.getId())).thenReturn(area);
-
 		areaFacade.delete(area.getId());
 
-		Mockito.verify(areaService, ONCE).delete(area);
-	}
-
-	@Test(expected = IllegalArgumentException.class)
-	public void deleteByIdAreaDoesNotExistTest() {
-		Mockito.when(areaService.findById(area.getId())).thenReturn(null);
-
-		areaFacade.delete(area.getId());
+		Mockito.verify(areaService, ONCE).delete(area.getId());
 	}
 
 	@Test

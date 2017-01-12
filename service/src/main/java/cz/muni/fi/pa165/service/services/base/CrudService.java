@@ -48,4 +48,10 @@ public interface CrudService<TEntity extends Entity> {
 	 */
 	void delete(TEntity entity);
 
+	/**
+	 * Deletes enetity by id
+	 *
+	 * @param entityId
+	 */
+	void delete(int entityId);
 }

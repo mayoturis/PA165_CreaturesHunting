@@ -75,21 +75,11 @@ public class WeaponFacadeTest {
 	}
 
 	@Test
-	public void deleteByIdFindsAndDeletesWeapon() {
+	public void deleteByIdDeletesWeapon() {
 		int weaponId = 5;
-		when(weaponService.findById(weaponId)).thenReturn(weapon);
-
 		weaponFacade.delete(weaponId);
 
-		verify(weaponService, once).delete(weapon);
-	}
-
-	@Test(expected = IllegalArgumentException.class)
-	public void deleteByIdThrowsExceptionIfNotFound() {
-		int weaponId = 5;
-		when(weaponService.findById(weaponId)).thenReturn(null);
-
-		weaponFacade.delete(weaponId);
+		verify(weaponService, once).delete(weaponId);
 	}
 
 	@Test

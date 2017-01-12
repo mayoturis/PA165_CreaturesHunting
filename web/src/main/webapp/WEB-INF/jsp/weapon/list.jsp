@@ -20,6 +20,9 @@
             <th>name</th>
             <th>range</th>
             <th>ammunition</th>
+            <th></th>
+            <th></th>
+            <th></th>
         </tr>
         </thead>
         <tbody>

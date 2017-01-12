@@ -69,4 +69,16 @@ public class MonsterServiceImpl extends CrudServiceImpl<Monster> implements Mons
 
 		monster.removeWeapon(weapon);
 	}
+
+	@Override
+	public void delete(int monsterId) {
+		Monster monster = findById(monsterId);
+
+		monster.getWeapons().forEach(weapon -> weapon.removeMonster(monster));
+		monster.getWeapons().clear();
+		monster.getAreas().forEach(area -> area.removeMonster(monster));
+		monster.getAreas().clear();
+
+		monsterDao.delete(monster);
+	}
 }

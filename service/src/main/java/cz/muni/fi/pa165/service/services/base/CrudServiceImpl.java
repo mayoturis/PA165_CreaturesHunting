@@ -68,4 +68,13 @@ public class CrudServiceImpl<TEntity extends Entity> implements CrudService<TEnt
 			throw new HuntingPersistenceException("Exception while deleting entity", exception);
 		}
 	}
+
+	@Override
+	public void delete(int entityId) {
+		try {
+			crudDao.delete(findById(entityId));
+		} catch(RuntimeException exception) {
+			throw new HuntingPersistenceException("Exception while deleting entity", exception);
+		}
+	}
 }

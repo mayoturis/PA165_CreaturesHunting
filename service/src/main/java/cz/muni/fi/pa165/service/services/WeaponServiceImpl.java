@@ -32,4 +32,13 @@ public class WeaponServiceImpl extends CrudServiceImpl<Weapon> implements Weapon
 		}
 	}
 
+	public void delete(int weaponId) {
+		Weapon weapon = findById(weaponId);
+		weapon.getMonsters().forEach(monster -> monster.removeWeapon(weapon));
+		weapon.getMonsters().clear();
+		weapon.getUsers().forEach(user -> user.removeWeapon(weapon));
+		weapon.getUsers().clear();
+
+		weaponDao.delete(weapon);
+	}
 }

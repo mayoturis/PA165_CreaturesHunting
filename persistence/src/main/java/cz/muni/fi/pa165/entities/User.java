@@ -60,7 +60,7 @@ public class User implements cz.muni.fi.pa165.entities.base.Entity {
 	}
 
 	public Set<Weapon> getWeapons() {
-		return Collections.unmodifiableSet(weapons);
+		return weapons;
 	}
 
 	public String getName() {

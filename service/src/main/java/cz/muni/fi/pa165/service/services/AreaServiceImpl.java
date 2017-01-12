@@ -70,4 +70,13 @@ public class AreaServiceImpl extends CrudServiceImpl<Area> implements AreaServic
 		area.removeMonster(monster);
 		monster.removeArea(area);
 	}
+
+	@Override
+	public void delete(int areaId) {
+		final Area area = findById(areaId);
+		area.getMonsters().forEach(monster -> monster.removeArea(area));
+		area.getMonsters().clear();
+
+		areaDao.delete(area);
+	}
 }

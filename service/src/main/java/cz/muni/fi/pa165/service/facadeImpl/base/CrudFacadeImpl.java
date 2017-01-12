@@ -59,11 +59,6 @@ public class CrudFacadeImpl<TEntityDTO, TEntity extends Entity> implements CrudF
 
 	@Override
 	public void delete(int id) {
-		TEntity entity = crudService.findById(id);
-		if (entity == null) {
-			throw new IllegalArgumentException("Entity with given id doesn't exist");
-		}
-
-		crudService.delete(entity);
+		crudService.delete(id);
 	}
 }

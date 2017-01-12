@@ -82,19 +82,10 @@ public class UserFacadeTest {
 	@Test
 	public void deleteById() {
 		int id = 1337;
-		Mockito.when(userService.findById(id)).thenReturn(user);
-
 		userFacade.delete(id);
 
-		Mockito.verify(userService, oneTime).delete(user);
+		Mockito.verify(userService, oneTime).delete(id);
 	}
-	@Test(expected = IllegalArgumentException.class)
-	public void deleteByIdUserDoesntExistTest() {
-		Mockito.when(userService.findById(1337)).thenReturn(null);
-
-		userFacade.delete(1337);
-	}
-
 
 	@Test
 	public void findById() {
