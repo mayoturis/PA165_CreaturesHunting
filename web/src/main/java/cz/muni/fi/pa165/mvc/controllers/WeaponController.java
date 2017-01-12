@@ -25,8 +25,8 @@ import javax.validation.Valid;
  * @author Ondrej Zeman
  */
 @Controller
-@RequestMapping("/weapon")
 @Transactional
+@RequestMapping("/weapon")
 public class WeaponController {
 
 	private static final Logger log = LoggerFactory.getLogger(WeaponController.class);
@@ -81,8 +81,9 @@ public class WeaponController {
 			return "weapon/create";
 		}
 		int id = weaponFacade.create(formBean);
-		redirectAttributes.addFlashAttribute("alert_success", "Weapon " + formBean.getName() + " was created");
-		return "redirect:" + uriBuilder.path("/weapon/view/{id}").buildAndExpand(id).encode().toUriString();
+
+		redirectAttributes.addFlashAttribute("alert_success", "Weapon " + id + " was created");
+		return "redirect:" + uriBuilder.path("/weapon/list").toUriString();
 	}
 
 
@@ -95,23 +96,24 @@ public class WeaponController {
 		return "redirect:" + uriBuilder.path("/weapon/list").toUriString();
 	}
 
-//	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
-//	public String updateWeapon(@PathVariable int id, Model model) {
-//		WeaponDTO weapon = weaponFacade.findById(id);
-//		if (weapon == null) {
-//			return "redirect:/weapon/list";
-//		}
-//		model.addAttribute("weapon", weapon);
-//		return "weapon/update";
-//	}
-//	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
-//	public String updateWeapon(@ModelAttribute("weapon") WeaponDTO weapon, @PathVariable("id") int id,
-//							 Model model, UriComponentsBuilder uriBuilder) {
-//
-//		weapon.setId(id);
-//		weaponFacade.update(weapon);
-//		log.debug(weapon.toString()+" updated");
-//		return "redirect:" + uriBuilder.path("/weapon/view/"+weapon.getId()).toUriString();
-//	}
+	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
+	public String updateWeapon(@PathVariable int id, Model model) {
+		WeaponDTO weapon = weaponFacade.findById(id);
+		if (weapon == null) {
+			return "redirect:/weapon/list";
+		}
+		model.addAttribute("weapon", weapon);
+		return "weapon/update";
+	}
+
+	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
+	public String updateWeapon(@ModelAttribute("weapon") WeaponDTO weapon, @PathVariable("id") int id,
+							   Model model, UriComponentsBuilder uriBuilder) {
+
+		weapon.setId(id);
+		weaponFacade.update(weapon);
+		log.debug(weapon.toString() + " updated");
+		return "redirect:" + uriBuilder.path("/weapon/list").toUriString();
+	}
 
 }

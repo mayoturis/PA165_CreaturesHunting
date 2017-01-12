@@ -1,6 +1,6 @@
 package cz.muni.fi.pa165.mvc.config;
 
-import cz.muni.fi.pa165.service.ServiceConfig;
+import cz.muni.fi.pa165.sampleData.SampleDataConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
@@ -25,8 +25,9 @@ import javax.validation.Validator;
  */
 @EnableWebMvc
 @Configuration
+@Import({SampleDataConfiguration.class})
 @ComponentScan(basePackages = "cz.muni.fi.pa165.mvc.controllers")
-@Import(ServiceConfig.class)
+//@Import(ServiceConfig.class)
 @EnableTransactionManagement
 public class SpringMvcConfig extends WebMvcConfigurerAdapter {
 

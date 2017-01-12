@@ -7,7 +7,6 @@ import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -53,6 +52,14 @@ public class Monster implements Entity {
 
 	public Monster(String type) {
 		this.type = type;
+	}
+
+	public Monster(String type, BigDecimal height, BigDecimal weight, int agility, int strength) {
+		this.type = type;
+		this.height = height;
+		this.weight = weight;
+		this.agility = agility;
+		this.strength = strength;
 	}
 
 	public int getId() {

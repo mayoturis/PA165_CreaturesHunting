@@ -25,6 +25,7 @@
     <module>api</module>
     <module>web</module>
       <module>rest</module>
+      <module>sampleData</module>
   </modules>
   <packaging>pom</packaging>
 

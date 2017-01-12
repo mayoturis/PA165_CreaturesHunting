@@ -2,11 +2,7 @@ package cz.muni.fi.pa165.entities;
 
 import cz.muni.fi.pa165.enums.Ammunition;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.HashSet;
@@ -90,6 +86,10 @@ public class Weapon implements cz.muni.fi.pa165.entities.base.Entity {
 
 	public int getId() {
 		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public Ammunition getAmmunition() {
