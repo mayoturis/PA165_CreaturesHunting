@@ -12,3 +12,10 @@
 # How to run
 * clone the repository
 * mvn clean install && cd web && mvn tomcat:run
+* go to `http://localhost:8080/pa165`
+
+# Possible logins
+* Aragorn, e-mail: aragorn@gmail.com, password: password
+* Boromir, e-mail: boromir@gmail.com, password: password
+* Legolas, e-mail: legolas@gmail.com, password: password
+* admin, e-mail: admin@gmail.com, password: password
