@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.text.ParseException;
 
 /**
- * Created by zeman on 12-Jan-17.
+ * @ author Ondrej Zeman
  */
 @Configuration
 @Import(ServiceConfig.class)
