@@ -86,15 +86,15 @@ public class SampleDataLoaderImpl implements SampleDataLoader {
 		areaService.create(area3);
 		areaService.create(area4);
 
-		areaService.addMonsterToArea(area1.getId(), monster1.getId());
-		areaService.addMonsterToArea(area1.getId(), monster2.getId());
-		areaService.addMonsterToArea(area3.getId(), monster3.getId());
-		areaService.addMonsterToArea(area4.getId(), monster1.getId());
-		areaService.addMonsterToArea(area4.getId(), monster2.getId());
-		areaService.addMonsterToArea(area4.getId(), monster3.getId());
-		areaService.addMonsterToArea(area4.getId(), monster4.getId());
-		areaService.addMonsterToArea(area4.getId(), monster5.getId());
-		areaService.addMonsterToArea(area4.getId(), monster6.getId());
+		areaService.addMonsterToArea(monster1.getId(), area1.getId());
+		areaService.addMonsterToArea(monster2.getId(), area1.getId());
+		areaService.addMonsterToArea(monster3.getId(), area3.getId());
+		areaService.addMonsterToArea(monster1.getId(), area4.getId());
+		areaService.addMonsterToArea(monster2.getId(), area4.getId());
+		areaService.addMonsterToArea(monster3.getId(), area4.getId());
+		areaService.addMonsterToArea(monster4.getId(), area4.getId());
+		areaService.addMonsterToArea(monster5.getId(), area4.getId());
+		areaService.addMonsterToArea(monster6.getId(), area4.getId());
 
 		monsterService.addWeaponToMonster(weapon1.getId(), monster2.getId());
 		monsterService.addWeaponToMonster(weapon1.getId(), monster1.getId());
