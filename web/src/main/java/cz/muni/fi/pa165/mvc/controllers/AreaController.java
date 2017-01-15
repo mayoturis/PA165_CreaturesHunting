@@ -1,9 +1,11 @@
 package cz.muni.fi.pa165.mvc.controllers;
 
 import cz.muni.fi.pa165.dto.AreaDTO;
+import cz.muni.fi.pa165.dto.UserDTO;
 import cz.muni.fi.pa165.enums.DangerLevel;
 import cz.muni.fi.pa165.facade.AreaFacade;
 import cz.muni.fi.pa165.facade.MonsterFacade;
+import cz.muni.fi.pa165.facade.UserFacade;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 /**
@@ -30,6 +33,9 @@ public class AreaController {
 
 	@Inject
 	private MonsterFacade monsterFacade;
+
+	@Inject
+	private UserFacade userFacade;
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(Model model) {
@@ -71,19 +77,21 @@ public class AreaController {
 	}
 
 	@RequestMapping(value = "/details/{id}", method = RequestMethod.GET)
-	public String view(@PathVariable int id, Model model) {
+	public String view(@PathVariable int id, Model model, HttpServletRequest request) {
 		model.addAttribute("area", areaFacade.findById(id));
 		model.addAttribute("allMonsters", monsterFacade.findAll());
 		model.addAttribute("monsters", areaFacade.getMonstersInArea(id));
+		model.addAttribute("probabilityToSurvive", getProbabilityToSurvive(id, request));
 		return "area/details";
 	}
 
 	@RequestMapping(value = "/addMonster/{id}", method = RequestMethod.POST)
-	public String addMonster(@PathVariable int id, @ModelAttribute("monsterId") int monsterId, Model model) {
+	public String addMonster(@PathVariable int id, @ModelAttribute("monsterId") int monsterId, Model model, HttpServletRequest request) {
 		AreaDTO areaObject = areaFacade.findById(id);
 		model.addAttribute("area", areaObject);
 		model.addAttribute("allMonsters", monsterFacade.findAll());
 		model.addAttribute("monsters", areaFacade.getMonstersInArea(id));
+		model.addAttribute("probabilityToSurvive", getProbabilityToSurvive(id, request));
 
 		if (areaFacade.monsterExistsInArea(monsterId, id)) {
 			model.addAttribute("alert_info", "This monster already exists in this area");
@@ -99,6 +107,7 @@ public class AreaController {
 		}
 
 		model.addAttribute("monsters", areaFacade.getMonstersInArea(id));
+		model.addAttribute("probabilityToSurvive", getProbabilityToSurvive(id, request));
 		model.addAttribute("alert_success", "Successfully added");
 		return "area/details";
 	}
@@ -107,7 +116,8 @@ public class AreaController {
 	public String removeMonsterFromArea(
 			@ModelAttribute("monsterId") int monsterId,
 			@ModelAttribute("areaId") int areaId,
-			Model model
+			Model model,
+			HttpServletRequest request
 	) {
 		areaFacade.removeMonsterFromArea(monsterId, areaId);
 
@@ -116,6 +126,7 @@ public class AreaController {
 		model.addAttribute("allMonsters", monsterFacade.findAll());
 		model.addAttribute("monsters", areaFacade.getMonstersInArea(areaId));
 		model.addAttribute("alert_success", "Monster successfully removed from area");
+		model.addAttribute("probabilityToSurvive", getProbabilityToSurvive(areaId, request));
 		return "area/details";
 	}
 
@@ -137,5 +148,11 @@ public class AreaController {
 		area.setId(id);
 		areaFacade.update(area);
 		return "redirect:" + uriBuilder.path("/area/list").toUriString();
+	}
+
+	private int getProbabilityToSurvive(int areaId, HttpServletRequest request) {
+		String email = (String) request.getSession().getAttribute("authenticatedEmail");
+		UserDTO user = userFacade.findByEmail(email);
+		return areaFacade.probabilityToSurviveInArea(areaId, user.getId());
 	}
 }

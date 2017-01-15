@@ -22,7 +22,7 @@
         </c:if>
     </div>
     <br>
-    <table class="table" style="width: 50%">
+    <table class="table" style="width:60%">
         <tbody>
             <tr>
                 <td>Name</td>
@@ -39,6 +39,10 @@
             <tr>
                 <td>Description</td>
                 <td><c:out value="${area.description}"/></td>
+            </tr>
+            <tr>
+                <td>Probability to survive in this area</td>
+                <td><c:out value="${probabilityToSurvive}"/>%</td>
             </tr>
         </tbody>
     </table>

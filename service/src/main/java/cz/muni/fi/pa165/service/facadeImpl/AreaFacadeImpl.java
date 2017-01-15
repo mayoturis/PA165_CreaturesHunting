@@ -52,4 +52,9 @@ public class AreaFacadeImpl extends CrudFacadeImpl<AreaDTO, Area> implements Are
 	public void removeMonsterFromArea(int monsterId, int areaId) {
 		areaService.removeMonsterFromArea(monsterId, areaId);
 	}
+
+	@Override
+	public int probabilityToSurviveInArea(int areaId, int userId) {
+		return areaService.probabilityToSurviveInArea(areaId, userId);
+	}
 }
