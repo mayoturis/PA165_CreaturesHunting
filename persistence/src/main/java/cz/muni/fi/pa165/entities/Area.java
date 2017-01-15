@@ -36,7 +36,7 @@ public class Area implements Entity {
 	@NotNull
 	private DangerLevel dangerLevel;
 
-	@ManyToMany(mappedBy = "areas", fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "areas")
 	private List<Monster> monsters = new ArrayList<>();
 
 	protected Area() {
@@ -51,7 +51,6 @@ public class Area implements Entity {
 
 	public void addMonster(Monster newMonster) {
 		this.monsters.add(newMonster);
-		newMonster.addArea(this);
 	}
 
 	public int getId() { return id; }
@@ -91,5 +90,9 @@ public class Area implements Entity {
 	@Override
 	public int hashCode() {
 		return name.hashCode();
+	}
+
+	public void removeMonster(Monster monster) {
+		monsters.remove(monster);
 	}
 }

@@ -6,7 +6,6 @@ import cz.muni.fi.pa165.facade.WeaponFacade;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -26,7 +25,6 @@ import javax.validation.Valid;
  */
 @Controller
 @RequestMapping("/weapon")
-@Transactional
 public class WeaponController {
 
 	private static final Logger log = LoggerFactory.getLogger(WeaponController.class);
@@ -81,8 +79,9 @@ public class WeaponController {
 			return "weapon/create";
 		}
 		int id = weaponFacade.create(formBean);
+
 		redirectAttributes.addFlashAttribute("alert_success", "Weapon " + id + " was created");
-		return "redirect:" + uriBuilder.path("/weapon/view/{id}").buildAndExpand(id).encode().toUriString();
+		return "redirect:" + uriBuilder.path("/weapon/list").toUriString();
 	}
 
 
@@ -95,23 +94,24 @@ public class WeaponController {
 		return "redirect:" + uriBuilder.path("/weapon/list").toUriString();
 	}
 
-//	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
-//	public String updateWeapon(@PathVariable int id, Model model) {
-//		WeaponDTO weapon = weaponFacade.findById(id);
-//		if (weapon == null) {
-//			return "redirect:/weapon/list";
-//		}
-//		model.addAttribute("weapon", weapon);
-//		return "weapon/update";
-//	}
-//	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
-//	public String updateWeapon(@ModelAttribute("weapon") WeaponDTO weapon, @PathVariable("id") int id,
-//							 Model model, UriComponentsBuilder uriBuilder) {
-//
-//		weapon.setId(id);
-//		weaponFacade.update(weapon);
-//		log.debug(weapon.toString()+" updated");
-//		return "redirect:" + uriBuilder.path("/weapon/view/"+weapon.getId()).toUriString();
-//	}
+	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
+	public String updateWeapon(@PathVariable int id, Model model) {
+		WeaponDTO weapon = weaponFacade.findById(id);
+		if (weapon == null) {
+			return "redirect:/weapon/list";
+		}
+		model.addAttribute("weapon", weapon);
+		return "weapon/update";
+	}
+
+	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
+	public String updateWeapon(@ModelAttribute("weapon") WeaponDTO weapon, @PathVariable("id") int id,
+							   Model model, UriComponentsBuilder uriBuilder) {
+
+		weapon.setId(id);
+		weaponFacade.update(weapon);
+		log.debug(weapon.toString() + " updated");
+		return "redirect:" + uriBuilder.path("/weapon/list").toUriString();
+	}
 
 }

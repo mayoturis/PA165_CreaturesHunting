@@ -5,52 +5,62 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<my:pagetemplate title="Area details">
+<my:pagetemplate title="${area.name} area details">
 <jsp:attribute name="body">
-
-<div style="width:400px;">
-<div style="float: left; width: 130px">
-    <my:a href="/area/list" class="btn btn-default">Back to areas</my:a>
-</div>
-    <c:if test="${authenticatedUser.isAdmin()}">
-        <div style="float: right; width: 225px">
-            <form method="post" action="${pageContext.request.contextPath}/area/delete/${area.id}">
-                <button type="submit" class="btn btn-default">Delete this area</button>
-            </form>
+    <div style="width:400px;">
+        <div style="float: left; width: 130px">
+            <my:a href="/area/list">Back to areas</my:a>
         </div>
-    </c:if>
-</div>
-
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Size</th>
-            <th>Danger Level</th>
-        </tr>
-        </thead>
+        <br>
+        <br>
+        <c:if test="${authenticatedUser.isAdmin()}">
+            <div style="width: 225px">
+                <form method="post" action="${pageContext.request.contextPath}/area/delete/${area.id}">
+                    <button type="submit" class="btn btn-primary">Delete this area</button>
+                </form>
+            </div>
+        </c:if>
+    </div>
+    <br>
+    <table class="table" style="width:60%">
         <tbody>
-        <tr>
-            <td>${area.id}</td>
-            <td><c:out value="${area.name}"/></td>
-            <td><c:out value="${area.size}"/></td>
-            <td><c:out value="${area.dangerLevel}"/></td>
-        </tr>
+            <tr>
+                <td>Name</td>
+                <td><c:out value="${area.name}"/></td>
+            </tr>
+            <tr>
+                <td>Size</td>
+                <td><c:out value="${area.size}"/></td>
+            </tr>
+            <tr>
+                <td>Danger&nbsp;level</td>
+                <td><c:out value="${area.dangerLevel}"/></td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td><c:out value="${area.description}"/></td>
+            </tr>
+            <tr>
+                <td>Probability to survive in this area</td>
+                <td><c:out value="${probabilityToSurvive}"/>%</td>
+            </tr>
         </tbody>
     </table>
 <br/>
-    <H1>Monsters in the area:</H1>
+    <h2>Spotted monsters in this area:</h2>
 
     <form method="post" action="${pageContext.request.contextPath}/area/addMonster/${area.id}" modelAttribute="monsterId">
-        <label for="monsterId" cssClass="col-sm-2 control-label">Add monster with id to this area:</label>
-                <input type="number" min="0" name="monsterId" id="monsterId" cssClass="form-control"/>
-
-        <button type="submit" class="btn btn-default">Add</button>
+        <label for="monsterId" cssClass="col-sm-2 control-label">Add monster to this area:</label>
+            <select name="monsterId" id="monsterId" class="form-control" style="width: 200px; display: inline-block">
+                <c:forEach items="${allMonsters}" var="monster">
+                    <option value="${monster.id}"><c:out value="${monster.type}"/></option>
+                </c:forEach>
+            </select>
+        <button type="submit" class="btn btn-primary">Add</button>
     </form>
 
     <table class="table">
-            <thead>
+        <thead>
             <tr>
                 <th>Id</th>
                 <th>Type</th>
@@ -58,9 +68,10 @@
                 <th>Weight</th>
                 <th>Agility</th>
                 <th>Strength</th>
+                <th></th>
             </tr>
-            </thead>
-            <tbody>
+        </thead>
+        <tbody>
              <c:forEach items="${monsters}" var="monster">
                 <tr>
                     <td>${monster.id}</td>
@@ -69,11 +80,19 @@
                     <td><c:out value="${monster.weight}"/></td>
                     <td><c:out value="${monster.agility}"/></td>
                     <td><c:out value="${monster.strength}"/></td>
+                    <td>
+                        <c:if test="${authenticatedUser.isAdmin()}">
+                            <form method="post" action="${pageContext.request.contextPath}/area/removeMonsterFromArea">
+                                <input type="hidden" name="monsterId" value="${monster.id}">
+                                <input type="hidden" name="areaId" value="${area.id}">
+                                <button type="submit" class="btn btn-primary">Remove monster from this area</button>
+                            </form>
+                        </c:if>
+                    </td>
                 </tr>
             </c:forEach>
-
-            </tbody>
-        </table>
+        </tbody>
+    </table>
 
 </jsp:attribute>
 </my:pagetemplate>

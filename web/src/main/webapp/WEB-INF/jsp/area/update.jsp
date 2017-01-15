@@ -5,11 +5,11 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<my:pagetemplate title="Add area">
+<my:pagetemplate title="Update Area">
 <jsp:attribute name="body">
 
-    <form:form method="post" action="${pageContext.request.contextPath}/area/create"
-               modelAttribute="newArea" cssClass="form-horizontal">
+    <form:form method="post" action="${pageContext.request.contextPath}/area/update/${area.id}"
+               modelAttribute="area" cssClass="form-horizontal">
 
         <div class="form-group ${name_error?'has-error':''}">
             <form:label path="name" cssClass="col-sm-2 control-label">Name</form:label>
@@ -18,20 +18,22 @@
                 <form:errors path="name" cssClass="help-block"/>
             </div>
         </div>
+
         <div class="form-group ${size_error?'has-error':''}">
-                    <form:label path="size" cssClass="col-sm-2 control-label">Size</form:label>
-                    <div class="col-sm-10">
-                        <input type="number" min="0" name="size" id="size" class="form-control" required="required"/>
-                        <form:errors path="size" cssClass="help-block"/>
-                    </div>
-                </div>
+            <form:label path="size" cssClass="col-sm-2 control-label">Size</form:label>
+            <div class="col-sm-10">
+                <input type="number" min="0" path="size" name="size" id="size" value="${area.size}" class="form-control"
+                       required="required"/>
+                <form:errors path="size" cssClass="help-block"/>
+            </div>
+        </div>
         <div class="form-group ${description_error?'has-error':''}">
-                    <form:label path="description" cssClass="col-sm-2 control-label">Description</form:label>
-                    <div class="col-sm-10">
-                        <form:textarea path="description" cssClass="form-control" required="required"/>
-                        <form:errors path="description" cssClass="help-block"/>
-                    </div>
-                </div>
+            <form:label path="description" cssClass="col-sm-2 control-label">Description</form:label>
+            <div class="col-sm-10">
+                <form:textarea path="description" cssClass="form-control" required="required"/>
+                <form:errors path="description" cssClass="help-block"/>
+            </div>
+        </div>
         <div class="form-group">
             <form:label path="dangerLevel" cssClass="col-sm-2 control-label">Danger Level</form:label>
             <div class="col-sm-10">
@@ -40,7 +42,11 @@
                 </form:select>
             </div>
         </div>
-        <button class="btn btn-primary" type="submit">Create Area</button>
+        <button class="btn btn-primary" type="submit">Update Area</button>
+        <a href="${pageContext.request.contextPath}/area/list" class="btn btn-primary " role="button">
+            Back to list
+        </a>
+
     </form:form>
 
 </jsp:attribute>

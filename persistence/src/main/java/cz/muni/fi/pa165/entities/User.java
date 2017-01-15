@@ -49,10 +49,12 @@ public class User implements cz.muni.fi.pa165.entities.base.Entity {
 		// required by Hibernate
 	}
 
-	public User(String name, String email, String password) {
+	public User(String name, String email, String password, int age, Gender gender) {
 		this.name = name;
 		this.email = email;
 		this.password = password;
+		this.age = age;
+		this.gender = gender;
 	}
 
 	public void addWeapon(Weapon weapon) {
@@ -60,7 +62,7 @@ public class User implements cz.muni.fi.pa165.entities.base.Entity {
 	}
 
 	public Set<Weapon> getWeapons() {
-		return Collections.unmodifiableSet(weapons);
+		return weapons;
 	}
 
 	public String getName() {
@@ -132,5 +134,9 @@ public class User implements cz.muni.fi.pa165.entities.base.Entity {
 	@Override
 	public int hashCode() {
 		return name.hashCode();
+	}
+
+	public void removeWeapon(Weapon weapon) {
+		weapons.remove(weapon);
 	}
 }

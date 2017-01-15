@@ -1,6 +1,6 @@
 package cz.muni.fi.pa165.mvc.config;
 
-import cz.muni.fi.pa165.service.ServiceConfig;
+import cz.muni.fi.pa165.sampleData.SampleDataConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
@@ -9,7 +9,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.support.ResourceBundleMessageSource;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
@@ -25,9 +24,8 @@ import javax.validation.Validator;
  */
 @EnableWebMvc
 @Configuration
+@Import({SampleDataConfiguration.class})
 @ComponentScan(basePackages = "cz.muni.fi.pa165.mvc.controllers")
-@Import(ServiceConfig.class)
-@EnableTransactionManagement
 public class SpringMvcConfig extends WebMvcConfigurerAdapter {
 
 	private static final Logger log = LoggerFactory.getLogger(SpringMvcConfig.class);

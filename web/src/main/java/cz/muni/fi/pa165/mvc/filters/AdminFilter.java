@@ -14,10 +14,10 @@ import java.io.IOException;
  * @author Marek Turis
  */
 @WebFilter(urlPatterns = {
-		"/user/list", "/user/doDelete/*",
-		"/weapon/create",
-		"/area/add", "/area/create", "/area/delete/*",
-		"/monster/add", "/monster/create", "/monster/delete/*"})
+		"/user/list", "/user/doDelete/*", "/user/update",
+		"/weapon/create", "/weapon/update",
+		"/area/add", "/area/create", "/area/delete/*", "/area/removeMonsterFromArea", "/area/update",
+		"/monster/add", "/monster/update", "/monster/create", "/monster/delete/*", "/monster/removeWeaponFromMonster"})
 public class AdminFilter implements Filter {
 
 	@Override

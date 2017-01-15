@@ -9,7 +9,6 @@ import cz.muni.fi.pa165.service.exceptions.HuntingPersistenceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,7 +25,6 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/user")
-@Transactional
 public class UserController {
 
 	final static Logger log = LoggerFactory.getLogger(UserController.class);
@@ -62,7 +60,6 @@ public class UserController {
 		return "redirect:" + uriBuilder.path("").toUriString();
 	}
 
-	// todo add only admin
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(Model model) {
 		List<UserDTO> users = userFacade.findAll();
@@ -106,27 +103,72 @@ public class UserController {
 
 	@RequestMapping(value = "/arsenal", method = RequestMethod.GET)
 	public String arsenal(Model model, HttpServletRequest request) {
-
 		String email = (String) request.getSession().getAttribute("authenticatedEmail");
 
 		UserDTO user = userFacade.findByEmail(email);
 		List<WeaponDTO> weapons = userFacade.getWeaponsByUserId(user.getId());
 		model.addAttribute("weapons", weapons);
-
+		model.addAttribute("allWeapons", weaponFacade.findAll());
 
 		return "user/arsenal";
 	}
 
-//	@RequestMapping(value = "/addWeaponToCurrentUser/{id}", method = RequestMethod.POST)
-//	public String addWeaponToCurrentUser(@PathVariable int id, Model model,
-//										 HttpServletRequest request) {
-//
-//		UserDTO user = userFacade.findByEmail((String) request.getSession()
-//				.getAttribute("authenticatedEmail"));
-//
-//		WeaponDTO weapon = weaponFacade.findById(1);
-//		userFacade.addWeaponToUser(weapon,user);
-//
-//		return "weapon/list";
-//	}
+	@RequestMapping(value = "/addWeapon", method = RequestMethod.POST)
+	public String addWeaponToCurrentUser(@ModelAttribute("weaponId") int weaponId, Model model,
+										 HttpServletRequest request) {
+
+		UserDTO user = userFacade.findByEmail((String) request.getSession()
+				.getAttribute("authenticatedEmail"));
+
+		List<WeaponDTO> weapons = userFacade.getWeaponsByUserId(user.getId());
+		model.addAttribute("weapons", weapons);
+		model.addAttribute("allWeapons", weaponFacade.findAll());
+
+		if (userFacade.userHasWeapon(weaponId, user.getId())) {
+			model.addAttribute("alert_info", "You already have this weapon");
+			return "user/arsenal";
+		}
+
+		userFacade.addWeaponToUser(weaponId, user.getId());
+
+		weapons = userFacade.getWeaponsByUserId(user.getId());
+		model.addAttribute("weapons", weapons);
+		model.addAttribute("alert_success", "Successfully added");
+		return "user/arsenal";
+	}
+
+	@RequestMapping(value = "/removeFromArsenal/{id}", method = RequestMethod.POST)
+	public String removeFromArsenal(@PathVariable int id,
+						   HttpServletRequest request,
+						   Model model) {
+		UserDTO user = userFacade.findByEmail((String) request.getSession()
+				.getAttribute("authenticatedEmail"));
+
+		userFacade.removeWeaponFromUser(id, user.getId());
+
+		List<WeaponDTO> weapons = userFacade.getWeaponsByUserId(user.getId());
+		model.addAttribute("weapons", weapons);
+		model.addAttribute("allWeapons", weaponFacade.findAll());
+		model.addAttribute("alert_success", "Weapon was successfully removed from your arsenal");
+		return "user/arsenal";
+	}
+
+	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
+	public String updateUser(@PathVariable int id, Model model) {
+		UserDTO user = userFacade.findById(id);
+		if (user == null) {
+			return "redirect:/user/list";
+		}
+		model.addAttribute("user", user);
+		return "user/update";
+	}
+
+	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
+	public String updateUser(@ModelAttribute("user") UserDTO user, @PathVariable("id") int id,
+							 Model model, UriComponentsBuilder uriBuilder) {
+
+		user.setId(id);
+		userFacade.update(user);
+		return "redirect:" + uriBuilder.path("/user/list").toUriString();
+	}
 }

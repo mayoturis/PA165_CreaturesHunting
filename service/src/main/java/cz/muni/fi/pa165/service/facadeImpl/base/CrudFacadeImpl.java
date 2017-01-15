@@ -4,6 +4,7 @@ import cz.muni.fi.pa165.entities.base.Entity;
 import cz.muni.fi.pa165.facade.base.CrudFacade;
 import cz.muni.fi.pa165.service.services.base.CrudService;
 import cz.muni.fi.pa165.service.services.mapping.MappingService;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ import java.util.List;
  *
  * @author Marek Turis
  */
+@Transactional
 public class CrudFacadeImpl<TEntityDTO, TEntity extends Entity> implements CrudFacade<TEntityDTO> {
 
 	private CrudService<TEntity> crudService;
@@ -59,11 +61,6 @@ public class CrudFacadeImpl<TEntityDTO, TEntity extends Entity> implements CrudF
 
 	@Override
 	public void delete(int id) {
-		TEntity entity = crudService.findById(id);
-		if (entity == null) {
-			throw new IllegalArgumentException("Entity with given id doesn't exist");
-		}
-
-		crudService.delete(entity);
+		crudService.delete(id);
 	}
 }

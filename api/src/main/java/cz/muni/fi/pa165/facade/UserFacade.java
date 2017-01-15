@@ -13,9 +13,10 @@ import java.util.List;
  * @author Marek Turis
  */
 public interface UserFacade extends CrudFacade<UserDTO> {
-	void addWeaponToUser(WeaponDTO weapon, UserDTO user);
+	void addWeaponToUser(int weaponId, int userId);
 	boolean canBeAuthenticated(UserAuthenticationDTO user);
 	UserDTO findByEmail(String email);
-
+	boolean userHasWeapon(int weaponId, int userId);
 	List<WeaponDTO> getWeaponsByUserId(int userId);
+	void removeWeaponFromUser(int weaponId, int userId);
 }

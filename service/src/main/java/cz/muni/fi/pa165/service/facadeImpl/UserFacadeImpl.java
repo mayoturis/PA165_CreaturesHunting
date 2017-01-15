@@ -35,12 +35,13 @@ public class UserFacadeImpl extends CrudFacadeImpl<UserDTO, User> implements Use
 	}
 
 	@Override
-	public void addWeaponToUser(WeaponDTO weapon, UserDTO user) {
-		if (user != null || weapon != null){
-			userService.addWeaponToUser(
-					mappingService.map(weapon,Weapon.class),
-					mappingService.map(user, User.class));
-		}
+	public boolean userHasWeapon(int weaponId, int userId) {
+		return userService.userHasWeapon(weaponId, userId);
+	}
+
+	@Override
+	public void addWeaponToUser(int weaponId, int userId) {
+		userService.addWeaponToUser(weaponId, userId);
 	}
 
 	@Override
@@ -54,8 +55,11 @@ public class UserFacadeImpl extends CrudFacadeImpl<UserDTO, User> implements Use
 	}
 
 	public List<WeaponDTO> getWeaponsByUserId(int userId) {
-		User user = userService.findById(userId);
-		return mappingService.map(user.getWeapons(), WeaponDTO.class);
+		return mappingService.map(userService.getWeaponsByUserId(userId), WeaponDTO.class);
 	}
 
+	@Override
+	public void removeWeaponFromUser(int weaponId, int userId) {
+		userService.removeWeaponFromUser(weaponId, userId);
+	}
 }

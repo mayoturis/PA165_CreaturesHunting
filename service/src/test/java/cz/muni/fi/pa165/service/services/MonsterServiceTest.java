@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.service.services;
 
 import cz.muni.fi.pa165.dao.MonsterDao;
+import cz.muni.fi.pa165.dao.WeaponDao;
 import cz.muni.fi.pa165.entities.Area;
 import cz.muni.fi.pa165.entities.Monster;
 import cz.muni.fi.pa165.service.exceptions.HuntingPersistenceException;
@@ -36,6 +37,9 @@ public class MonsterServiceTest {
 	private MonsterDao monsterDao;
 
 	@Mock
+	private WeaponDao weaponDao;
+
+	@Mock
 	private Monster monster;
 
 	@Mock
@@ -43,7 +47,7 @@ public class MonsterServiceTest {
 
 	@Before
 	public void setup() {
-		monsterService = new MonsterServiceImpl(monsterDao);
+		monsterService = new MonsterServiceImpl(monsterDao, weaponDao);
 	}
 
 	@Test

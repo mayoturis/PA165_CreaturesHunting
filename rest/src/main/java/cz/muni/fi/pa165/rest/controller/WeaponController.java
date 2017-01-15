@@ -6,8 +6,6 @@ import cz.muni.fi.pa165.facade.WeaponFacade;
 import cz.muni.fi.pa165.rest.exception.RestException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
@@ -64,8 +62,8 @@ public class WeaponController {
 	@RequestMapping(method = RequestMethod.POST,
 			consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public final WeaponDTO createWeapon(@RequestBody WeaponDTO weapon) throws RestException {
-		weaponFacade.create(weapon);
-		return weaponFacade.findById(weapon.getId());
+		int id = weaponFacade.create(weapon);
+		return weaponFacade.findById(id);
 	}
 
 	/**

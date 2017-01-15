@@ -57,21 +57,11 @@ public class MonsterFacadeTest {
 	}
 
 	@Test
-	public void deleteByIdFindsAndDeletesMonsterTest() {
+	public void deleteByIdDeletesMonsterTest() {
 		int monsterId = 666;
-		when(monsterService.findById(monsterId)).thenReturn(monster);
-
 		monsterFacade.delete(monsterId);
 
-		verify(monsterService, once).delete(monster);
-	}
-
-	@Test(expected = IllegalArgumentException.class)
-	public void deleteByIdThrowsExceptionIfNotFoundTest() {
-		int monsterId = 666;
-		when(monsterService.findById(monsterId)).thenReturn(null);
-
-		monsterFacade.delete(monsterId);
+		verify(monsterService, once).delete(monsterId);
 	}
 
 	@Test

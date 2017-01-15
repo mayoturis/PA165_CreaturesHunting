@@ -3,15 +3,10 @@ package cz.muni.fi.pa165.entities;
 import cz.muni.fi.pa165.entities.base.Entity;
 import org.hibernate.validator.constraints.Range;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -59,8 +54,20 @@ public class Monster implements Entity {
 		this.type = type;
 	}
 
+	public Monster(String type, BigDecimal height, BigDecimal weight, int agility, int strength) {
+		this.type = type;
+		this.height = height;
+		this.weight = weight;
+		this.agility = agility;
+		this.strength = strength;
+	}
+
 	public int getId() {
 		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public Set<Weapon> getWeapons() {
@@ -69,7 +76,6 @@ public class Monster implements Entity {
 
 	public void addWeapon(Weapon weapon) {
 		weapons.add(weapon);
-		weapon.addMonster(this);
 	}
 
 	public Set<Area> getAreas() {
@@ -78,7 +84,6 @@ public class Monster implements Entity {
 
 	public void addArea(Area area) {
 		areas.add(area);
-		area.addMonster(this);
 	}
 
 	public int getStrength() {
@@ -134,5 +139,13 @@ public class Monster implements Entity {
 	@Override
 	public int hashCode() {
 		return type.hashCode();
+	}
+
+	public void removeArea(Area area) {
+		areas.remove(area);
+	}
+
+	public void removeWeapon(Weapon weapon) {
+		weapons.remove(weapon);
 	}
 }

@@ -34,8 +34,13 @@
                     </c:if>
                 </td>
                 <td>
+                    <c:if test="${authenticatedUser.isAdmin()}">
+                        <my:a href="/user/update/${user.id}" class="btn btn-primary">Update</my:a>
+                    </c:if>
+                </td>
+                <td>
                     <form:form method="post" action="${pageContext.request.contextPath}/user/doDelete/${user.id}">
-                        <input type="submit" class="btn btn-default" value="Delete">
+                        <input type="submit" class="btn btn-primary" value="Delete">
                     </form:form>
                 </td>
             </tr>
