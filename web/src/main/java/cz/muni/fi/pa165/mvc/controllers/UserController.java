@@ -9,7 +9,6 @@ import cz.muni.fi.pa165.service.exceptions.HuntingPersistenceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,7 +25,6 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/user")
-@Transactional
 public class UserController {
 
 	final static Logger log = LoggerFactory.getLogger(UserController.class);

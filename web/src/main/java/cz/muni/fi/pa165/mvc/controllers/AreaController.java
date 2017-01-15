@@ -5,7 +5,6 @@ import cz.muni.fi.pa165.enums.DangerLevel;
 import cz.muni.fi.pa165.facade.AreaFacade;
 import cz.muni.fi.pa165.facade.MonsterFacade;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -25,7 +24,6 @@ import javax.validation.Valid;
  */
 @Controller
 @RequestMapping("/area")
-@Transactional
 public class AreaController {
 	@Inject
 	private AreaFacade areaFacade;
